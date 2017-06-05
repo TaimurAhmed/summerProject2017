@@ -1,4 +1,5 @@
 <?php 
+session_start(); //To start new session or resume old one in case of errors in reg data
 /**
  * Connection variable args: ..,user,password,db
  */
@@ -25,21 +26,26 @@ if(isset($_POST['register_button'])){
     $fname= strip_tags($_POST['reg_fname']); //Strip html tags to prevent HTML injections
     $fname = str_replace(' ', '', $fname); // Remove spaces subject variable
     $fname = ucfirst(strtolower($fname)); //Convert string to lower then capitalise first letter
+    $_SESSION['reg_fname'] = $fname; //Store reg form values in session variable initialised above
 
     //Last name
     $lname = strip_tags($_POST['reg_lname']); //Strip html tags to prevent HTML injections
     $lname = str_replace(' ', '', $lname); // Remove spaces subject variable
     $lname = ucfirst(strtolower($lname)); //Convert string to lower then capitalise first letter
+    $_SESSION['reg_lname'] = $lname; //Store reg form values in session variable initialised above
 
     //email
     $em = strip_tags($_POST['reg_email']); //Strip html tags to prevent HTML injections
     $em = str_replace(' ', '', $em); // Remove spaces subject variable
     $em = ucfirst(strtolower($em)); //Convert string to lower then capitalise first letter
+    $_SESSION['reg_email'] = $em; //Store reg form values in session variable initialised above
 
     //email 2
     $em2 = strip_tags($_POST['reg_email2']); //Strip html tags to prevent HTML injections
     $em2 = str_replace(' ', '', $em2); // Remove spaces subject variable
     $em2 = ucfirst(strtolower($em2)); //Convert string to lower then capitalise first letter
+    $_SESSION['reg_email2'] = $em; //Store reg form values in session variable initialised above
+
 
     //Passwords, Note: Did not remove white space or case sensitivity (more password options)
     $password = strip_tags($_POST['reg_password']); //Strip html tags to prevent HTML injections
@@ -106,13 +112,29 @@ if(isset($_POST['register_button'])){
    </head>
    <body>
       <form action="register.php" method="POST">
-         <input type="text" name = "reg_fname" placeholder="First Name" required>
+         <input type="text" name = "reg_fname" placeholder="First Name" value = "<?php
+            if(isset($_SESSION['reg_fname'])){
+                echo $_SESSION['reg_fname'];
+            }
+         ?>" required>
          <br>
-         <input type="text" name = "reg_lname" placeholder="Last Name" required>
+         <input type="text" name = "reg_lname" placeholder="Last Name" value = "<?php
+            if(isset($_SESSION['reg_lname'])){
+                echo $_SESSION['reg_lname'];
+            }
+         ?>" required>
          <br>
-         <input type="email" name = "reg_email" placeholder="Email" required>
+         <input type="email" name = "reg_email" placeholder="Email" value = "<?php
+            if(isset($_SESSION['reg_email'])){
+                echo $_SESSION['reg_email'];
+            }
+         ?>" required>
          <br>
-         <input type="email" name = "reg_email2" placeholder="Confirm Email" required>
+         <input type="email" name = "reg_email2" placeholder="Confirm Email" value = "<?php
+            if(isset($_SESSION['reg_email2'])){
+                echo $_SESSION['reg_email2'];
+            }
+         ?>" required>
          <br>
          <input type="password" name = "reg_password" placeholder="Password" required>
          <br>
