@@ -1,6 +1,6 @@
 <?php 
 /**
- * Connection variable args: ..,user,password,db
+ * Connection variable args: ..,user,password,db testing git out
  */
 $con = mysqli_connect("localhost","root","","social"); 
 if(mysqli_connect_errno())
