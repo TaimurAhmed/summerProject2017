@@ -51,29 +51,42 @@ if(isset($_POST['register_button'])){
     if($em == $em2){
         //Check if email is in valid format
         if(filter_var($em,FILTER_VALIDATE_EMAIL)) {
-
-            $em = filter_var($em,FILTER_VALIDATE_EMAIL);// valid email ?
-
+            
+            // Is email valid ?
+            $em = filter_var($em,FILTER_VALIDATE_EMAIL);
+            
             //Check if email already exists
             $e_check = mysqli_query($con, "SELECT email from users WHERE email = '$em'");
+            
             //Count the number of rows returned inside e_check
             $num_rows = mysqli_num_rows($e_check);
 
             if($num_rows > 0){
                 echo "Email already being used";
             }
-            else{
-                echo "Invalid email format";
-            }
         }
         else{
-            echo "Emails dont match";
+            echo "Invalid email format";
         }
     }
+    else{
+        echo "Emails dont match";
+    }
+    
+    if(strlen($fname) >25 || strlen($fname) < 2) {
+        echo "Your first name must be between 2 and 25 characters";
+    }
+
+    if(strlen($lname) >25 || strlen($lname) < 2) {
+        echo "Your last name must be between 2 and 25 characters";
+    }
+
+    if($password != $password2) {
+        echo "Your passwords do not match";
+    }
+
+    
 }
-
-
-
 
 ?>
 
