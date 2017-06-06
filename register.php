@@ -17,7 +17,7 @@ $em2 = ""; //email 2
 $password = ""; //password 
 $password2 = "";// password 2
 $date = "";// Sign up date
-$error_array = "";// Holds error messages
+$error_array = array();// Holds error messages
 
 if(isset($_POST['register_button'])){
 
@@ -44,7 +44,7 @@ if(isset($_POST['register_button'])){
     $em2 = strip_tags($_POST['reg_email2']); //Strip html tags to prevent HTML injections
     $em2 = str_replace(' ', '', $em2); // Remove spaces subject variable
     $em2 = ucfirst(strtolower($em2)); //Convert string to lower then capitalise first letter
-    $_SESSION['reg_email2'] = $em; //Store reg form values in session variable initialised above
+    $_SESSION['reg_email2 '] = $em; //Store reg form values in session variable initialised above
 
 
     //Passwords, Note: Did not remove white space or case sensitivity (more password options)
@@ -68,35 +68,35 @@ if(isset($_POST['register_button'])){
             $num_rows = mysqli_num_rows($e_check);
 
             if($num_rows > 0){
-                echo "Email already being used";
+                array_push($error_array,"Email already being used <br>");
             }
         }
         else{
-            echo "Invalid email format";
+            array_push($error_array,"Invalid email format <br>");
         }
     }
     else{
-        echo "Emails dont match";
+        array_push($error_array,"Emails dont match <br>");
     }
     
     if(strlen($fname) >25 || strlen($fname) < 2) {
-        echo "Your first name must be between 2 and 25 characters";
+        array_push($error_array,"Your first name must be between 2 and 25 characters <br>");
     }
 
     if(strlen($lname) >25 || strlen($lname) < 2) {
-        echo "Your last name must be between 2 and 25 characters";
+        array_push($error_array,"Your last name must be between 2 and 25 characters <br>");
     }
 
     if($password != $password2) {
-        echo "Your passwords do not match";
+        array_push($error_array,"Your passwords do not match <br>");
     }
     else{
         if(preg_match('/[^A-Za-z0-9]/', $password)){
-            echo "Your password can only contain standard english characters or numbers";
+            array_push($error_array,"Your password can only contain standard english characters or numbers <br>");
         }
 
         if(strlen($password > 30 || strlen($password <5))){
-            echo "Your password must be between 5 to 30 characters";
+            array_push($error_array,"Your password must be between 5 to 30 characters <br>");
         }
         
     }
