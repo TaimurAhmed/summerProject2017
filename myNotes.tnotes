@@ -1,0 +1,13 @@
+-----------------------------------------------------------
+    
+Important and Known issues
+-----------------------------------------------------------
+
+Password Encryption:
+
+i) Upgraded from md2 to password_hash default i.e. bcrypt.
+ii) !!OWASP!!: Reccomends using Argon2 (https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet).
+	I ignored this because it is not default, has been reccomended. New unknown external library conflicts with latest OWASP Top Ten.
+iii) Argon2 is included in Php 7.2 (due in Nov). Disclosure for read me ?
+
+
