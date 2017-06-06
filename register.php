@@ -19,6 +19,9 @@ $password2 = "";// password 2
 $date = "";// Sign up date
 $error_array = array();// Holds error messages
 
+
+
+
 if(isset($_POST['register_button'])){
 
     //Registration form values
@@ -94,13 +97,20 @@ if(isset($_POST['register_button'])){
         if(preg_match('/[^A-Za-z0-9]/', $password)){
             array_push($error_array,"Your password can only contain standard english characters or numbers <br>");
         }
-
-        if(strlen($password) > 30 || strlen($password) < 5) {
-            array_push($error_array,"Your password must be between 5 to 30 characters <br>");
-        }
-        
     }
 
+    if(strlen($password) > 30 || strlen($password) < 5) {
+            array_push($error_array,"Your password must be between 5 to 30 characters <br>");
+    }
+
+
+    /*If no errors in form*/
+    if (empty($error_array)){
+        $password = password_hash($something,PASSWORD_DEFAULT);//
+
+    }
+        
+    
     
 }
 
