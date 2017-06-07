@@ -144,12 +144,15 @@ if(isset($_POST['register_button'])){
 
             if ($result === null){
                 echo "word up";
+                $username = $username . "_0";
             }else{
                 if($result > 0){
                     $result++;
                     $username = $username . "_" . $result;
                 }
             }
+
+            echo "Username is: ". $username;
             
         }
 
