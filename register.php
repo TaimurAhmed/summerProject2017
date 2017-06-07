@@ -188,6 +188,7 @@ if(isset($_POST['register_button'])){
             echo "something inserted";
         }
         
+        array_push($error_array,"<span style='color: #14C800;'> Sucesfully created new user ! </span> <br>");
     }
 
 
@@ -262,6 +263,13 @@ if(isset($_POST['register_button'])){
 
 
          <input type="submit" name = "register_button" value="Register">
+         <br>
+
+        <?php
+            if(in_array("<span style='color: #14C800;'> Sucesfully created new user ! </span> <br>",$error_array))
+                echo "<span style='color: #14C800;'> Sucesfully created new user ! </span> <br>";
+         ?>
+
          <br>
       </form>
    </body>
