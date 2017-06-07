@@ -120,16 +120,17 @@ if(isset($_POST['register_button'])){
     ];
 
     if (empty($error_array)){
-        
-        $password = password_hash($password,PASSWORD_DEFAULT,$options); //Hashing + random salt
-
-        //Create username by concantenating first and last name
+        /* Hashing plus salting*/
+        $password = password_hash($password,PASSWORD_DEFAULT,$options); 
+        /*Create a default username by concatenating first and last name*/
         $username = strtolower($fname . "_" .$lname);
-        //The query
+        
+        /* Query: Update later to aggregate avoid need for boiler plating !!!!!!!! */
         $check_username_query = "SELECT username FROM users WHERE username = ?";
-        //Create prepared Statement
+        
+        /*Create prepared statement*/
         if($stmt = mysqli_prepare($con,$check_username_query)){
-
+            
             /*Bind parameters for markers, type 's'/string */
             mysqli_stmt_bind_param($stmt, "s", $username);
 
@@ -142,6 +143,10 @@ if(isset($_POST['register_button'])){
             /*Fetch values i.e. to bound result variable*/
             mysqli_stmt_fetch($stmt);
 
+            /* Close stmt*/
+            mysqli_stmt_close($stmt);
+        }
+
             if ($result === null){
                 echo "word up";
                 $username = $username . "_0";
@@ -152,15 +157,30 @@ if(isset($_POST['register_button'])){
                 }
             }
 
-            echo "Username is: ". $username;
-            
-        }
+            echo "Username is: ". $username; // Remove me !!!!!!!!!!!!!!!!!!!!
+        
 
 
+        /**
+         * Default Picture Assignment
+         * Change algorithim around final stages to randomly select any using rand
+         */
+        
+        $rand = rand(1,2); //Random number between 1 and 2
+
+        if($rand = 1){
+            $profile_pic = '/assets/images/profile_pics/defaults/head_deep_blue.png';
+        }else{
+            $profile_pic = '/assets/images/profile_pics/defaults/head_carrot.png';
+
+        }            
     }
 
-    
+
 }
+
+
+
 
 ?>
 
