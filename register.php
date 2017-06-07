@@ -125,14 +125,15 @@ if(isset($_POST['register_button'])){
         /*Create a default username by concatenating first and last name*/
         $username = strtolower($fname . "_" .$lname);
         
-        /* Query: Update later to aggregate avoid need for boiler plating !!!!!!!! */
-        $check_username_query = "SELECT username FROM users WHERE username = ?";
+        /* Query: Count number of usernames with pattern fname_lastname_% */
+        $check_username_query = "SELECT COUNT(username) FROM users WHERE username LIKE ?";
         
         /*Create prepared statement*/
         if($stmt = mysqli_prepare($con,$check_username_query)){
+            $pattern = $username . "%";
             
             /*Bind parameters for markers, type 's'/string */
-            mysqli_stmt_bind_param($stmt, "s", $username);
+            mysqli_stmt_bind_param($stmt, "s", $pattern);
 
             /*Execute query*/
             mysqli_stmt_execute($stmt);
@@ -146,24 +147,18 @@ if(isset($_POST['register_button'])){
             /* Close stmt*/
             mysqli_stmt_close($stmt);
         }
-
-            if ($result === null){
-                echo "word up";
-                $username = $username . "_0";
-            }else{
-                if($result > 0){
-                    $result++;
-                    $username = $username . "_" . $result;
-                }
-            }
-
-            echo "Username is: ". $username; // Remove me !!!!!!!!!!!!!!!!!!!!
+        /**
+         * First user gets fname_lname_1.
+         * Next user gets fname_lname_2 (assuming same name)
+         */
+        $result ++;
+        $username = $username . "_" .$result;
         
 
 
         /**
          * Default Picture Assignment
-         * Change algorithim around final stages to randomly select any using rand
+         * Write algorithim around final stages to randomly select any using rand
          */
         
         $rand = rand(1,2); //Random number between 1 and 2
@@ -190,7 +185,7 @@ if(isset($_POST['register_button'])){
             mysqli_stmt_execute($stmt);
             /* Close stmt*/
             mysqli_stmt_close($stmt);
-            echo "inserted";
+            echo "something inserted";
         }
         
     }
