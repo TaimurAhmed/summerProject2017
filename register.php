@@ -188,7 +188,15 @@ if(isset($_POST['register_button'])){
             echo "something inserted";
         }
         
+        /*Sucesfully created user message*/
         array_push($error_array,"<span style='color: #14C800;'> Sucesfully created new user ! </span> <br>");
+        
+        /* Clear Session Variables*/
+        $_SESSION['reg_fname'] = "";
+        $_SESSION['reg_lname'] = "";
+        $_SESSION['reg_email'] = "";
+        $_SESSION['reg_email2'] = "";
+
     }
 
 
