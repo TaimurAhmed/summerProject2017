@@ -4,9 +4,10 @@ session_start(); //To start new session or resume old one in case of errors in r
  * Connection variable args: ..,user,password,db
  */
 $con = mysqli_connect("localhost","root","","social"); 
-if(mysqli_connect_errno())
-{
-   echo "Failed to connect driver: ".mysqli_connect_errno();
+
+if(mysqli_connect_errno()){
+   echo "Connection failed: ". mysqli_connect_errno();
+   exit();
 }
 
 //Declaring variables to prevent errors
@@ -104,13 +105,57 @@ if(isset($_POST['register_button'])){
     }
 
 
-    /*If no errors in form*/
+    /**
+     * Password Hashing:
+     * Please refer to phpinfo.php to set ideal cost for hash as per server specs
+     * In this case, we have increased the cost for  BCRYPT from 10 to 12 for demonstration purposes only.
+     * Note: BCRYPT algorithim is default, which will always be 60 characters, but DB supports VARCHAR(255)
+     * in anticipation of future improvements and changes, as per PHP API.
+     * VERY IMPORTANT: Switch to Argon2 hash when it is rolled out with PHP 7.2 late in 2017
+     */
+
+    // To set hash cost. Please change as explained above when deployed.
+    $options = [
+    'cost' => 12,
+    ];
+
     if (empty($error_array)){
-        $password = password_hash($something,PASSWORD_DEFAULT);//
+        
+        $password = password_hash($password,PASSWORD_DEFAULT,$options); //Hashing + random salt
+
+        //Create username by concantenating first and last name
+        $username = strtolower($fname . "_" .$lname);
+        //The query
+        $check_username_query = "SELECT username FROM users WHERE username = ?";
+        //Create prepared Statement
+        if($stmt = mysqli_prepare($con,$check_username_query)){
+
+            /*Bind parameters for markers, type 's'/string */
+            mysqli_stmt_bind_param($stmt, "s", $username);
+
+            /*Execute query*/
+            mysqli_stmt_execute($stmt);
+
+            /*Bind Result variables*/
+            mysqli_stmt_bind_result($stmt, $result);
+
+            /*Fetch values i.e. to bound result variable*/
+            mysqli_stmt_fetch($stmt);
+
+            if ($result === null){
+                echo "word up";
+            }else{
+                if($result > 0){
+                    $result++;
+                    $username = $username . "_" . $result;
+                }
+            }
+            
+        }
+
 
     }
-        
-    
+
     
 }
 
