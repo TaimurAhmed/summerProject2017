@@ -31,6 +31,7 @@
             mysqli_stmt_close($stmt);
         }
 
+
         if($result === 1){
             /*Create prepared statement*/
             $fetch_hash_query = "SELECT password FROM users WHERE email = ?";
@@ -46,21 +47,20 @@
                 mysqli_stmt_fetch($stmt);
                 /* Close stmt*/
                 mysqli_stmt_close($stmt);
-                echo "exiting final sql, result: ". $result2 . $email;
-        }
+                
+                /*If incorrect password*/
+                if(! password_verify($_POST['log_password'],$result2)){
+                 array_push($error_array, "Email or password credentials are incorrect <br>");
+                }else{
+                    header("location: index.php");
+                }
+            }
         }else{
-            /* 0 == Doesnt exist. 2 == Something bad has happened. Figure out a way to deal */
-            echo "Either user doesnt exist or something bad has happened !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
-            exit();
+            /*Incorrect email*/
+            array_push($error_array, "Email or password credentials are incorrect <br>");//Consider adding one for DB integrity !!!!!!!!!!!!!!!!!!!!!!!
         }
 
-        if(password_verify($_POST['log_password'],$result2)){
-            echo "correct credentials, access granted";
-        }else{
-            echo "incorrect password, access denied";
-            echo "you entered" . $_POST['log_password'];
-            echo "corresponding hash:" . $result2;
-        }
+
 
  
     }
