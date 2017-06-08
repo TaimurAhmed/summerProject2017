@@ -1,14 +1,5 @@
 <?php 
-session_start(); //To start new session or resume old one in case of errors in reg data
-/**
- * Connection variable args: ..,user,password,db
- */
-$con = mysqli_connect("localhost","root","","social"); 
-
-if(mysqli_connect_errno()){
-   echo "Connection failed: ". mysqli_connect_errno();
-   exit();
-}
+require './config/config.php';
 
 //Declaring variables to prevent errors
 $fname = ""; //first name
