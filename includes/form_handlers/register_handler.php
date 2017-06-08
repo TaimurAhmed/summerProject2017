@@ -164,7 +164,8 @@ if(isset($_POST['register_button'])){
          * Insert New User details in DB
          */
         /* Query: Update later to aggregate avoid need for boiler plating !!!!!!!! */
-        $insert_new_user_query = "INSERT INTO users VALUES ('', ? , ?, ? , ? , ? , ? , ? , '0', '0' , 'no' , ',')";
+        $insert_new_user_query = "INSERT INTO users VALUES ('', ? , ?, ? , ? , ? , ? , ? , 0, 0 , 'no' , ',')";
+
         
         /*Create prepared statement*/
         if($stmt = mysqli_prepare($con,$insert_new_user_query)){
@@ -175,7 +176,6 @@ if(isset($_POST['register_button'])){
             mysqli_stmt_execute($stmt);
             /* Close stmt*/
             mysqli_stmt_close($stmt);
-            echo "something inserted";
         }
         
         /*Sucesfully created user message*/
