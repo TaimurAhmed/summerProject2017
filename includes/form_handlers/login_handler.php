@@ -6,7 +6,7 @@
 
 
         /*Abstract hashing to some kind of function? !!!!!!!!!!!!!!!!!!!!!!*/
-
+        
         $options = [
             'cost' => 12,
         ];
