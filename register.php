@@ -22,6 +22,7 @@ require './includes/form_handlers/login_handler.php';
                     Log in or Sign Up below !
                 </div>
                 
+                
                 <form action="register.php" method="POST">
                         <input  type="email" name="log_email" placeholder="Email Address"
                                 value = "<?php 

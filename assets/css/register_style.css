@@ -58,6 +58,7 @@ body {
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
     text-shadow: #000 0.6px 0.5px 0px;
+    margin-bottom: 1%;
 }
 
 .login_header h1 {
@@ -65,4 +66,21 @@ body {
     margin-bottom: 0;
     color: white;
     font-size: 254%;
+}
+
+input[type = "submit"] {
+    background-color: #0bdab1;
+    border: 1px;
+    border-style: solid;
+    border-color: #0bdab1; 
+    border-radius: 3px;
+    margin: 1% 1% 1% 1%;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left:  10px;
+    color: black;
+    text-shadow: #000 0.6px 0.5px 0px;
+    font-family: 'Bellota-BoldItalic',sans-serif;
+    font-size:100%;
 }
