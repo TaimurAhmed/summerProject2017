@@ -1,16 +1,13 @@
 <?php 
 
-require './config/config.php';
+require './includes/header.php';
+
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <title>Project </title>
-</head>
-<body>
-Hello chimp
+
+
+Hello chimp!
+
 </body>
-</html
+</html>
