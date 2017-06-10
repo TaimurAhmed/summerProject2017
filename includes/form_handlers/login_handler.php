@@ -34,7 +34,7 @@
 
         if($result === 1){
             /*Create prepared statement*/
-            $fetch_hash_query = "SELECT password,id FROM users WHERE email = ?";
+            $fetch_hash_query = "SELECT password,id,username FROM users WHERE email = ?";
             if($stmt = mysqli_prepare($con,$fetch_hash_query)){
                 /*Fetch hash from DB for relevant credentials*/
                 /*Bind parameters for markers, type 's'/string */
@@ -42,7 +42,7 @@
                 /*Execute query*/
                 mysqli_stmt_execute($stmt);
                 /*Bind Result variables*/
-                mysqli_stmt_bind_result($stmt, $result2, $id);
+                mysqli_stmt_bind_result($stmt, $result2, $id,$username);
                 /*Fetch values i.e. to bound result variable*/
                 mysqli_stmt_fetch($stmt);
                 /* Close stmt*/
