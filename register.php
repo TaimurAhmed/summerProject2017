@@ -14,7 +14,19 @@ require './includes/form_handlers/login_handler.php';
       <script src="./assets/js/register.js"></script>
    </head>
   
-   <body>
+   <body> 
+       <?php
+            if(isset($_POST['register_button'])){
+                echo '
+                    <script>
+                        $(document).ready(function(){
+                            $("#first_form").hide();
+                            $("#second_form").show();
+                        });
+                    </script>
+                ';
+            } 
+        ?>
 
 
 
