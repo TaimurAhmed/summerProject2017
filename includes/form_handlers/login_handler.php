@@ -63,7 +63,8 @@
                         mysqli_stmt_close($stmt);
                     }
 
-
+                    /*Set variable to determine whether user is logged in*/
+                    $_SESSION['username'] = $username;
                     header("location: index.php");
                 }
             }
