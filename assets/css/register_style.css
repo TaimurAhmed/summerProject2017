@@ -23,6 +23,10 @@ body {
     padding: 0;
 }
 
+a {
+    text-decoration-line: none;
+}
+
 
 .wrapper {
     background-image: url("../images/backgrounds/UoBbackground.jpeg");
@@ -99,3 +103,10 @@ input[type = "text"]:hover,[type = "email"]:hover ,[type = "password"]:hover {
     background-color: yellow;
 }
 
+#first_form {
+
+}
+
+#second_form {
+    display: none;
+}
