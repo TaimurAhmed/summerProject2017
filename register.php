@@ -22,7 +22,7 @@ require './includes/form_handlers/login_handler.php';
                     Log in or Sign Up below !
                 </div>
                 
-                
+                <!-- Sign in form: For existing users-->
                 <form action="register.php" method="POST">
                         <input  type="email" name="log_email" placeholder="Email Address"
                                 value = "<?php 
@@ -41,8 +41,15 @@ require './includes/form_handlers/login_handler.php';
                                     echo "Email or password credentials are incorrect <br>";
                                 }
                         ?>
+                        <a href="#" id ="signin" class = "signin"> Dont have an account ? Click here to register !</a>
                    </form>
               
+
+
+
+
+
+                <!--Sign up form: For new users-->
                 <form action="register.php" method="POST">
 
                  
@@ -110,6 +117,7 @@ require './includes/form_handlers/login_handler.php';
                  ?>
 
                  <br>
+                 <a href="#" id= "signup" >Already have an account ? Sign in here !</a>
               </form>
            </body>
             
