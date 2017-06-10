@@ -4,10 +4,8 @@ require './config/config.php';
 /*Redirect users who are not logged in*/
 if(isset($_SESSION["username"])){
     $userLoggedIn = $_SESSION["username"]; 
-    echo("this should happen");
 
 }else{
-    echo("this shouldnt happen!!");
     header("Location:register.php");
 }
 
@@ -19,7 +17,8 @@ if(isset($_SESSION["username"])){
 <head>
    <meta charset="UTF-8">
    <title>TimsiFeed:Wall </title>
+   <script src="./assets/js/bootstrap.js"></script>
+   <link rel=stylesheet type="text/css" href="./assets/css/bootstrap.css"></script>
 </head>
 
 <body>
-iafhklashfklhaklsfhasklfhkla
