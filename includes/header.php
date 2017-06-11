@@ -9,6 +9,9 @@ if(isset($_SESSION["username"])){
     header("Location:register.php");
 }
 
+require './includes/header_handler.php';
+
+
 ?>
 
 <!DOCTYPE html>
@@ -37,9 +40,14 @@ if(isset($_SESSION["username"])){
         </div>
         
         <nav>
+            <a href="#"><?php echo $first_name?></a>
             <a href="#"><i class="fa fa-home"></i></a>
             <a href="#"><i class="fa fa-envelope"></i></a>
             <a href="#"><i class="fa fa-bell-o"></i></a>
+            <a href="#"><i class="fa fa-users"></i></a>
+            <a href="#"><i class="fa fa-cog"></i></a>
+
+
         </nav>
     
     </div>

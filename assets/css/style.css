@@ -51,7 +51,8 @@ nav a{
 }
 
 nav a:hover{
-    border-bottom: 7px solid darkgreen;
+    border-bottom: 7px solid black;
+    color: black;
 
 }
 
