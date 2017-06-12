@@ -154,9 +154,9 @@ if(isset($_POST['register_button'])){
         $rand = rand(1,2); //Random number between 1 and 2
 
         if($rand = 1){
-            $profile_pic = '/assets/images/profile_pics/defaults/head_deep_blue.png';
+            $profile_pic = './assets/images/profile_pics/defaults/head_deep_blue.png';
         }else{
-            $profile_pic = '/assets/images/profile_pics/defaults/head_carrot.png';
+            $profile_pic = './assets/images/profile_pics/defaults/head_carrot.png';
 
         } 
 

@@ -40,7 +40,13 @@ require './includes/header_handler.php';
         </div>
         
         <nav>
-            <a href="#"><?php echo $first_name?></a>
+            <a href="#">
+                <?php 
+                    if(isset($meta_person["first_name"])){
+                        echo $meta_person["first_name"];
+                    }
+                ?>                       
+            </a>
             <a href="#"><i class="fa fa-home"></i></a>
             <a href="#"><i class="fa fa-envelope"></i></a>
             <a href="#"><i class="fa fa-bell-o"></i></a>

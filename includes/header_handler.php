@@ -1,7 +1,9 @@
 <?php
-        $first_name="default";
+        $meta_person = array();
+        //$first_name="default";
+        //$profile_pic = "";
 
-        $get_first_name_query = "SELECT first_name FROM users WHERE username = ?";
+        $get_first_name_query = "SELECT first_name,profile_pic FROM users WHERE username = ?";
         /*Create prepared statement*/
         if($stmt = mysqli_prepare($con,$get_first_name_query)){
             
@@ -10,7 +12,7 @@
             /*Execute query*/
             mysqli_stmt_execute($stmt);
             /*Bind Result variables*/
-            mysqli_stmt_bind_result($stmt, $first_name);
+            mysqli_stmt_bind_result($stmt,$meta_person["first_name"],$meta_person["profile_pic"]);
             /*Fetch values i.e. to bound result variable*/
             mysqli_stmt_fetch($stmt);
             /* Close stmt*/
