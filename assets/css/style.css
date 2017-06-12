@@ -10,6 +10,7 @@
 
 body {
     line-height: 17px;
+    background-color: #ecf0f1;
 }
 
 .top_bar {
@@ -20,6 +21,8 @@ body {
     border-bottom: .25em solid #27ae60;
     margin: 0 0 10px 0;
     display: inline-flex;
+    position: fixed;
+    z-index: 10;
 }
 
 .logo a {
@@ -54,5 +57,28 @@ nav a:hover{
     border-bottom: 7px solid black;
     color: black;
 
+}
+
+.wrapper {
+    margin:0 auto;
+    top:50px;
+    position: relative;
+    padding: 0 10px;
+    width: 75%;
+    min-width: 950px;
+}
+
+.column {
+    background-color: white;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 2px 2px 1px grey ;
+}
+
+.user_details {
+    width: 250px;
+    float: left;
+    margin-bottom: 20px;
 }
 
