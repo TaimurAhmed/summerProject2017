@@ -26,7 +26,7 @@ body {
 }
 
 .logo a {
-    font-family: "Bellota-BoldItalic",sans-serif;
+    font-family: "Bellota-BoldItalic", sans-serif;
     margin-left: 10px;
     font-size: 30;
     position: relative;
@@ -56,7 +56,6 @@ nav a{
 nav a:hover{
     border-bottom: 7px solid black;
     color: black;
-
 }
 
 .wrapper {
@@ -74,6 +73,7 @@ nav a:hover{
     border: 1px solid black;
     border-radius: 5px;
     box-shadow: 2px 2px 1px grey ;
+    z-index: -1;
 }
 
 .user_details {
@@ -83,13 +83,13 @@ nav a:hover{
 }
 
 .user_details img{
-    height: 125px;
+    height: 120px;
     border-radius: 5px;
     margin-right: 5px;
 }
 
 .user_details_left_right {
-    width: 125px;
+    width: 120px;
     display: inline-block;
     position: absolute;
 }

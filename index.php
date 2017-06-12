@@ -1,7 +1,5 @@
 <?php 
-
 require './includes/header.php';
-//session_destroy();
 ?>
 
 
@@ -19,11 +17,19 @@ require './includes/header.php';
                 ?>
                 
             </a>
+            <br>
             <?php if(isset($meta_person["num_posts"])){echo "Posts:". $meta_person["num_posts"]."<br>";}?>
             <?php if(isset($meta_person["num_likes"])){echo "Likes:". $meta_person["num_likes"];}?>  
         </div>
     </div>
 
-    </div>
+        <div class="main_column column">
+            <form class="post_form" action="index.php" method="POST">
+                <textarea name="post_text" id="post_text" placeholder="Got something to say ?"></textarea>
+                <input type="submit" name = "post" id ="post_button" value = "Post ">
+                <hr> 
+            </form>
+        </div>
+</div>
 </body>
 </html>
