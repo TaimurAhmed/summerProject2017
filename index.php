@@ -1,9 +1,16 @@
 <?php 
 require './includes/header.php';
+include("./includes/classes/User.php");
+include("./includes/classes/Post.php");
+
+
+if(isset($_POST['post'])){
+    $post = new Post($con,$userLoggedIn);
+    $post->submitPost($_POST['post_text'],'none');
+}
+
+
 ?>
-
-
-
     <div class ="user_details column">
         <a href="<?php echo $userLoggedIn; ?>"><img src="
             <?php if(isset($meta_person["profile_pic"])){echo $meta_person["profile_pic"];}?>" 
@@ -29,6 +36,12 @@ require './includes/header.php';
                 <input type="submit" name = "post" id ="post_button" value = "Post ">
                 <hr> 
             </form>
+        <?php
+            $user_obj = new User($con,$userLoggedIn) ;
+            echo $user_obj->getFirstandLastName();
+         ?>
+
+
         </div>
 </div>
 </body>
