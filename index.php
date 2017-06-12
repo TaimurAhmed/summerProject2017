@@ -5,13 +5,13 @@ require './includes/header.php';
 
 
     <div class ="user_details column">
-        <a href="#"><img src="
+        <a href="<?php echo $userLoggedIn; ?>"><img src="
             <?php if(isset($meta_person["profile_pic"])){echo $meta_person["profile_pic"];}?>" 
            alt="">
         </a>
 
         <div class="user_details_left_right">
-            <a href="#">
+            <a href="<?php echo $userLoggedIn; ?>">
                 <?php if(isset($meta_person["first_name"])){echo $meta_person["first_name"];}            
                       if(isset($meta_person["last_name"])){echo " " . $meta_person["last_name"];}
                 ?>
