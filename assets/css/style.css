@@ -94,3 +94,26 @@ nav a:hover{
     position: absolute;
 }
 
+.main_column{
+    float:right;
+    width: 77%;
+    z-index: -1;
+    min-height: 160px;
+}
+
+.post_form {
+    width: 100%;
+}
+
+.post_form textarea {
+    width: 80%;
+    height: 60px;
+    border-radius: 5px;
+    margin-right:  5px;
+    border: 1px solid grey;
+    font-size: 12px;
+}
+
+textarea:focus {
+    outline: 0;
+}
