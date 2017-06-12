@@ -112,6 +112,7 @@ nav a:hover{
     margin-right:  5px;
     border: 1px solid grey;
     font-size: 12px;
+    padding: 5px;
 }
 
 textarea:focus {
