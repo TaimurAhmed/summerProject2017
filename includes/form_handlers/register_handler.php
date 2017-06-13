@@ -151,9 +151,9 @@ if(isset($_POST['register_button'])){
          * Write algorithim around final stages to randomly select any using rand
          */
         
-        $rand = rand(1,2); //Random number between 1 and 2
+        $rand = rand(1,5); //Random number between 1 and 2
 
-        if($rand = 1){
+        if($rand == 1){
             $profile_pic = './assets/images/profile_pics/defaults/head_deep_blue.png';
         }else{
             $profile_pic = './assets/images/profile_pics/defaults/head_carrot.png';

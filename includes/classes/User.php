@@ -49,6 +49,19 @@ class User{
         }
         return $row["first_name"] . " " . $row["last_name"];
     }
+
+    public function isClosed(){
+        $username = $this->user['id'];
+        $isClosedQuery = "SELECT user_closed FROM users WHERE id = ?";
+        if($stmt = mysqli_prepare($this->con,$isClosedQuery)){
+            mysqli_stmt_bind_param($stmt, "s",$this->user["id"]);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt,$result);
+            mysqli_stmt_fetch($stmt);
+            mysqli_stmt_close($stmt);
+       }
+       return $result === "yes";
+    }
 }
 
 

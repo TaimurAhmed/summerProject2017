@@ -5,8 +5,8 @@ include("./includes/classes/Post.php");
 
 
 if(isset($_POST['post'])){
-    $post = new Post($con,$userLoggedIn);
-    $post->submitPost($_POST['post_text'],'none');
+     $post = new Post($con,$userLoggedIn);
+     $post->submitPost($_POST['post_text'],'none');
 }
 
 
@@ -37,12 +37,17 @@ if(isset($_POST['post'])){
                 <hr> 
             </form>
         <?php
+        /*
             $user_obj = new User($con,$userLoggedIn) ;
             echo $user_obj->getFirstandLastName();
             echo "<br>";
             echo $user_obj->getUsername();
             echo "<br>";
             echo $user_obj->getNumPosts();
+        */
+           $post = new Post($con,$userLoggedIn);
+           $post->loadPostFriends(); 
+            
         ?>
 
 
