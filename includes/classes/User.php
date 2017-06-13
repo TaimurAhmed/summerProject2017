@@ -2,6 +2,7 @@
 class User{
     private $user;
     private $con;
+    private $user_array = array();
 
     public function __construct($con,$user){
         $this->con = $con;
