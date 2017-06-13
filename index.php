@@ -39,7 +39,11 @@ if(isset($_POST['post'])){
         <?php
             $user_obj = new User($con,$userLoggedIn) ;
             echo $user_obj->getFirstandLastName();
-         ?>
+            echo "<br>";
+            echo $user_obj->getUsername();
+            echo "<br>";
+            echo $user_obj->getNumPosts();
+        ?>
 
 
         </div>
