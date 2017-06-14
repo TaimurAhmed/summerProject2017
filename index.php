@@ -32,6 +32,7 @@ if(isset($_POST['post'])){
     </div>
 
         <div class="main_column column">
+            
             <form class="post_form" action="index.php" method="POST">
                 <textarea name="post_text" id="post_text" placeholder="Got something to say ?"></textarea>
                 <input type="submit" name = "post" id ="post_button" value = "Post ">
@@ -44,7 +45,8 @@ if(isset($_POST['post'])){
                 <i class="fa fa-refresh fa-spin fa-3x fa-fw" ></i>
             </div>
 
-            </div>
+        </div>
+
         <script>
         var userLoggedIn = '<?php echo $userLoggedIn; ?>';
 
@@ -66,7 +68,7 @@ if(isset($_POST['post'])){
             });
 
             $(window).scroll(function() {
-                var height = $('.posts_area').height(); //Div containing posts
+                var height = $('.posts_area').height(); //Height of div containing posts
                 var scroll_top = $(this).scrollTop();
                 var page = $('.posts_area').find('.nextPage').val();/*Sets hidden inputs field*/ 
                 var noMorePosts = $('.posts_area').find('.noMorePosts').val();
