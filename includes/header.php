@@ -1,6 +1,7 @@
 <?php 
 
 require './config/config.php';
+
 /*Redirect users who are not logged in*/
 if(isset($_SESSION["username"])){
     $userLoggedIn = $_SESSION["username"]; 
@@ -14,7 +15,6 @@ require './includes/header_handler.php';
 
 ?>
 
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
