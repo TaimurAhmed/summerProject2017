@@ -1,5 +1,5 @@
 <?php 
-require './includes/header.php';
+include("./includes/header.php");
 include("./includes/classes/User.php");
 include("./includes/classes/Post.php");
 
@@ -7,6 +7,7 @@ include("./includes/classes/Post.php");
 if(isset($_POST['post'])){
      $post = new Post($con,$userLoggedIn);
      $post->submitPost($_POST['post_text'],'none');
+     /*Consider patch at later point to avoid posting again on refresh?*/
 }
 
 
@@ -36,21 +37,7 @@ if(isset($_POST['post'])){
                 <input type="submit" name = "post" id ="post_button" value = "Post ">
                 <hr> 
             </form>
-        <?php
-        /*
-            Just for testing function !!!!!!!!!!
 
-            $user_obj = new User($con,$userLoggedIn) ;
-            echo $user_obj->getFirstandLastName();
-            echo "<br>";
-            echo $user_obj->getUsername();
-            echo "<br>";
-            echo $user_obj->getNumPosts();
-        
-           $post = new Post($con,$userLoggedIn);
-           $post->loadPostFriends();
-        */
-        ?>
         
             <div class="posts_area"></div>
             <div id='#loading'> 
