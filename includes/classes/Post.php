@@ -53,13 +53,15 @@ class Post{
     }
 
     public function loadPostFriends($data, $limit) {
-        $page = $data["page"];
-        $userLoggedIn = $this->user_obj->getusername();
+        
+        $page = $data["page"];/*Name of variable in Ajax request i.e. 1*/
+        $userLoggedIn = $this->user_obj->getUsername();
 
-        if($page === 1){
-            $start =0;
+        /*If page is 1 start at 0 */
+        if($page ==  1){
+            $start = 0;
         }else{
-            $start = ($page-1) = $limit;
+            $start = ($page-1) * $limit;
         }
 
 
@@ -90,18 +92,22 @@ class Post{
                     $user_to_name = $user_to_obj->getFirstandLastName();
                     $user_to = "to  <a href='".$row["user_to"]."'>".$user_to_name."</a>";
                 }
+
+
                 /*Has the user closed there account?*/
                 $added_by_obj = new User($this->con,$added_by);
                 
                 if($added_by_obj->isClosed()){ continue;}
 
                 /* If numbers of iterations is less than starting posting, start next loop*/
-                if($num_iterations ++ < $start){ continue; }
+                if($num_iterations++ < $start){ continue; }
 
                 /* If number of posts requested i.e. limit , is breached break else increase count*/
-                if($count > $limit){ break: }
-                $count++;
-
+                if($count > $limit){
+                    break;
+                }else{
+                    $count++;
+                }
 
 
                 $user_details_query = "SELECT first_name, last_name, profile_pic FROM users WHERE username = ?";
@@ -182,23 +188,32 @@ class Post{
                                 $time_message = $interval->s . " seconds ago";
                             }
                         }
-                $str = $str . "<div class='status_post'>
-                                    <div class='post_profile_pic'>
-                                        <img src='$profile_pic' width='50'>
-                                    </div>
 
-                                    <div class='posted_by' style='color:#ACACAC;'>
-                                        <a href='$added_by'> $first_name $last_name </a> $user_to &nbsp;&nbsp;&nbsp;&nbsp;$time_message
-                                    </div>
-                                    <div id='post_body'>
-                                        $body
-                                        <br>
-                                    </div>
-
+                        
+                    $str .= "<div class='status_post'>
+                                <div class='post_profile_pic'>
+                                    <img src='$profile_pic' width='50'>
                                 </div>
-                                <hr>";
 
-            }
+                                <div class='posted_by' style='color:#ACACAC;'>
+                                    <a href='$added_by'> $first_name $last_name </a> $user_to &nbsp;&nbsp;&nbsp;&nbsp;$time_message
+                                </div>
+                                <div id='post_body'>
+                                    $body
+                                    <br>
+                                </div>
+
+                            </div>
+                            <hr>";
+                
+
+            } //End while loop
+
+            if($count > $limit) 
+                $str .= "<input type='hidden' class='nextPage' value='" . ($page + 1) . "'>
+                            <input type='hidden' class='noMorePosts' value='false'>";
+            else 
+                $str .= "<input type='hidden' class='noMorePosts' value='true'><p style='text-align: centre;'> No more posts to show! </p>";
         }
 
         echo $str;

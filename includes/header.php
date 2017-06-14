@@ -20,10 +20,10 @@ require './includes/header_handler.php';
 <head>
    <meta charset="UTF-8">
    <title>TimsiFeed:Wall </title>
-   <!--JS-->
-   <script src="./assets/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
    <!--J Qeury-->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <!--JS-->
+   <script src="./assets/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
    <!--CSS-->
    <link rel=stylesheet type="text/css" href="./assets/bootstrap-3.3.7-dist/css/bootstrap.css"></link>
    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">

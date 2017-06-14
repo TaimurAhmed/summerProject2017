@@ -50,68 +50,69 @@ if(isset($_POST['post'])){
            $post = new Post($con,$userLoggedIn);
            $post->loadPostFriends();
         */
-
         ?>
         
-        <div class="posts_area"></div>
-        <div id='#loading'> 
-            <i class="fa fa-refresh fa-spin fa-3x fa-fw" ></i>
-            <span class="sr-only">Loading...</span>
-        </div>
+            <div class="posts_area"></div>
+            <div id='#loading'> 
+                <i class="fa fa-refresh fa-spin fa-3x fa-fw" ></i>
+            </div>
 
-        </div>
+            </div>
         <script>
-var userLoggedIn = '<?php echo $userLoggedIn; ?>';
+        var userLoggedIn = '<?php echo $userLoggedIn; ?>';
 
-    $(document).ready(function() {
+        $(document).ready(function() {
+            /*Show the newsfeed loading symbol*/
+            $('#loading').show();
 
-        $('#loading').show();
+            /*Ajax request for more posts on news feeds*/ 
+            $.ajax({
+                url: "./includes/handlers/ajax_load_posts.php",
+                type: "POST",
+                data: "page=1&userLoggedIn=" + userLoggedIn,
+                cache:false,
 
-        //Original ajax request for loading first posts 
-        $.ajax({
-            url: "includes/handlers/ajax_load_posts.php",
-            type: "POST",
-            data: "page=1&userLoggedIn=" + userLoggedIn,
-            cache:false,
+                success: function(data) {
+                    $('loading').hide();
+                    $('.posts_area').html(data);
+                }
+            });
 
-            success: function(data) {
-                $('#loading').hide();
-                $('.posts_area').html(data);
-            }
+            $(window).scroll(function() {
+                var height = $('.posts_area').height(); //Div containing posts
+                var scroll_top = $(this).scrollTop();
+                var page = $('.posts_area').find('.nextPage').val();/*Sets hidden inputs field*/ 
+                var noMorePosts = $('.posts_area').find('.noMorePosts').val();
+
+                /*If no more posts via Post class is set to true, do no execute*/ 
+                if ((document.body.scrollHeight == document.body.scrollTop + window.innerHeight) && noMorePosts == 'false') {
+                    
+                    $('#loading').show();
+                    //alert("Test: I am being called");
+
+                    var ajaxReq = $.ajax({
+                        url: "./includes/handlers/ajax_load_posts.php",
+                        type: "POST",
+                        data: "page=" + page + "&userLoggedIn=" + userLoggedIn,
+                        cache:false,
+
+                        success: function(response) {
+                            $('.posts_area').find('.nextPage').remove(); //Removes current .nextpage 
+                            $('.posts_area').find('.noMorePosts').remove(); //Removes current .nextpage 
+
+                            $('#loading').hide();
+                            $('.posts_area').append(response);
+                        }
+                    });
+
+                } //End if statement
+
+                return false;
+
+            }); //End (window).scroll(function())
+
+
         });
-
-        $(window).scroll(function() {
-            var height = $('.posts_area').height(); //Div containing posts
-            var scroll_top = $(this).scrollTop();
-            var page = $('.posts_area').find('.nextPage').val();
-            var noMorePosts = $('.posts_area').find('.noMorePosts').val();
-
-            if ((document.body.scrollHeight == document.body.scrollTop + window.innerHeight) && noMorePosts == 'false') {
-                $('#loading').show();
-
-                var ajaxReq = $.ajax({
-                    url: "includes/handlers/ajax_load_posts.php",
-                    type: "POST",
-                    data: "page=" + page + "&userLoggedIn=" + userLoggedIn,
-                    cache:false,
-
-                    success: function(response) {
-                        $('.posts_area').find('.nextPage').remove(); //Removes current .nextpage 
-                        $('.posts_area').find('.noMorePosts').remove(); //Removes current .nextpage 
-
-                        $('#loading').hide();
-                        $('.posts_area').append(response);
-                    }
-                });
-
-            } //End if statement
-
-            return false;
-
-        }); //End (window).scroll(function())
-
-
-    });
 
 
         </script>

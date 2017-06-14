@@ -28,7 +28,7 @@ body {
 .logo a {
     font-family: "Bellota-BoldItalic", sans-serif;
     margin-left: 10px;
-    font-size: 30;
+    font-size: 30px;
     position: relative;
     top: 9px;
     color:black;
@@ -96,7 +96,7 @@ nav a:hover{
 
 .main_column{
     float:right;
-    width: 77%;
+    width: 72%;
     z-index: -1;
     min-height: 160px;
 }
