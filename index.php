@@ -44,9 +44,10 @@ if(isset($_POST['post'])){
             echo $user_obj->getUsername();
             echo "<br>";
             echo $user_obj->getNumPosts();
-        */
+        
            $post = new Post($con,$userLoggedIn);
            $post->loadPostFriends();
+           */
 
         ?>
         
@@ -58,55 +59,57 @@ if(isset($_POST['post'])){
 
         </div>
         <script>
-            var userLoggedIn = '<?php echo $userLoggedIn; ?>';
+var userLoggedIn = '<?php echo $userLoggedIn; ?>';
 
-            $(document).ready(function() {
+    $(document).ready(function() {
 
-                $ ('#loading').show();
+        $('#loading').show();
 
-                /*Original ajax request for loading first posts*/
-                $.ajax({
+        //Original ajax request for loading first posts 
+        $.ajax({
+            url: "includes/handlers/ajax_load_posts.php",
+            type: "POST",
+            data: "page=1&userLoggedIn=" + userLoggedIn,
+            cache:false,
+
+            success: function(data) {
+                $('#loading').hide();
+                $('.posts_area').html(data);
+            }
+        });
+
+        $(window).scroll(function() {
+            var height = $('.posts_area').height(); //Div containing posts
+            var scroll_top = $(this).scrollTop();
+            var page = $('.posts_area').find('.nextPage').val();
+            var noMorePosts = $('.posts_area').find('.noMorePosts').val();
+
+            if ((document.body.scrollHeight == document.body.scrollTop + window.innerHeight) && noMorePosts == 'false') {
+                $('#loading').show();
+
+                var ajaxReq = $.ajax({
                     url: "includes/handlers/ajax_load_posts.php",
                     type: "POST",
-                    data: "page=1&userLoggedIn=" + userLoggedIn,
+                    data: "page=" + page + "&userLoggedIn=" + userLoggedIn,
                     cache:false,
 
-                    success: function(data) {
+                    success: function(response) {
+                        $('.posts_area').find('.nextPage').remove(); //Removes current .nextpage 
+                        $('.posts_area').find('.noMorePosts').remove(); //Removes current .nextpage 
+
                         $('#loading').hide();
-                        $('.posts_area').html(data);
+                        $('.posts_area').append(response);
                     }
                 });
 
-                $(window).scroll(function() {
-                    var height = $('.posts_area').height; //Height is equal to height of div containing posts
-                    var scroll_top = $(this).scrollTop(); //The top bit of wherever we are scrolling
-                    var page = $('.post_area').find('.nextPage').val();
-                    var noMorePosts = $('posts_area').find('.noMorePosts').val(); 
+            } //End if 
 
-                    if ((document.body.scrollHeight == document.body.scrollTop + window.innerHeight) && noMorePosts == 'false') {
-                        
-                        $('#loading').show();
-                    
-                        /*Original ajax request for loading first posts*/
-                        var ajaxReq = $.ajax ({
-                            url:" includes/handlers/ajax_load_posts.php",
-                            type: "POST",
-                            data: "page="+ page + "&userLoggedIn=" + userLoggedIn,
-                            cache:false,
+            return false;
 
-                            success:function(response){
-                                $('.posts_area').find('.nextPage').remove();/*Removes current.nextpage*/
-                                $('.posts_area').find('.noMorePosts').remove();/*Removes current.nextpage*/
-                                $('#loading').hide();
-                                $('#post_area').append(response);
-                            }
-                        });
-                    } //End if
-                    return false;
+        }); //End (window).scroll(function())
 
-                });//End ((window).scroll(function())
-            });
 
+    });
 
 
         </script>
