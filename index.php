@@ -38,6 +38,8 @@ if(isset($_POST['post'])){
             </form>
         <?php
         /*
+            Just for testing function !!!!!!!!!!
+
             $user_obj = new User($con,$userLoggedIn) ;
             echo $user_obj->getFirstandLastName();
             echo "<br>";
@@ -47,7 +49,7 @@ if(isset($_POST['post'])){
         
            $post = new Post($con,$userLoggedIn);
            $post->loadPostFriends();
-           */
+        */
 
         ?>
         
@@ -102,7 +104,7 @@ var userLoggedIn = '<?php echo $userLoggedIn; ?>';
                     }
                 });
 
-            } //End if 
+            } //End if statement
 
             return false;
 
