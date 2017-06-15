@@ -6,13 +6,13 @@ class User{
 
     public function __construct($con,$user){
         $this->con = $con;
-        $user_details_query = "SELECT id,first_name,last_name,username FROM users WHERE username = ?";
+        $user_details_query = "SELECT id,first_name,last_name,username,friend_array FROM users WHERE username = ?";
         if($stmt = mysqli_prepare($con,$user_details_query)){
             $this->user = array();
             /*Bind parameters for markers, type 's'/string */
             mysqli_stmt_bind_param($stmt, "s",$user);
             mysqli_stmt_execute($stmt);
-            mysqli_stmt_bind_result($stmt,$this->user["id"],$this->user["first_name"],$this->user["last_name"],$this->user["username"]);
+            mysqli_stmt_bind_result($stmt,$this->user["id"],$this->user["first_name"],$this->user["last_name"],$this->user["username"],$this->user["friend_array"]);
             mysqli_stmt_fetch($stmt);
             mysqli_stmt_close($stmt);
         }
@@ -61,6 +61,17 @@ class User{
             mysqli_stmt_close($stmt);
        }
        return $result === "yes";
+    }
+
+    public function isFriend($username_to_check){
+        $usernameComma = "," . $username_to_check . ",";
+
+        /*Check if string is inside another string*/
+        if(strstr($this->user['friend_array'],$usernameComma) || $username_to_check == $this->['username']){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
 
