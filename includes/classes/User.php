@@ -1,4 +1,4 @@
-<?php
+ <?php
 class User{
     private $user;
     private $con;
@@ -67,7 +67,7 @@ class User{
         $usernameComma = "," . $username_to_check . ",";
 
         /*Check if string is inside another string*/
-        if(strstr($this->user['friend_array'],$usernameComma) || $username_to_check == $this->['username']){
+        if(strstr($this->user['friend_array'],$usernameComma) || $username_to_check == $this->user['username']){
             return true;
         }else{
             return false;
