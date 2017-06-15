@@ -57,7 +57,6 @@
                     mysqli_stmt_bind_param($stmt, "sssss",$post_body, $userLoggedIn, $posted_to, $date_time_now, $post_id);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_close($stmt);
-                    echo "<p>".$post_body. $userLoggedIn. $posted_to. $date_time_now. $post_id."<p>";
                 }
                 echo "<p>Comment Posted ! <p>";
             }
