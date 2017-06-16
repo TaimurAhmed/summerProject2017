@@ -44,7 +44,7 @@ class Post{
                         /*Bind parameters for markers, type 's'/string */
                         mysqli_stmt_bind_param($stmt, "ss",$num_posts,$added_by);
                         /*Execute query*/
-                        mysqli_stmt_execute($stmt);
+                         mysqli_stmt_execute($stmt);
                         /*Close prepared stmt*/
                         mysqli_stmt_close($stmt);
                     }
