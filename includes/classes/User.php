@@ -50,6 +50,21 @@ class User{
         return $row["first_name"] . " " . $row["last_name"];
     }
 
+    public function getProfilePic() {
+        $username = $this->user['username'];
+        $getFirstandLastName_query = "SELECT profile_pic FROM users WHERE id = ?";
+        $row = array();
+        if($stmt = mysqli_prepare($this->con,$getFirstandLastName_query)){
+            mysqli_stmt_bind_param($stmt, "s",$this->user["id"]);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt,$row["profile_pic"]);
+            mysqli_stmt_fetch($stmt);
+            mysqli_stmt_close($stmt);
+        }
+        return $row["profile_pic"];
+    }
+    
+
     public function isClosed(){
         $username = $this->user['id'];
         $isClosedQuery = "SELECT user_closed FROM users WHERE id = ?";

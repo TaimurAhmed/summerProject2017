@@ -65,6 +65,93 @@
             <textarea name="post_body"></textarea>
             <input type="submit" name="postComment<?php echo $post_id; ?>" value="Post">
         </form>
+
+        <!-- Load comments for post -->
+        <?php
+            $get_comments_query = "SELECT post_body,posted_by,posted_to,date_added,removed FROM comments WHERE post_id = ? ORDER BY id ASC";
+            $comments_array = array();
+            if($stmt = mysqli_prepare($con,$get_comments_query)){
+                mysqli_stmt_bind_param($stmt, "s",$post_id);
+                mysqli_stmt_execute($stmt);
+                mysqli_stmt_bind_result($stmt,$comments_array["post_body"],$comments_array["posted_by"],$comments_array["posted_to"],$comments_array["date_added"],$comments_array["removed"]);
+                mysqli_stmt_fetch($stmt);
+                mysqli_stmt_close($stmt);
+            }
+            /* Prevents errors. At worst will be set to null and nothing will appear*/
+            $post_body = $comments_array["post_body"];
+            $posted_by = $comments_array["posted_by"];
+            $posted_to = $comments_array["posted_to"];
+            $date_added = $comments_array["date_added"];
+            $removed = $comments_array["removed"];
+            /*Time!!!!!!!!: Abstract this later*/
+            $date_time_now = date("Y-m-d H:i:s");
+            $start_date = new DateTime($date_added);/*Time of post*/ /*Refactor var here!!! i.e. var becomes arg*/
+            $end_date = new DateTime($date_time_now);/*Current Time*/
+            $interval = $start_date->diff($end_date);/*Diff b/w two dates*/ 
+            if($interval->y >= 1) {
+                        if($interval == 1)
+                            $time_message = $interval->y . " year ago"; //1 year ago
+                        else 
+                            $time_message = $interval->y . " years ago"; //1+ year ago
+                    }
+                    else if ($interval-> m >= 1) {
+                        if($interval->d == 0) {
+                            $days = " ago";
+                        }
+                        else if($interval->d == 1) {
+                            $days = $interval->d . " day ago";
+                        }
+                        else {
+                            $days = $interval->d . " days ago";
+                        }
+
+
+                        if($interval->m == 1) {
+                            $time_message = $interval->m . " month". $days;
+                        }
+                        else {
+                            $time_message = $interval->m . " months". $days;
+                        }
+
+                    }
+                    else if($interval->d >= 1) {
+                        if($interval->d == 1) {
+                            $time_message = "Yesterday";
+                        }
+                        else {
+                            $time_message = $interval->d . " days ago";
+                        }
+                    }
+                    else if($interval->h >= 1) {
+                        if($interval->h == 1) {
+                            $time_message = $interval->h . " hour ago";
+                        }
+                        else {
+                            $time_message = $interval->h . " hours ago";
+                        }
+                    }
+                    else if($interval->i >= 1) {
+                        if($interval->i == 1) {
+                            $time_message = $interval->i . " minute ago";
+                        }
+                        else {
+                            $time_message = $interval->i . " minutes ago";
+                        }
+                    }
+                    else {
+                        if($interval->s < 30) {
+                            $time_message = "Just now";
+                        }
+                        else {
+                            $time_message = $interval->s . " seconds ago";
+                        }
+                    }
+                    $user_obj = new User($con, $posted_by)
+        ?>
+        <div class="comments_section">
+            <!-- target set to render parent_window NOT inside the iframe*/ -->
+            <a href="<?php echo $posted_by?>" target="_parent">mickey mouse</a>
+        </div>
             
         
     </body>
