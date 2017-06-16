@@ -68,23 +68,50 @@
 
         <!-- Load comments for post -->
         <?php
-            $get_comments_query = "SELECT post_body,posted_by,posted_to,date_added,removed FROM comments WHERE post_id = ? ORDER BY id ASC";
+            $count_comment_query = "SELECT COUNT(id) FROM comments WHERE post_id = ?";
+            $count = 0;
+            
+            if($stmt = mysqli_prepare($con,$count_comment_query)){
+                mysqli_stmt_bind_param($stmt, "s",$post_id);
+                mysqli_stmt_execute($stmt);
+                mysqli_stmt_bind_result($stmt,$count);
+                mysqli_stmt_fetch($stmt);
+                mysqli_stmt_close($stmt);
+            }
+
+            if($count != 0){
+                            $get_comments_query = "SELECT post_body,posted_by,posted_to,date_added,removed FROM comments WHERE post_id = ? ORDER BY date_added DESC";
             $comments_array = array();
+            $results_array = array();
+
+            $row_num = 0;
+            $col_num = 5;
             if($stmt = mysqli_prepare($con,$get_comments_query)){
                 mysqli_stmt_bind_param($stmt, "s",$post_id);
                 mysqli_stmt_execute($stmt);
                 mysqli_stmt_bind_result($stmt,$comments_array["post_body"],$comments_array["posted_by"],$comments_array["posted_to"],$comments_array["date_added"],$comments_array["removed"]);
-                mysqli_stmt_fetch($stmt);
+                while(mysqli_stmt_fetch($stmt)){
+                        $results_array[$row_num][0] = $comments_array["post_body"];
+                        $results_array[$row_num][1] = $comments_array["posted_by"];
+                        $results_array[$row_num][2] = $comments_array["posted_to"];
+                        $results_array[$row_num][3] = $comments_array["date_added"];
+                        $results_array[$row_num][4] = $comments_array["removed"]; 
+                        $row_num++;
+                }
+
                 mysqli_stmt_close($stmt);
             }
+
+            for($n = 0; $n < $row_num; $n++){
             /* Prevents errors. At worst will be set to null and nothing will appear*/
-            $post_body = $comments_array["post_body"];
-            $posted_by = $comments_array["posted_by"];
-            $posted_to = $comments_array["posted_to"];
-            $date_added = $comments_array["date_added"];
-            $removed = $comments_array["removed"];
+            $comment_post_body = $results_array[$n][0];
+            $posted_by = $results_array[$n][1];
+            $posted_to = $results_array[$n][2];
+            $date_added = $results_array[$n][3];
+            $removed = $results_array[$n][4];
             /*Time!!!!!!!!: Abstract this later*/
             $date_time_now = date("Y-m-d H:i:s");
+            echo "I am parsing : ".$date_added;
             $start_date = new DateTime($date_added);/*Time of post*/ /*Refactor var here!!! i.e. var becomes arg*/
             $end_date = new DateTime($date_time_now);/*Current Time*/
             $interval = $start_date->diff($end_date);/*Diff b/w two dates*/ 
@@ -146,12 +173,33 @@
                             $time_message = $interval->s . " seconds ago";
                         }
                     }
-                    $user_obj = new User($con, $posted_by)
+                    $user_obj = new User($con, $posted_by);
+
+                    ?>
+                        <div class="comments_section">
+                            <!-- target set to render parent_window NOT inside the iframe-->
+                            <a href="<?php echo $posted_by;?>" target="_parent">
+                                <img src='<?php echo $user_obj->getProfilePic();?>' title= "<?php echo $posted_by;?>" style ="float:left;" height = "30"/>
+
+                            </a>
+                            <a href="<?php echo $posted_by;?>" target="_parent">
+                                 <b>
+                                     <?php echo $user_obj->getFirstandLastName (); ?>
+                                 </b>
+                            </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <?php echo $time_message. "<br>" . $comment_post_body; ?>
+                            <hr>
+                        </div>
+                     <?php
+
+
+            }
+            /*If there are comments to load*/
+}
+
+
         ?>
-        <div class="comments_section">
-            <!-- target set to render parent_window NOT inside the iframe*/ -->
-            <a href="<?php echo $posted_by?>" target="_parent">mickey mouse</a>
-        </div>
             
         
     </body>
