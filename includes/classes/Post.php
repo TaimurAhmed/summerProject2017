@@ -235,6 +235,13 @@ class Post{
                                     <div id='post_body'>
                                         $body
                                         <br>
+                                        <br>
+                                        <br>
+                                    </div>
+
+                                    <div class='newfeedPostOptions'>
+                                        <iframe src='like.php?post_id=$p_id'><iframe>
+
                                     </div>
 
                                 </div>

@@ -50,6 +50,7 @@
             
             //Check for previous likes
             $check_for_previous_likes_query = "SELECT * FROM likes WHERE username = ? AND post_id = ?";
+            $num_row=0;
             /*Get number of rows of this query!!!*/
 
             if($num_row>0){
