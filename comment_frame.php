@@ -54,12 +54,15 @@
                 $post_body = mysqli_escape_string($con,$post_body);
                 $date_time_now = date("Y-m-d H:i:s");
                 $insert_comment_query = "INSERT INTO comments VALUES ('',?,?,?,?,'no',?)";
-                if($stmt = mysqli_prepare($con,$insert_comment_query)){
-                    mysqli_stmt_bind_param($stmt, "sssss",$post_body, $userLoggedIn, $posted_to, $date_time_now, $post_id);
-                    mysqli_stmt_execute($stmt);
-                    mysqli_stmt_close($stmt);
+                /*If post is not empty insert it*/
+                if($post_body !=""){
+                    if($stmt = mysqli_prepare($con,$insert_comment_query)){
+                        mysqli_stmt_bind_param($stmt, "sssss",$post_body, $userLoggedIn, $posted_to, $date_time_now, $post_id);
+                        mysqli_stmt_execute($stmt);
+                        mysqli_stmt_close($stmt);
+                    }
+                    echo "<p>Comment Posted ! <p>";
                 }
-                echo "<p>Comment Posted ! <p>";
             }
         ?>
         <form action="comment_frame.php?post_id=<?php echo $post_id; ?>" id="comment_form" name="postComment<?php echo $post_id; ?>" method="POST">

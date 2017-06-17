@@ -13,6 +13,7 @@ body {
     background-color: #ecf0f1;
 }
 
+
 .top_bar {
     width: 100%;
     min-width: 1050px; 
@@ -23,6 +24,11 @@ body {
     display: inline-flex;
     position: fixed;
     z-index: 10;
+}
+
+a{
+    color: #27ae60;
+    text-decoration: none;
 }
 
 .logo a {
@@ -110,6 +116,7 @@ nav a:hover{
     font-size: 15px;
     padding: 0px 5px;
     min-height:75px;
+    cursor: pointer; 
 }
 
  .post_profile_pic{
@@ -186,5 +193,8 @@ textarea:focus {
     width:13%;
     height:35px;
     margin-top: 3px;
-
+    position: absolute;
+    font-family: 'Bellota-BoldItalic',sans-serif;
+    color: white;
+    text-shadow: black;
 }
