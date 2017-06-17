@@ -27,8 +27,8 @@
             if(isset($_GET["post_id"])){
                 $post_id = $_GET["post_id"];
             }
-
-            $get_likes_query = "SELECT likes, added_by FROM posts WHERE id = '?'";
+            /*Likes for a particular post*/
+            $get_likes_query = "SELECT likes, added_by FROM posts WHERE id = ?";
             if($stmt = mysqli_prepare($con,$get_likes_query)){
                 mysqli_stmt_bind_param($stmt, "s",$post_id);
                 mysqli_stmt_execute($stmt);
@@ -36,7 +36,29 @@
                 mysqli_stmt_fetch($stmt);
                 mysqli_stmt_close($stmt);
             }
+            /*Corresponding user data to liked data (needs a join so badly)*/
+            $user_details_query = "SELECT * FROM users WHERE username = ?";
+            /*
+            prepared statement
+             */
             
+            //Like Button 
+
+
+
+            //Unlike Button
+            
+            //Check for previous likes
+            $check_for_previous_likes_query = "SELECT * FROM likes WHERE username = ? AND post_id = ?";
+            /*Get number of rows of this query!!!*/
+
+            if($num_row>0){
+                echo '';
+            }else{
+                echo '';
+            }
+
+
         ?>  
         
     </body>
