@@ -3,6 +3,7 @@
         <title></title>
         <!--CSS-->
         <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+        <link rel="stylesheet" type="text/css" href="./assets/css/comments.css">
     </head>
     <body>
         <?php 
@@ -111,7 +112,6 @@
             $removed = $results_array[$n][4];
             /*Time!!!!!!!!: Abstract this later*/
             $date_time_now = date("Y-m-d H:i:s");
-            echo "I am parsing : ".$date_added;
             $start_date = new DateTime($date_added);/*Time of post*/ /*Refactor var here!!! i.e. var becomes arg*/
             $end_date = new DateTime($date_time_now);/*Current Time*/
             $interval = $start_date->diff($end_date);/*Diff b/w two dates*/ 

@@ -153,3 +153,30 @@ textarea:focus {
 .post_form input[type="submit"]:active{
     padding: 5px 4px 4px 5px;
 }
+
+#comment_iframe{
+    max-height: 250px;
+    width: 100%;
+}
+
+.comments_section{
+    padding: 0 5px 5px 5px;
+}
+
+.comments_section img{
+    padding: 0 3px 3px 3px;
+    border-radius: 3px;
+}
+
+#comment_form textarea{
+    border-color: silver;
+    width: 85%;
+    height: 35px;
+    border-radius: 5px;
+    color: grey;
+    font-size: 14px;
+    margin: 3px 3px 3px 5px; 
+}
+
+
+
