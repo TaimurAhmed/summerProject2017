@@ -8,6 +8,22 @@ class Post{
         $this->user_obj = new User($con,$user);
     }
 
+    public function countPosts($post_id){
+        $count_posts_query = "SELECT COUNT(id) FROM comments WHERE post_id = ?";
+        $result = "";
+        if($stmt = mysqli_prepare($con,$count_posts_query)){
+            $this->user = array();
+            /*Bind parameters for markers, type 's'/string */
+            mysqli_stmt_bind_param($stmt, "s",$post_id);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt,$result);
+            mysqli_stmt_fetch($stmt);
+            mysqli_stmt_close($stmt);
+        }
+        return $result;
+
+    }
+
     public function  submitPost($body,$user_to) {
         $body = strip_tags($body); /*Remove HTML tags*/
         $body = mysqli_real_escape_string($this->con,$body);

@@ -83,8 +83,10 @@
                 mysqli_stmt_close($stmt);
             }
 
-            if($count != 0){
-                            $get_comments_query = "SELECT post_body,posted_by,posted_to,date_added,removed FROM comments WHERE post_id = ? ORDER BY date_added DESC";
+            if($count == 0){
+                echo "<center><br>No comments to show ! <br></center>";
+            }else{
+            $get_comments_query = "SELECT post_body,posted_by,posted_to,date_added,removed FROM comments WHERE post_id = ? ORDER BY date_added DESC";
             $comments_array = array();
             $results_array = array();
 
@@ -107,6 +109,7 @@
             }
 
             for($n = 0; $n < $row_num; $n++){
+            $post_number_client = $n+1;
             /* Prevents errors. At worst will be set to null and nothing will appear*/
             $comment_post_body = $results_array[$n][0];
             $posted_by = $results_array[$n][1];
@@ -192,13 +195,15 @@
                             </a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <?php echo $time_message. "<br>" . $comment_post_body; ?>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <?php echo "<div class='newsFeedPostOption'><br> Comment ". $post_number_client. " of ". $count." comments. </div>" ?>
                             <hr>
                         </div>
                      <?php
 
 
             }
-            /*If there are comments to load*/
+            
 }
 
 
