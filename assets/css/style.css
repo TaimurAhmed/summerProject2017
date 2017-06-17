@@ -178,5 +178,13 @@ textarea:focus {
     margin: 3px 3px 3px 5px; 
 }
 
+#comment_form input[type = "submit"]{
+    border: none;
+    border-color: #27ae60;
+    background-color: #27ce80;
+    border-radius: 5px;
+    width:13%;
+    height:35px;
+    margin-top: 3px;
 
-
+}
