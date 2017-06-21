@@ -239,7 +239,7 @@ class Post{
                                         <br>
                                     </div>
 
-                                    <div class='newfeedPostOptions'>
+                                    <div class='newsfeedPostOption'>
                                         <iframe src='like.php?post_id=$p_id'><iframe>
 
                                     </div>

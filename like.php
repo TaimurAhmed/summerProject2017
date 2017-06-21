@@ -80,7 +80,7 @@
                 }
             }
 
-                /* Insert some king of notification!!!!!!!!!!!!!!!!!!!!!!!!!*/
+                /* Insert some kind of notification!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
                 /*Unlike button*/
                 if(isset($_POST['unlike_button'])){

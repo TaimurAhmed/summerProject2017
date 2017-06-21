@@ -196,7 +196,7 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <?php echo $time_message. "<br>" . $comment_post_body; ?>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <?php echo "<div class='newsFeedPostOption'><br> Comment ". $post_number_client. " of ". $count." comments. </div>" ?>
+                            <?php echo "<div class='newsFeedPostOptions'><br> Comment ". $post_number_client. " of ". $count." comments. </div>" ?>
                             <hr>
                         </div>
                      <?php
