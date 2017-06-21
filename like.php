@@ -53,28 +53,22 @@
                 mysqli_stmt_close($stmt);
             }
 
-            echo "top <br>";
             //Code for LIKE  button pressed       
             if(isset($_POST['like_button'])){
-                echo"testing like <br>";
                 $total_likes++;
                 $make_like_query = "UPDATE posts SET likes = ? WHERE id = ?";
                 if($stmt = mysqli_prepare($con,$make_like_query)){
                     mysqli_stmt_bind_param($stmt, "ss",$total_likes,$post_id);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_close($stmt);
-                    echo "test 1/3<br>";
                  }
-                echo "before total user like: ".$total_user_likes. "<br>";
                 $total_user_likes++;
-                echo "after total user like: ".$total_user_likes. "<br>";
 
                 $user_likes_query = "UPDATE users SET num_likes = ? WHERE username = ?";
                 if($stmt = mysqli_prepare($con,$user_likes_query)){
                     mysqli_stmt_bind_param($stmt, "ss",$total_user_likes,$user_liked);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_close($stmt);
-                    echo "test 2/3<br>";
 
                 }
 
@@ -83,7 +77,6 @@
                     mysqli_stmt_bind_param($stmt, "ss",$userLoggedIn,$post_id );
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_close($stmt);
-                    echo "test 3/3<br>";
                 }
             }
 
@@ -91,7 +84,6 @@
 
                 /*Unlike button*/
                 if(isset($_POST['unlike_button'])){
-                echo"testing unlike <br>";
                 $total_likes--;
                 $make_like_query = "UPDATE posts SET likes = ? WHERE id = ?";
                 if($stmt = mysqli_prepare($con,$make_like_query)){
