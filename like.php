@@ -1,4 +1,4 @@
-<html>
+<html class="like_entire">
     
     <head>
         <title></title>
@@ -126,21 +126,25 @@
             /*Get number of rows of this query!!!*/
 
             if($num_rows > 0) {
-                echo '<form action="like.php?post_id=' . $post_id . '" method="POST">
-                        <input type="submit" class="comment_like" name="unlike_button" value="Unlike">
-                        <div class="like_value">
-                            '. $total_likes .' Likes
-                        </div>
-                    </form>
+                echo '<div class="like_page_form">
+                        <form action="like.php?post_id=' . $post_id . '" method="POST">
+                            <input type="submit" class="comment_like" name="unlike_button" value="Unlike">
+                            <div class="like_value">
+                                '. $total_likes .' Likes
+                            </div>
+                        </form>
+                     </div>
                 ';
             }
             else {
-                echo '<form action="like.php?post_id=' . $post_id . '" method="POST">
-                        <input type="submit" class="comment_like" name="like_button" value="Like">
-                        <div class="like_value">
-                            '. $total_likes .' Likes
-                        </div>
-                    </form>
+                echo '<div class="like_page_form">
+                        <form action="like.php?post_id=' . $post_id . '" method="POST">
+                            <input type="submit" class="comment_like" name="like_button" value="Like">
+                            <div class="like_value">
+                                '. $total_likes .' Likes
+                            </div>
+                        </form>
+                    </div class="like_page_form">
                 ';
             }
 

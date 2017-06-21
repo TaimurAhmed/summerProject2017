@@ -239,9 +239,9 @@ class Post{
                                         <br>
                                     </div>
                                     <!--Buggy when placed on top of comments-->
-                                    <div class='newsfeedPostOption'>
-                                        <iframe src='like.php?post_id=$p_id'><iframe>
-
+                                    <div class='newsFeedPostOptions'>
+                                        comments(Placeholder)&nbsp;&nbsp;&nbsp;
+                                        <iframe src='like.php?post_id=$p_id' scrolling='no'><iframe>
                                     </div>
 
                                 </div>

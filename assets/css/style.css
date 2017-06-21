@@ -8,6 +8,10 @@
     src: url("../fonts/Bellota-BoldItalic.otf");
 }
 
+.html{
+    font-family: Arial,Helvetica,Sans-serif;
+}
+
 body {
     line-height: 17px;
     background-color: #ecf0f1;
@@ -201,26 +205,47 @@ textarea:focus {
 
 .newsFeedPostOptions{
     color:green;
-    padding: 0.5px 0.5px 0.5px 0.5px;
+    padding: 0px;
+    text-decoration: none;
+    border: none;
 }
 
-.newsFeedPostOption iframe{
+.newsFeedPostOptions iframe{
     border: 0px;
     height: 17px;
     width: 120px;
 }
 
+.newsFeedPostOptions form{
+    position: absolute;
+    top:0;
+}
+
+
+
 .comment_like{
-    background-color: transparent;
+    border-radius: 3px; 
     border:none;
     font-size: 14px;
-    color:;
-    padding: 0px;
+    padding: 2px 2px 2px 2px;
     height: auto;
     width: auto;
+    margin:0;
+    background-color: green;
+    color: white;
 }
 
 .like_value{
     display: inline;
     font-size: 14px; 
+}
+
+.like_page_form{
+    position: absolute;
+    top:0;
+    background-color: transparent;
+}
+
+.like_entire{
+    background-color: white;
 }
