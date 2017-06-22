@@ -1,6 +1,8 @@
 <?php 
 
 require './config/config.php';
+include("./includes/classes/User.php");
+include("./includes/classes/Post.php"); 
 
 /*Redirect users who are not logged in*/
 if(isset($_SESSION["username"])){
