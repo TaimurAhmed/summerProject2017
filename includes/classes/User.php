@@ -149,6 +149,17 @@ class User{
         }
     }
 
+    /*Send friend request*/
+    public function sendRequest($user_to){
+        $user_from = $this->user['username'];
+        $query = "INSERT INTO friend_requests VALUES ('',?,?)";
+        if($stmt = mysqli_prepare($this->con,$user_to){
+            mysqli_stmt_bind_param($stmt, "ss",$user_to,$user_from);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+        }
+    }
+
 }
 
 
