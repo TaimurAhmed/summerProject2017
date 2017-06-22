@@ -5,8 +5,8 @@ class User{
     private $test;
 
     public function __construct($con,$user){
-        $this->con = $con;
-        $user_details_query = "SELECT id,first_name,last_name,username,friend_array FROM users WHERE username = ?";
+         $this->con = $con;
+         $user_details_query = "SELECT id,first_name,last_name,username,friend_array FROM users WHERE username = ?";
         if($stmt = mysqli_prepare($con,$user_details_query)){
             $this->user = array();
             /*Bind parameters for markers, type 's'/string */
@@ -67,6 +67,7 @@ class User{
 
     public function isClosed(){
         $username = $this->user['id'];
+        $result = "";
         $isClosedQuery = "SELECT user_closed FROM users WHERE id = ?";
         if($stmt = mysqli_prepare($this->con,$isClosedQuery)){
             mysqli_stmt_bind_param($stmt, "s",$this->user["id"]);
@@ -87,6 +88,36 @@ class User{
         }else{
             return false;
         }
+    }
+
+    public function didRecieveRequest($user_to){ 
+        $user_from = $this->user['username'];
+        $number;
+        $check_request_query = "SELECT COUNT(id) FROM friend_requests WHERE user_to=? AND user_from = ?";
+        if($stmt = mysqli_prepare($this->con,$check_request_query)){
+            mysqli_stmt_bind_param($stmt, "ss",$user_to,$user_from);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt,$number);
+            mysqli_stmt_fetch($stmt);
+            mysqli_stmt_close($stmt);
+       }
+
+       return $number > 0 ;
+    }
+
+    public function didSendRequest($user_from){ 
+        $user_to  = $this->user['username'];
+        $number;
+        $check_request_query = "SELECT COUNT(id) FROM friend_requests WHERE user_to=? AND user_from = ?";
+        if($stmt = mysqli_prepare($this->con,$check_request_query)){
+            mysqli_stmt_bind_param($stmt, "ss",$user_to,$user_from);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt,$number);
+            mysqli_stmt_fetch($stmt);
+            mysqli_stmt_close($stmt);
+       }
+
+       return $number > 0 ;
     }
 }
 
