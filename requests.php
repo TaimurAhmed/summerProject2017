@@ -45,14 +45,16 @@ require './includes/header.php';
                     mysqli_stmt_bind_param($stmt, "ss",$temp,$userLoggedIn);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_close($stmt);
+                    echo "test1"."<br>"."temp: ".$temp.$userLoggedIn;
                 }
                 /*Same thing with users swapped so that they both get friend request accepted*/
                 $add_friend_query = "UPDATE users SET friend_array=CONCAT(friend_array,?) WHERE username = ?";
                 if($stmt = mysqli_prepare($con,$add_friend_query)){
-                    $temp = $user_from . ",";
+                    $temp = $userLoggedIn . ",";
                     mysqli_stmt_bind_param($stmt, "ss",$temp,$user_from);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_close($stmt);
+                    echo "test2"."<br>";
                 }
 
                 $delete_friend_request_query = "DELETE from friend_requests WHERE user_to = ? AND user_from = ?";
@@ -62,7 +64,7 @@ require './includes/header.php';
                     mysqli_stmt_close($stmt);
                 }
                 echo "You are now friends !";
-                header("Location:requests.php"); 
+                //header("Location:requests.php"); 
 
 
            }
