@@ -90,8 +90,8 @@ class User{
         }
     }
 
-    public function didRecieveRequest($user_to){ 
-        $user_from = $this->user['username'];
+    public function didRecieveRequest($user_from){ 
+        $user_to = $this->user['username'];
         $number;
         $check_request_query = "SELECT COUNT(id) FROM friend_requests WHERE user_to=? AND user_from = ?";
         if($stmt = mysqli_prepare($this->con,$check_request_query)){
@@ -105,8 +105,8 @@ class User{
        return $number > 0 ;
     }
 
-    public function didSendRequest($user_from){ 
-        $user_to  = $this->user['username'];
+    public function didSendRequest($user_to){ 
+        $user_from  = $this->user['username'];
         $number;
         $check_request_query = "SELECT COUNT(id) FROM friend_requests WHERE user_to=? AND user_from = ?";
         if($stmt = mysqli_prepare($this->con,$check_request_query)){
@@ -153,7 +153,7 @@ class User{
     public function sendRequest($user_to){
         $user_from = $this->user['username'];
         $query = "INSERT INTO friend_requests VALUES ('',?,?)";
-        if($stmt = mysqli_prepare($this->con,$user_to)){
+        if($stmt = mysqli_prepare($this->con,$query)){
             mysqli_stmt_bind_param($stmt,"ss",$user_to,$user_from);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
