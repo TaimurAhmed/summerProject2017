@@ -133,14 +133,14 @@ class User{
 
         /*To delete friend from users profile*/
         $friend_array = str_replace($user_to_remove . ",", "", $friend_array);
-        deleteFriendFromArray($friend_array,$logged_in_user);
+        $this->deleteFriendFromArray($friend_array,$logged_in_user);
         /*To delete friend from other persons profile too*/
-        $friend_array = str_replace($this->['username'] . ",","",$friend_array);
-        deleteFriendFromArray($friend_array,$user_to_remove);
+        $friend_array = str_replace($this->user['username'] . ",","",$friend_array);
+        $this->deleteFriendFromArray($friend_array,$user_to_remove);
 
     }
 
-    private function deleteFriendFromArray($friend_array,$user_to_remove){
+    public function deleteFriendFromArray($friend_array,$user_to_remove){
         $update_friends_array = "UPDATE users SET friend_array = ?  WHERE username = ?";
         if($stmt = mysqli_prepare($this->con,$update_friends_array)){
             mysqli_stmt_bind_param($stmt, "ss",$friend_array,$user_to_remove);
@@ -153,8 +153,8 @@ class User{
     public function sendRequest($user_to){
         $user_from = $this->user['username'];
         $query = "INSERT INTO friend_requests VALUES ('',?,?)";
-        if($stmt = mysqli_prepare($this->con,$user_to){
-            mysqli_stmt_bind_param($stmt, "ss",$user_to,$user_from);
+        if($stmt = mysqli_prepare($this->con,$user_to)){
+            mysqli_stmt_bind_param($stmt,"ss",$user_to,$user_from);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
         }
