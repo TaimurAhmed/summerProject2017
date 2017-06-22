@@ -52,7 +52,7 @@ require './includes/header_handler.php';
             <a href="#"><i class="fa fa-home"></i></a>
             <a href="#"><i class="fa fa-envelope"></i></a>
             <a href="#"><i class="fa fa-bell-o"></i></a>
-            <a href="#"><i class="fa fa-users"></i></a>
+            <a href="requests.php"><i class="fa fa-users"></i></a>
             <a href="#"><i class="fa fa-cog"></i></a>
             <a href="./includes/handlers/logout.php"><i class="fa fa-sign-out"></i></a>
 

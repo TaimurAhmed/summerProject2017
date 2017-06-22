@@ -63,6 +63,21 @@ class User{
         }
         return $row["profile_pic"];
     }
+
+        public function getFriendArray() {
+        $username = $this->user['username'];
+        $getFirstandLastName_query = "SELECT friend_array FROM users WHERE id = ?";
+        $row = array();
+        if($stmt = mysqli_prepare($this->con,$getFirstandLastName_query)){
+            mysqli_stmt_bind_param($stmt, "s",$this->user["id"]);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt,$row["friend_array"]);
+            mysqli_stmt_fetch($stmt);
+            mysqli_stmt_close($stmt);
+        }
+        return $row["friend_array"];
+    }
+    
     
 
     public function isClosed(){
