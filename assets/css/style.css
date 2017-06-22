@@ -258,9 +258,28 @@ textarea:focus {
      height: 100%;
      float: left;
      position: relative;
-     background-color: #2ecc71;
-     border-right: 10px solid #27ae60;
+     background-color: #27ae60;
+     border-right: 10px solid #2ecc71;
      color: #ecf0f1;
      margin-right: 20px;
-     
+}
+
+.profile_left img{
+    min-width: 80px;
+    width:55%;
+    margin: 20px;
+    border:5px solid #27ae60;
+    border-radius: 100px;
+}
+
+.profile_info{
+    display: list-item;
+    background-color: #27ae60;
+    width: 100%;
+    padding: 10px 0 10px 0;
+}
+
+.profile_info p{
+    margin: 0 0 0 20px;
+    word-wrap:break-word; 
 }
