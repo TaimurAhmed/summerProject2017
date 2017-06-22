@@ -25,6 +25,23 @@ if(isset($_POST['remove_friend'])){
     $user->remove_friend($username);
 }
 
+/*to send friend request*/
+if(isset($_POST['add_friend'])){
+    $user = new User($con,$userLoggedIn);
+    $user->sendRequest($username);
+}
+
+/*to call add friend*/
+if(isset($_POST['add_friend'])){
+    $user = new User($con,$userLoggedIn);
+    $user->sendRequest($username);
+}
+
+/*Redirect to respond friend request*/
+if(isset($_POST['respond_request'])){
+    header("Location: requests.phps");
+}
+
 
 ?>
     <style type="text/css">
