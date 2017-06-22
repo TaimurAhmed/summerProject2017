@@ -22,13 +22,14 @@ if(isset($_GET['profile_username'])){
 
     <div class="profile_left">
         <img src="<?php echo $user_profile_array['profile_pic'];?>"/>
+            <div class="profile_info ">
+            <p><?php echo "Posts: ". $user_profile_array['num_posts'] ?></p>
+            <p><?php echo "Likes: ". $user_profile_array['num_likes'] ?></p>
+            <p><?php echo "Friends : ". $num_friends ?></p>
+            </div>
     </div>
 
-    <div class="profile_info ">
-        <p><?php echo "Posts: ". $user_profile_array['num_posts'] ?></p>
-        <p><?php echo "Likes: ". $user_profile_array['num_likes'] ?></p>
-        <p><?php echo "Friends : ". $num_friends ?></p>
-    </div>
+
 
     <div class="main_column column">
         This is a sample profile page

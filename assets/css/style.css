@@ -249,3 +249,18 @@ textarea:focus {
 .like_entire{
     background-color: white;
 }
+
+.profile_left{
+     top: -10px;
+     width: 17%;
+     max-width: 240px;
+     min-width: 130px;
+     height: 100%;
+     float: left;
+     position: relative;
+     background-color: #2ecc71;
+     border-right: 10px solid #27ae60;
+     color: #ecf0f1;
+     margin-right: 20px;
+     
+}
