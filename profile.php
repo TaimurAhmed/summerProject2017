@@ -1,7 +1,6 @@
  <?php 
 require './includes/header.php';
-include("./includes/classes/User.php");
-include("./includes/classes/Post.php"); 
+
 
 if(isset($_GET['profile_username'])){
     $username = $_GET['profile_username'];
@@ -31,11 +30,6 @@ if(isset($_POST['add_friend'])){
     $user->sendRequest($username);
 }
 
-/*to call add friend*/
-if(isset($_POST['add_friend'])){
-    $user = new User($con,$userLoggedIn);
-    $user->sendRequest($username);
-}
 
 /*Redirect to respond friend request*/
 if(isset($_POST['respond_request'])){
