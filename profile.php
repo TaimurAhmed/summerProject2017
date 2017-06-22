@@ -19,6 +19,12 @@ if(isset($_GET['profile_username'])){
     $num_friends = substr_count($user_profile_array['friend_array'], ",") -  $extraComma ; 
 }
 
+/*to call remove friend*/
+if(isset($_POST['remove_friend'])){
+    $user = new User($con,$userLoggedIn);
+    $user->remove_friend($username);
+}
+
 
 ?>
     <style type="text/css">
