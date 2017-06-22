@@ -128,6 +128,12 @@ class Post{
                         $count++;
                     }
 
+                    //
+                    if($userLoggedIn == $added_by)
+                        $delete_button = "<button class='delete_button btn-danger' id='post$p_id'>X</button>";
+                    else
+                        $delete_button ="";
+
 
                     $user_details_query = "SELECT first_name, last_name, profile_pic FROM users WHERE username = ?";
                     $first_name = "firstname";
@@ -231,6 +237,7 @@ class Post{
 
                                     <div class='posted_by' style='color:#ACACAC;'>
                                         <a href='$added_by'> $first_name $last_name </a> $user_to &nbsp;&nbsp;&nbsp;&nbsp;$time_message
+                                        $delete_button
                                     </div>
                                     <div id='post_body'>
                                         $body
@@ -250,6 +257,22 @@ class Post{
                                 </div>  
                                 <hr>";
                     }
+                    //Delete Post
+                    ?>
+                    <script type="text/javascript">
+                        
+                        $(document).ready(function() {
+                            $('#post<?php echo $p_id; ?>').on('click',function(){
+                                bootbox.confirm("Are you sure you want to delete this post?",function(result){
+                                    $.post("includes/form_handlers/delete_post.php?post_id=<?php echo $p_id;?>",{result:result})
+                                    if(result)
+                                        location.reload();        
+
+                                });
+                        });
+
+                    </script>
+                    <?php
                 
 
             } /*End ugly while loop*/
