@@ -270,8 +270,7 @@ class Post{
                   .done( function(){
                     /*To prevent reload if cancelled delete post */
                     if(result){
-                        //window.location.reload(true);
-                        console.log("got here");
+                        window.location.reload(true);
                     }
                 });
 
