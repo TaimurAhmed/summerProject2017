@@ -1,4 +1,4 @@
- <?php
+  <?php
 class Post{
     private $user_obj;
     private $con;
@@ -259,16 +259,18 @@ class Post{
                     }
                     //Delete Post
                     ?>
-                    <script type="text/javascript">
+                    <script>
                         
-                        $(document).ready(function() {
+                        $(document).ready(function(){
                             $('#post<?php echo $p_id; ?>').on('click',function(){
                                 bootbox.confirm("Are you sure you want to delete this post?",function(result){
-                                    $.post("includes/form_handlers/delete_post.php?post_id=<?php echo $p_id;?>",{result:result})
-                                    if(result)
-                                        location.reload();        
+                                    
+                                $.post("includes/form_handlers/delete_post.php?post_id=<?php echo $p_id;?>",{result:result})
+                                if(result)  
+                                    location.reload();        
 
-                                });
+                                  });
+                            });
                         });
 
                     </script>

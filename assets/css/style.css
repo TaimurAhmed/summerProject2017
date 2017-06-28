@@ -200,7 +200,7 @@ textarea:focus {
     position: absolute;
     font-family: 'Bellota-BoldItalic',sans-serif;
     color: white;
-    text-shadow: black;
+    /*text-shadow: black;*/
 }
 
 .newsFeedPostOptions{
