@@ -3,7 +3,6 @@
 
     if(isset($_GET['post_id']))
         $post_id = $_GET['post_id'];
-    echo "<script>console.log('hello i am here')</script>";
 
 
     if(isset($_POST['result'])) {
