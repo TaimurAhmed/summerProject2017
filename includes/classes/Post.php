@@ -265,12 +265,15 @@ class Post{
 
             $('#post<?php echo $p_id; ?>').on('click', function() {
                 bootbox.confirm("Are you sure you want to delete this post?", function(result) {
-
+                /*Call reload on sucessfull callback, otherwise an http race condition is created*/
                 $.post("./includes/form_handlers/delete_post.php?post_id=<?php echo $p_id; ?>", {result:result})
-                  .done( function(){ window.location.reload(true); });
-                    /*This breaks*/
-                    //if(result)
-                       //location.reload();
+                  .done( function(){
+                    /*To prevent reload if cancelled delete post */
+                    if(result){
+                        window.location.reload(true);
+                    }
+                });
+
 
 
                 });
