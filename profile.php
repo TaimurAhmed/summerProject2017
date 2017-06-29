@@ -85,7 +85,7 @@ if(isset($_POST['respond_request'])){
 
 
 
-    <div class="main_column column">
+    <div class="profile_main_column column">
         <div class="posts_area"></div>
         <div id='#loading'> 
             <i class="fa fa-refresh fa-spin fa-3x fa-fw" ></i>

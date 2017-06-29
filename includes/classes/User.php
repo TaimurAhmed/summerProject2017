@@ -175,6 +175,33 @@ class User{
         }
     }
 
+    public function getMutualFriends($user_to_check){
+        $mutualFriends = 0;
+        $user_array = $this->user['friend_array'];
+        $user_array_explode = explode(",", $user_array); 
+
+        $mutual_friends_query = "SELECT friend_array FROM users WHERE username = ?";
+        if($stmt = mysqli_prepare($this->con,$mutual_friends_query)){
+            mysqli_stmt_bind_param($stmt, "s",$user_to_check);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt,$user_to_check_array);
+            mysqli_stmt_fetch($stmt);
+            mysqli_stmt_close($stmt);
+        }
+
+        $user_to_check_array_explode = explode(",",$user_to_check_array);
+        //Increment mutal friends everytime a match is found
+        foreach($user_array_explode as $i){
+            foreach ($user_to_check_array_explode as $j) {
+                ($i == $j && $i != "" ){
+                    $mutualFriends++;
+                }
+            }
+        }
+        return $mutualFriends; 
+    }
+
+
 }
 
 
