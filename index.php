@@ -44,7 +44,7 @@ if(isset($_POST['post'])){
                 <i class="fa fa-refresh fa-spin fa-3x fa-fw" ></i>
             </div>
 
-        </div>
+        </div> 
 
         <script>
             var userLoggedIn = '<?php echo $userLoggedIn; ?>';
