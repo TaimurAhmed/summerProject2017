@@ -111,6 +111,8 @@ nav a:hover{
     min-height: 160px;
 }
 
+.pos
+
 .post_form {
     width: 100%;
 }
@@ -329,5 +331,14 @@ textarea:focus {
     border: none;
     color: white;
     background-color: red;
+}
 
+.delete_button{
+    height: 22px;
+    width: 22px;
+    padding: 0;
+    float: right;
+    border-radius: 4px;
+    right: -15px;
+    position: relative;
 }

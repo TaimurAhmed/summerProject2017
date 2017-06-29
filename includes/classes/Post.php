@@ -250,11 +250,13 @@ class Post{
                                         comments(Placeholder)&nbsp;&nbsp;&nbsp;
                                         <iframe src='like.php?post_id=$p_id' scrolling='no'><iframe>
                                     </div>
-
+                                    <br>
+                                    <div class='post_comment' id='toggleComment$p_id' style='display:none;'>
+                                        <iframe src='comment_frame.php?post_id=$p_id' id ='comment_iframe' frameborder='0'></iframe>
+                                    </div>
                                 </div>
-                                <div class='post_comment' id='toggleComment$p_id' style='display:none;'>
-                                    <iframe src='comment_frame.php?post_id=$p_id' id ='comment_iframe' frameborder='0'></iframe>
-                                </div>  
+
+                                <br>  
                                 <hr>";
                     }
                     //Delete Post
