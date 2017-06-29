@@ -125,6 +125,67 @@ if(isset($_POST['respond_request'])){
   </div>
 </div>
 
+<!--Load profile posts-->
+        <script>
+            var userLoggedIn = '<?php echo $userLoggedIn; ?>';
+            var profileUsername = '<?php echo $username  ?>';
+
+            $(document).ready(function() {
+                /*Show the newsfeed loading symbol*/
+                $('#loading').show();
+
+                /*Ajax request for more posts on news feeds*/ 
+                //For no posts loaded yet (as opposed to infinite scrolling )
+                $.ajax({
+                    url: "./includes/handlers/ajax_load_profile _posts.php",
+                    type: "POST",
+                    data: "page=1&userLoggedIn=" + userLoggedIn + "&profileUsername="+profileUsername,
+                    cache:false,
+
+                    success: function(data) {
+                        $('loading').hide();
+                        $('.posts_area').html(data);
+                    }
+                });
+
+                $(window).scroll(function() {
+                    var height = $('.posts_area').height(); //Height of div containing posts
+                    var scroll_top = $(this).scrollTop();
+                    var page = $('.posts_area').find('.nextPage').val();/*Sets hidden inputs field*/ 
+                    var noMorePosts = $('.posts_area').find('.noMorePosts').val();
+
+                    /*If no more posts via Post class is set to true, do no execute*/ 
+                    if ((document.body.scrollHeight == document.body.scrollTop + window.innerHeight) && noMorePosts == 'false') {
+                        
+                        $('#loading').show();
+                        //alert("Test: I am being called");
+                        //For infinite scrolling
+                        var ajaxReq = $.ajax({
+                            url: "./includes/handlers/ajax_load_profile _posts.php",
+                            type: "POST",
+                            data: "page=" + page + "&userLoggedIn=" + userLoggedIn+ "&profileUsername="+profileUsername,
+                            cache:false,
+
+                            success: function(response) {
+                                $('.posts_area').find('.nextPage').remove(); //Removes current .nextpage 
+                                $('.posts_area').find('.noMorePosts').remove(); //Removes current .nextpage 
+
+                                $('#loading').hide();
+                                $('.posts_area').append(response);
+                            }
+                        });
+
+                    } //End if statement
+
+                    return false;
+
+                }); //End (window).scroll(function())
+
+
+            });
+
+        </script>
+
 
 
 </div>
