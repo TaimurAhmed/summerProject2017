@@ -8,6 +8,6 @@ $limit = 10;
 
 /*_REQUEST came via the Ajax call i.e. data*/
 $posts = new Post($con, $_REQUEST['userLoggedIn']);
-$posts->loadProfilePostFriends($_REQUEST, $limit);
+$posts->loadProfilePosts($_REQUEST, $limit);
 ?>
 
