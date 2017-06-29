@@ -86,10 +86,10 @@ if(isset($_POST['respond_request'])){
 
 
     <div class="main_column column">
-        This is a sample profile page
-        <?php echo $user_profile_array['profile_pic']; ?>
-
- 
+        <div class="posts_area"></div>
+        <div id='#loading'> 
+            <i class="fa fa-refresh fa-spin fa-3x fa-fw" ></i>
+        </div>
     </div>
 
 
@@ -137,7 +137,7 @@ if(isset($_POST['respond_request'])){
                 /*Ajax request for more posts on news feeds*/ 
                 //For no posts loaded yet (as opposed to infinite scrolling )
                 $.ajax({
-                    url: "./includes/handlers/ajax_load_profile _posts.php",
+                    url: "./includes/handlers/ajax_load_profile_posts.php",
                     type: "POST",
                     data: "page=1&userLoggedIn=" + userLoggedIn + "&profileUsername="+profileUsername,
                     cache:false,
@@ -161,9 +161,9 @@ if(isset($_POST['respond_request'])){
                         //alert("Test: I am being called");
                         //For infinite scrolling
                         var ajaxReq = $.ajax({
-                            url: "./includes/handlers/ajax_load_profile _posts.php",
+                            url: "./includes/handlers/ajax_load_profile_posts.php",
                             type: "POST",
-                            data: "page=" + page + "&userLoggedIn=" + userLoggedIn+ "&profileUsername="+profileUsername,
+                            data: "page=" + page + "&userLoggedIn=" + userLoggedIn + "&profileUsername=" + profileUsername,
                             cache:false,
 
                             success: function(response) {
