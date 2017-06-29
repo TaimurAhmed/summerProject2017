@@ -351,3 +351,7 @@ textarea:focus {
     width: 70%;
     z-index: -1;
 }
+
+.profile_info_bottom{
+    margin: 10 0 0 12px;
+}

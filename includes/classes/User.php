@@ -193,8 +193,8 @@ class User{
         //Increment mutal friends everytime a match is found
         foreach($user_array_explode as $i){
             foreach ($user_to_check_array_explode as $j) {
-                ($i == $j && $i != "" ){
-                    $mutualFriends++;
+                if($i == $j && $i != ""){
+                    ++$mutualFriends;
                 }
             }
         }
