@@ -26,10 +26,14 @@ require './includes/header_handler.php';
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <!--JS-->
    <script src="./assets/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-   <script src="./assets/js/timsi.js"></script> 
+   <script src="./assets/js/timsi.js"></script>
+   <script src="./assets/js/jcrop_bits.js"></script> 
+   <script src="./assets/js/jquery.Jcrop.js"></script> 
+
    <!--CSS-->
    <link rel=stylesheet type="text/css" href="./assets/bootstrap-3.3.7-dist/css/bootstrap.css"></link>
    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+   <script src="./assets/css/jquery.Jcrop.css"></script> 
    <!--CSS: Font Awesome CDN-->
    <script src="https://use.fontawesome.com/342380e526.js"></script>
    <script src="./assets/js/bootbox.min.js"></script>
