@@ -14,5 +14,8 @@ if(isset($_GET['u'])){
     }
 }
 
+if($user_to != "new"){
+    $user_to_obj = new User($con,$user_to); 
+}
 
 ?>
