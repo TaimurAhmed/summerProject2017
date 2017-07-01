@@ -36,6 +36,19 @@ class Message {
         return $user_from;
     }
 
+    public function sendMessage($user_to,$body,$date){
+        if($body!=""){
+            $userLoggedIn = $this->user_obj->getUsername();
+        }
+        $create_message_query = "INSERT INTO messages VALUES('',?,?,?,?,'no','no','no')";
+        if($stmt = mysqli_prepare($this->con,$create_message_query)){
+            mysqli_stmt_bind_param($stmt, "ssss",$user_to,$userLoggedIn,$body,$date);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+        }
+
+    }
+
     private function noMessages($uName){
         $result = 0;
         $count_messages_query = "SELECT COUNT(id) FROM messages WHERE user_to = ? OR user_from = ?";
