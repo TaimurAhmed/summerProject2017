@@ -19,7 +19,7 @@ if($user_to != "new"){
 }
 
 ?>
-
+    <!-- Same as one from index.php. Consider abstracting?-->
     <div class ="user_details column">
         <a href="<?php echo $userLoggedIn; ?>"><img src="
             <?php if(isset($meta_person["profile_pic"])){echo $meta_person["profile_pic"];}?>" 
@@ -37,6 +37,16 @@ if($user_to != "new"){
             <?php if(isset($meta_person["num_posts"])){echo "Posts:". $meta_person["num_posts"]."<br>";}?>
             <?php if(isset($meta_person["num_likes"])){echo "Likes:". $meta_person["num_likes"];}?>  
         </div>
+    </div>
+
+    <div class = "main_column column" id="main_column">
+        <?php
+        /*If user_to is not new and msg is being sent existing user*/
+        if($user_to != "new"){
+            echo "<h4> You and <a href='$user_to'>". $user_to_obj->getFirstandLastName()."</a> </h4><hr><br>"; 
+        }
+        ?>
+        
     </div>
 
 
