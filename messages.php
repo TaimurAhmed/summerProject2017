@@ -5,17 +5,21 @@ $message_obj = new Message($con,$userLoggedIn);
 
 //Username is already taken as value in the assoc array
 if(isset($_GET['u'])){
-    $user_to = $_GET['u'];
+    $user_to = strtolower($_GET['u']);
 }else{
     //Assuming user has not messaged anyone yet
     $user_to = $message_obj->getMostRecentUser();
+    echo "<script>console.log( 'T0: " . "Set name".$message_obj->getMostRecentUser(). "' );</script>";
     if($user_to === false){
         $user_to = 'new';
+        echo "<script>console.log( 'T1: " . "First part" . "' );</script>";
     }
 }
 
 if($user_to != "new"){
-    $user_to_obj = new User($con,$user_to); 
+    $user_to_obj = new User($con,$user_to);
+            echo "<script>console.log( 'T2: " . $user_to. "' );</script>";
+
 }
 
 if(isset($_POST['post_message'])){
