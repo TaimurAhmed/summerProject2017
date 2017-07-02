@@ -56,7 +56,7 @@ if(isset($_POST['post_message'])){
         /*If user_to is not new and msg is being sent existing user*/
         if($user_to != "new"){
             echo "<h4> You and <a href='$user_to'>". $user_to_obj->getFirstandLastName()."</a> </h4><hr><br>";
-            echo "<div class=loaded_messages>";
+            echo "<div class='loaded_messages' id='scroll_messages'>";
             echo $message_obj->getMessages($user_to);/*Loaded requested messages*/
             echo "</div>";
         }else{
@@ -84,6 +84,11 @@ if(isset($_POST['post_message'])){
             </form>
             
         </div>
+        <!--To prevent message form from scrolling to top when new message is sent--> 
+        <script>
+            var div = document.getElementById("scroll_messages");
+            div.scrollTop = div.scrollHeight;
+        </script>
 
 
     </div>
