@@ -355,3 +355,27 @@ textarea:focus {
 .profile_info_bottom{
     margin: 10 0 0 12px;
 }
+
+#message_textarea{
+    width: 80%;
+    margin-right:8px;
+    border-radius: 3px;
+    border: 1px solid grey;
+    font-size: 12px;
+}
+
+#message_submit{
+    height: 53px;
+    width: 120px;
+    margin: 0;
+    position: absolute;
+    border:none;
+    background-color: #27ae60;
+    color: white;
+    border-radius: 5px;
+    font-family: 'Bellota-BoldItalic',sans-serif;
+    text-shadow: lightgreen 0.5px 0.5px 0px;    
+}
+
+
+
