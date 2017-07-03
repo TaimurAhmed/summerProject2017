@@ -95,86 +95,96 @@ class Message {
         return $data; 
     }
 
+    private function calcTime($date){
+        //Timeframe
+        $date_time_now = date("Y-m-d H:i:s");
+        $start_date = new DateTime($date); //Time of post
+        $end_date = new DateTime($date_time_now); //Current time
+        $interval = $start_date->diff($end_date); //Difference between dates 
+        if($interval->y >= 1) {
+            if($interval == 1)
+                $time_message = $interval->y . " year ago"; //1 year ago
+            else 
+                $time_message = $interval->y . " years ago"; //1+ year ago
+        }
+        else if ($interval->m >= 1) {
+            if($interval->d == 0) {
+                $days = " ago";
+            }
+            else if($interval->d == 1) {
+                $days = $interval->d . " day ago";
+            }
+            else {
+                $days = $interval->d . " days ago";
+            }
+
+
+            if($interval->m == 1) {
+                $time_message = $interval->m . " month". $days;
+            }
+            else {
+                $time_message = $interval->m . " months". $days;
+            }
+
+        }
+        else if($interval->d >= 1) {
+            if($interval->d == 1) {
+                $time_message = "Yesterday";
+            }
+            else {
+                $time_message = $interval->d . " days ago";
+            }
+        }
+        else if($interval->h >= 1) {
+            if($interval->h == 1) {
+                $time_message = $interval->h . " hour ago";
+            }
+            else {
+                $time_message = $interval->h . " hours ago";
+            }
+        }
+        else if($interval->i >= 1) {
+            if($interval->i == 1) {
+                $time_message = $interval->i . " minute ago";
+            }
+            else {
+                $time_message = $interval->i . " minutes ago";
+            }
+        }
+        else {
+            if($interval->s < 30) {
+                $time_message = "Just now";
+            }
+            else {
+                $time_message = $interval->s . " seconds ago";
+            }
+        }
+
+        return $time_message;
+    }
+
     private function getLatestMessages($userLoggedIn,$second_user){
         $body = "";
         $user_to = "";
         $details_array = array();
-        $latest_msg_query = "SELECT body,user_to FROM messages WHERE ($user_to = ? AND user_from = ?) OR ($user_to = ? AND user_from = ?) ORDER BY  id DESC LIMIT 1";
+        $date;
+        echo "<script> console.log('Inside getLatestMessages!!') </script>";
+        $latest_msg_query = "SELECT body, user_to, date FROM messages WHERE (user_to=? AND user_from=?) OR (user_to=? AND user_from=?) ORDER BY id DESC LIMIT 1";
         if($stmt = mysqli_prepare($this->con,$latest_msg_query)){
-            mysqli_stmt_bind_param($stmt, "ssss",$userLoggedIn,$second_user,$userLoggedIn,$second_user);
+            mysqli_stmt_bind_param($stmt, "ssss",$userLoggedIn,$second_user,$second_user,$userLoggedIn);
             mysqli_stmt_execute($stmt);
-            mysqli_stmt_bind_result($stmt,$body,$user_to);
+            mysqli_stmt_bind_result($stmt,$body,$user_to,$date);
             mysqli_stmt_fetch($stmt);
             mysqli_stmt_close($stmt);
+            echo "<script> console.log('date query!!') </script>";
         }
         /*Who sent the latest message loggedinUser or the other guy? */
-        $sent_by = ($user_to === $userLoggedIn) ? "They said " : "You said ";
-                    /*Time*/
-                    $date_time_now = date("Y-m-d H:i:s");
-                    $start_date = new DateTime($date_time);/*Time of post*/
-                    $end_date = new DateTime($date_time_now);/*Current Time*/
-                    $interval = $start_date->diff($end_date);/*Diff b/w two dates*/ 
-                    if($interval->y >= 1) {
-                                if($interval == 1)
-                                    $time_message = $interval->y . " year ago"; //1 year ago
-                                else 
-                                    $time_message = $interval->y . " years ago"; //1+ year ago
-                    }
-                    else if ($interval-> m >= 1) {
-                        if($interval->d == 0) {
-                            $days = " ago";
-                        }
-                        else if($interval->d == 1) {
-                            $days = $interval->d . " day ago";
-                        }
-                        else {
-                            $days = $interval->d . " days ago";
-                        }
-
-
-                        if($interval->m == 1) {
-                            $time_message = $interval->m . " month". $days;
-                        }
-                        else {
-                            $time_message = $interval->m . " months". $days;
-                        }
-                    }
-                    else if($interval->d >= 1) {
-                        if($interval->d == 1) {
-                            $time_message = "Yesterday";
-                        }
-                        else {
-                            $time_message = $interval->d . " days ago";
-                        }
-                    }
-                    else if($interval->h >= 1) {
-                        if($interval->h == 1) {
-                            $time_message = $interval->h . " hour ago";
-                        }
-                        else {
-                            $time_message = $interval->h . " hours ago";
-                        }
-                    }
-                    else if($interval->i >= 1) {
-                        if($interval->i == 1) {
-                            $time_message = $interval->i . " minute ago";
-                        }
-                        else {
-                            $time_message = $interval->i . " minutes ago";
-                        }
-                    }
-                    else {
-                        if($interval->s < 30) {
-                            $time_message = "Just now";
-                        }
-                        else {
-                            $time_message = $interval->s . " seconds ago";
-                        }
-                    }
+        $sent_by = ($user_to == $userLoggedIn) ? "They said " : "You said ";
+        
 
         array_push($details_array,$sent_by);
         array_push($details_array,$body);
-        array_push($details_array,$time_message ); 
+        array_push($details_array,$this->calcTime($date)); 
         return $details_array;
     }
 
@@ -182,8 +192,8 @@ class Message {
         $userLoggedIn = $this->user_obj->getUsername();
         $return_string = "";
         $convos = array();
-
-        $get_convo_query = "SELECT user_to,user_from FROM messages WHERE user_to = ? OR user_from = ?";
+        echo "<script> console.log('Inside get convo!!') </script>";
+        $get_convo_query = "SELECT user_to,user_from FROM messages WHERE user_to = ? OR user_from = ? ORDER BY id DESC";
         if($stmt = mysqli_prepare($this->con,$get_convo_query)){
             mysqli_stmt_bind_param($stmt, "ss",$userLoggedIn,$userLoggedIn);
             mysqli_stmt_execute($stmt);
@@ -192,22 +202,33 @@ class Message {
             while(mysqli_stmt_fetch($stmt)){
                 $user_to_push = ($user_to != $userLoggedIn) ? $user_to : $user_from;
                  if(!in_array($user_to_push, $convos)){
-                    array_push($convos,$user_to_push)
+                    array_push($convos,$user_to_push);
                  }
             }
             mysqli_stmt_close($stmt);
+            echo "<script> console.log('Q1!!') </script>";
         }
 
         foreach ($convos as $username) {
             $user_found_obj = new User($this->con,$username);
-            $latest_message_details = $this->getLatestMessages($userLoggedIn);
+            $latest_message_details = $this->getLatestMessages($userLoggedIn,$username);
         
 
             /*If message is over 12 characters, chop off and append with dots*/
-            $dots = (strlen($latest_message_details[1] >= 12) ? "...":"");
-            $split = str_split($latest_message_details[1],12);
+            $dots = (strlen($latest_message_details[1]) >= 12) ? "..." : "";
+            $split = str_split($latest_message_details[1], 12);
             $split = $split[0] . $dots;
+
+            $return_string .= "<a href='messages.php?u=$username'> 
+                                    <div class='user_found_messages'>
+                                        <img src='" . $user_found_obj->getProfilePic() . "' style='border-radius: 5px; margin-right: 5px;'>
+                                        " . $user_found_obj->getFirstAndLastName() . "
+                                    <span class='timestamp_smaller' id='grey'> " . $latest_message_details[2] . "</span>
+                                    <p id='grey' style='margin: 0;'>" . $latest_message_details[0] . $split . " </p>
+                                    </div>
+                                </a>";
         }
+        return $return_string;
         
     }
 

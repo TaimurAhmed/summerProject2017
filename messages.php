@@ -90,21 +90,21 @@ if(isset($_POST['post_message'])){
             var div = document.getElementById("scroll_messages");
             div.scrollTop = div.scrollHeight;
         </script>
+    </div>
 
-        <div class="user_details_column" id="conversations">
-            <h4>Conversation</h4>
+    <div class="user_details_column" id="conversations">
+        <h4>Conversation</h4>
 
-            <div class="loaded_conversations">
-                <?php echo $message_obj->getConvos(); ?>
-            </div>
-            <br>
-            <a href="messages.php?u=new ">New Message</a>
-
-
+        <div class="loaded_conversations">
+            <?php echo $message_obj->getConvos(); ?>
         </div>
-
+        <br>
+        <a href="messages.php?u=new">New Message</a>
 
     </div>
+
+
+
 
 
 
