@@ -95,8 +95,87 @@ class Message {
         return $data; 
     }
 
-    private function getLatestMessages($userLoggedIn ){
+    private function getLatestMessages($userLoggedIn,$second_user){
+        $body = "";
+        $user_to = "";
+        $details_array = array();
+        $latest_msg_query = "SELECT body,user_to FROM messages WHERE ($user_to = ? AND user_from = ?) OR ($user_to = ? AND user_from = ?) ORDER BY  id DESC LIMIT 1";
+        if($stmt = mysqli_prepare($this->con,$latest_msg_query)){
+            mysqli_stmt_bind_param($stmt, "ssss",$userLoggedIn,$second_user,$userLoggedIn,$second_user);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt,$body,$user_to);
+            mysqli_stmt_fetch($stmt);
+            mysqli_stmt_close($stmt);
+        }
+        /*Who sent the latest message loggedinUser or the other guy? */
+        $sent_by = ($user_to === $userLoggedIn) ? "They said " : "You said ";
+                    /*Time*/
+                    $date_time_now = date("Y-m-d H:i:s");
+                    $start_date = new DateTime($date_time);/*Time of post*/
+                    $end_date = new DateTime($date_time_now);/*Current Time*/
+                    $interval = $start_date->diff($end_date);/*Diff b/w two dates*/ 
+                    if($interval->y >= 1) {
+                                if($interval == 1)
+                                    $time_message = $interval->y . " year ago"; //1 year ago
+                                else 
+                                    $time_message = $interval->y . " years ago"; //1+ year ago
+                    }
+                    else if ($interval-> m >= 1) {
+                        if($interval->d == 0) {
+                            $days = " ago";
+                        }
+                        else if($interval->d == 1) {
+                            $days = $interval->d . " day ago";
+                        }
+                        else {
+                            $days = $interval->d . " days ago";
+                        }
 
+
+                        if($interval->m == 1) {
+                            $time_message = $interval->m . " month". $days;
+                        }
+                        else {
+                            $time_message = $interval->m . " months". $days;
+                        }
+                    }
+                    else if($interval->d >= 1) {
+                        if($interval->d == 1) {
+                            $time_message = "Yesterday";
+                        }
+                        else {
+                            $time_message = $interval->d . " days ago";
+                        }
+                    }
+                    else if($interval->h >= 1) {
+                        if($interval->h == 1) {
+                            $time_message = $interval->h . " hour ago";
+                        }
+                        else {
+                            $time_message = $interval->h . " hours ago";
+                        }
+                    }
+                    else if($interval->i >= 1) {
+                        if($interval->i == 1) {
+                            $time_message = $interval->i . " minute ago";
+                        }
+                        else {
+                            $time_message = $interval->i . " minutes ago";
+                        }
+                    }
+                    else {
+                        if($interval->s < 30) {
+                            $time_message = "Just now";
+                        }
+                        else {
+                            $time_message = $interval->s . " seconds ago";
+                        }
+                    }
+
+        array_push($details_array,$sent_by);
+        array_push($details_array,$body);
+        array_push($details_array,$time_message ); 
+        return $details_array;
     }
 
     public function getConvos(){
@@ -119,10 +198,17 @@ class Message {
             mysqli_stmt_close($stmt);
         }
 
-        foreach ($co as $username) {
+        foreach ($convos as $username) {
             $user_found_obj = new User($this->con,$username);
             $latest_message_details = $this->getLatestMessages($userLoggedIn);
+        
+
+            /*If message is over 12 characters, chop off and append with dots*/
+            $dots = (strlen($latest_message_details[1] >= 12) ? "...":"");
+            $split = str_split($latest_message_details[1],12);
+            $split = $split[0] . $dots;
         }
+        
     }
 
 
