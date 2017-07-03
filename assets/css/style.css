@@ -8,6 +8,8 @@
     src: url("../fonts/Bellota-BoldItalic.otf");
 }
 
+
+
 .html{
     font-family: Arial,Helvetica,Sans-serif;
 }
@@ -407,5 +409,29 @@ textarea:focus {
     margin-bottom: 10px;
 }
 
+
+ .loaded_conversations {
+    max-height: 216px;
+    overflow: scroll;
+ }
+
+ .user_found_messages{
+    border-bottom: 1px solid grey;
+    padding: 8px 8px 10px 8px;
+ }
+
+ .user_found_messages:hover{
+    background-color: grey;
+    color: white;
+ }
+
+ .user_found_messages img{
+    height: 35px;
+    float:left;
+ }
+
+ #grey{
+    color:#8c8c8c;
+ }
 
 
