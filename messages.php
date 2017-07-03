@@ -84,11 +84,24 @@ if(isset($_POST['post_message'])){
             </form>
             
         </div>
+
         <!--To prevent message form from scrolling to top when new message is sent--> 
         <script>
             var div = document.getElementById("scroll_messages");
             div.scrollTop = div.scrollHeight;
         </script>
+
+        <div class="user_details_column" id="conversations">
+            <h4>Conversation</h4>
+
+            <div class="loaded_conversations">
+                <?php echo $message_obj->getConvos(); ?>
+            </div>
+            <br>
+            <a href="messages.php?u=new ">New Message</a>
+
+
+        </div>
 
 
     </div>

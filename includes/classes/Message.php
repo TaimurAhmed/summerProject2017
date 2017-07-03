@@ -92,9 +92,40 @@ class Message {
             mysqli_stmt_close($stmt);
         }
 
-        return $data;
-        
+        return $data; 
     }
+
+    private function getLatestMessages($userLoggedIn ){
+
+    }
+
+    public function getConvos(){
+        $userLoggedIn = $this->user_obj->getUsername();
+        $return_string = "";
+        $convos = array();
+
+        $get_convo_query = "SELECT user_to,user_from FROM messages WHERE user_to = ? OR user_from = ?";
+        if($stmt = mysqli_prepare($this->con,$get_convo_query)){
+            mysqli_stmt_bind_param($stmt, "ss",$userLoggedIn,$userLoggedIn);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt,$user_to,$user_from);
+            /*Push the reciever of the msg from user persp to array*/
+            while(mysqli_stmt_fetch($stmt)){
+                $user_to_push = ($user_to != $userLoggedIn) ? $user_to : $user_from;
+                 if(!in_array($user_to_push, $convos)){
+                    array_push($convos,$user_to_push)
+                 }
+            }
+            mysqli_stmt_close($stmt);
+        }
+
+        foreach ($co as $username) {
+            $user_found_obj = new User($this->con,$username);
+            $latest_message_details = $this->getLatestMessages($userLoggedIn);
+        }
+    }
+
+
  
  }
 
