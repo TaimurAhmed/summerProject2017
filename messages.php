@@ -92,7 +92,7 @@ if(isset($_POST['post_message'])){
         </script>
     </div>
 
-    <div class="user_details_column" id="conversations">
+    <div class="user_details column" id="conversations">
         <h4>Conversation</h4>
 
         <div class="loaded_conversations">
