@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    //Button for profile post
+    /*Button for profile posts*/
     $('#submit_profile_post').click(function(){
         
         $.ajax({
@@ -20,5 +20,12 @@ $(document).ready(function() {
 
 
 });
+
+/*Send request to page and when it returns set value of div with returned data (set in messages.php)*/
+function getUsers(value, user) {
+    $.post("includes/handlers/ajax_friend_search.php", {query:value, userLoggedIn:user}, function(data) {
+        $(".results").html(data);
+    });
+}
 
 

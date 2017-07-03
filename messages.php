@@ -67,22 +67,25 @@ if(isset($_POST['post_message'])){
 
 
 
-        <div class='message_post'>
+        <div class="message_post">
             <form action="" method="POST">
                 <?php
-                    if($user_to === "new"){
-                        echo "Select the friend you would like to message? <br>";
-                        echo "To: <input type='text'>";
-                        echo "<div class='results'></div>";
-                    }else{
-                        echo "<textarea name='message_body' id='message_textarea' placeholder='Write your message... '></textarea>";
-                        echo "<input type='submit' name='post_message' class='info' id='message_submit' value='Send'>";
-                    }
+                if($user_to == "new") {
+                    echo "Select the friend you would like to message <br><br>";
+                    ?> 
+                    To: <input type='text' onkeyup='getUsers(this.value, "<?php echo $userLoggedIn; ?>")' name='q' placeholder='Name' autocomplete='off' id='seach_text_input'>
+
+                    <?php
+                    echo "<div class='results'></div>";
+                }
+                else {
+                    echo "<textarea name='message_body' id='message_textarea' placeholder='Write your message ...'></textarea>";
+                    echo "<input type='submit' name='post_message' class='info' id='message_submit' value='Send'>";
+                }
 
                 ?>
-                
             </form>
-            
+
         </div>
 
         <!--To prevent message form from scrolling to top when new message is sent--> 
