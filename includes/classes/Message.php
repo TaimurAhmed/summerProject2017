@@ -168,7 +168,6 @@ class Message {
         $user_to = "";
         $details_array = array();
         $date;
-        echo "<script> console.log('Inside getLatestMessages!!') </script>";
         $latest_msg_query = "SELECT body, user_to, date FROM messages WHERE (user_to=? AND user_from=?) OR (user_to=? AND user_from=?) ORDER BY id DESC LIMIT 1";
         if($stmt = mysqli_prepare($this->con,$latest_msg_query)){
             mysqli_stmt_bind_param($stmt, "ssss",$userLoggedIn,$second_user,$second_user,$userLoggedIn);
@@ -176,7 +175,6 @@ class Message {
             mysqli_stmt_bind_result($stmt,$body,$user_to,$date);
             mysqli_stmt_fetch($stmt);
             mysqli_stmt_close($stmt);
-            echo "<script> console.log('date query!!') </script>";
         }
         /*Who sent the latest message loggedinUser or the other guy? */
         $sent_by = ($user_to == $userLoggedIn) ? "They said " : "You said ";
@@ -192,7 +190,6 @@ class Message {
         $userLoggedIn = $this->user_obj->getUsername();
         $return_string = "";
         $convos = array();
-        echo "<script> console.log('Inside get convo!!') </script>";
         $get_convo_query = "SELECT user_to,user_from FROM messages WHERE user_to = ? OR user_from = ? ORDER BY id DESC";
         if($stmt = mysqli_prepare($this->con,$get_convo_query)){
             mysqli_stmt_bind_param($stmt, "ss",$userLoggedIn,$userLoggedIn);
@@ -206,7 +203,6 @@ class Message {
                  }
             }
             mysqli_stmt_close($stmt);
-            echo "<script> console.log('Q1!!') </script>";
         }
 
         foreach ($convos as $username) {
