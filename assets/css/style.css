@@ -413,6 +413,7 @@ textarea:focus {
  .loaded_conversations {
     max-height: 216px;
     overflow: scroll;
+    width:100%;
  }
 
  .user_found_messages{
@@ -464,6 +465,8 @@ textarea:focus {
     margin-left: 10px;
     font-size: 12px;
     margin:0;
-
+}
+.tab-content{
+    margin-top:25px;
 }
 

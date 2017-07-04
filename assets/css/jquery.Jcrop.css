@@ -8,7 +8,7 @@
   A better method for styling can be seen below with .jcrop-light
   (Add a class to the holder and style elements for that extended class)
 */
-.jcrop-holder {
+.jcrop-holder{
   direction: ltr;
   text-align: left;
 }
@@ -164,7 +164,8 @@ img.jcrop-preview {
   max-width: none;
 }
 
-/* Added my Reece Kenney */
+
+/* Added Later */
 * {
   -webkit-transition: all 0.0s ease-in-out;
   -moz-transition: all 0.0s ease-in-out;
