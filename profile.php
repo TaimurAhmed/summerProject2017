@@ -122,7 +122,28 @@ if(isset($_POST['respond_request'])){
                 </div>
 
                 <!--Messages  Div-->
-                <div role="tabpanel" class="tab-pane fade" id="messages_div">
+                <div role="tabpanel" class="tab-pane fade" id="messages_div"> 
+                    <!--Candidate for(messages) abstracting-->
+                    <?php
+                                $message_obj =  new Message($con,$userLoggedIn);
+                                echo "<h4>You and <a href='" . $username ."'>" . $profile_user_obj->getFirstAndLastName() . "</a></h4><hr><br>";                                echo "<div class='loaded_messages' id='scroll_messages'>";
+                                echo $message_obj->getMessages($username);/*Loaded requested messages*/
+                                echo "</div>";
+                            ?>
+
+                            <div class="message_post">
+                                <form action="" method="POST">
+                                        <textarea name='message_body' id='message_textarea' placeholder='Write your message ...'></textarea>
+                                        <input type='submit' name='post_message' class='info' id='message_submit' value='Send'>
+                                </form>
+
+                            </div>
+
+                            <!--To prevent message form from scrolling to top when new message is sent--> 
+                            <script>
+                                var div = document.getElementById("scroll_messages");
+                                div.scrollTop = div.scrollHeight;
+                            </script>
                 </div>
 
 
