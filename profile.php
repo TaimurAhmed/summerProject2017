@@ -97,10 +97,39 @@ if(isset($_POST['respond_request'])){
 
 
     <div class="profile_main_column column">
-        <div class="posts_area"></div>
-        <div id='#loading'> 
-            <i class="fa fa-refresh fa-spin fa-3x fa-fw" ></i>
+        <!--Bootstrap Tabs-->
+        <ul class="nav nav-tabs" role="tablist" id="profileTabs">
+          <li role="presentation" class="active"><a href="#newsfeed_div" aria-controls="newsfeed_div" role="tab" data-toggle="tab">Home</a></li>
+          <li role="presentation"><a href="#about_div" aria-controls="about_div " role="tab" data-toggle="tab">About</a></li>
+          <li role="presentation"><a href="#messages_div" aria-controls="messages_div " role="tab" data-toggle="tab">Messages</a></li>
+        </ul>
+
+        <div class="tab-content">
+                
+                <!--NewsFeed Div-->
+                <div role="tabpanel" class="tab-pane fade in active" id="newsfeed_div">
+
+                    <!--Font Awesome: Loading/Inprocess Icon-->
+                    <div class="posts_area"></div>
+                    <div id='#loading'> 
+                    <i class="fa fa-refresh fa-spin fa-3x fa-fw" ></i>
+                    </div>
+
+                </div>
+                
+                <!--About Div-->
+                <div role="tabpanel" class="tab-pane fade" id="about_div">
+                </div>
+
+                <!--Messages  Div-->
+                <div role="tabpanel" class="tab-pane fade" id="messages_div">
+                </div>
+
+
         </div>
+
+    
+
     </div>
 
 
