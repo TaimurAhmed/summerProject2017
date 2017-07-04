@@ -28,6 +28,9 @@
                 $profilePic[$queryCount]=$p;
                 $queryCount++;
             }
+            if($queryCount != 0){
+                $queryCount--; 
+            }
             mysqli_stmt_close($stmt);
         }
     }else if(count($names)==2){
@@ -45,7 +48,9 @@
                 $profilePic[$queryCount]=$p;
                 $queryCount++;
             }
-
+            if($queryCount != 0){
+                $queryCount--; 
+            }
             mysqli_stmt_close($stmt);
         }
     }else{
@@ -64,41 +69,54 @@
                     $profilePic[$queryCount]=$p;
                     $queryCount++;
                 }
-                $queryCount--; 
+                if($queryCount != 0){
+                    $queryCount--; 
+                }
                 mysqli_stmt_close($stmt);
             }
         }
 
-    if($query!= ""){
-        for($queryCount;$queryCount>=0;$queryCount--){
-            $user = new User($con, $userLoggedIn);
-            
-            if($username[$queryCount] != $userLoggedIn) {
-                $mutual_friends = $user->getMutualFriends($username[$queryCount]) . " friends in common";
+        if($query!= "" && $queryCount != 0){
+            for($queryCount;$queryCount>=0;$queryCount--){
+                $user = new User($con, $userLoggedIn);
+                
+                if($username[$queryCount] != $userLoggedIn) {
+                    $mutual_friends = $user->getMutualFriends($username[$queryCount]) . " friends in common";
+                }
+                else {
+                    $mutual_friends = "";
+                }
+
+                if($user->isFriend($username[$queryCount])) {
+                    echo "<div class='resultDisplay'>
+                            <a href='messages.php?u=" . $username[$queryCount] . "' style='color: #000'>
+                                <div class='liveSearchProfilePic'>
+                                    <img src='". $profilePic[$queryCount] . "'>
+                                </div>
+
+                                <div class='liveSearchText'>
+                                    ".$firstName[$queryCount] . " " . $lastName[$queryCount]. "
+                                    <p style='margin: 0;'>". $username[$queryCount] . "</p>
+                                    <p id='grey'>".$mutual_friends . "</p>
+                                </div>
+                            </a>
+                        </div>";
+
+
+                }
             }
-            else {
-                $mutual_friends = "";
-            }
-
-            if($user->isFriend($username[$queryCount])) {
-                echo "<div class='resultDisplay'>
-                        <a href='messages.php?u=" . $username[$queryCount] . "' style='color: #000'>
-                            <div class='liveSearchProfilePic'>
-                                <img src='". $profilePic[$queryCount] . "'>
-                            </div>
-
-                            <div class='liveSearchText'>
-                                ".$firstName[$queryCount] . " " . $lastName[$queryCount]. "
-                                <p style='margin: 0;'>". $username[$queryCount] . "</p>
-                                <p id='grey'>".$mutual_friends . "</p>
-                            </div>
-                        </a>
-                    </div>";
-
-
-            }
+        }else{
+            echo "<div class='resultDisplay'>
+                        <div class='liveSearchProfilePic'>
+                            <i class='fa fa-frown-o' aria-hidden='true'>
+                                <div class='liveSearchText'>
+                                    Meh...couldnt find anything!
+                                </div>
+                            </i>
+                        </div>
+                  </div>";
         }
-    }
+    
 
 
 

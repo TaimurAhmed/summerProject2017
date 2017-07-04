@@ -110,7 +110,7 @@ nav a:hover{
     float:right;
     width: 72%;
     z-index: -1;
-    min-height: 160px;
+    min-height: 170px;
 }
 
 .pos
@@ -434,4 +434,36 @@ textarea:focus {
     color:#8c8c8c;
  }
 
+ .resultDisplay{
+    padding:5px 5px 0 5px;
+    height: 60px;
+    border-bottom: 1px solid silver;
+ }
+
+ .resultDisplay a{
+     float: none;
+ }
+
+ .resultDisplay:hover{
+    background-color: silver;
+ }
+
+ .liveSearchProfilePic img{
+    height:50px;
+    border-radius: 25px;
+    margin: 1px 12px 0 2px;
+    float: left;
+ }
+
+ .liveSearchText{
+    background-color: transparent;
+    color: #2ecc71;
+ }
+
+.liveSearchText p{
+    margin-left: 10px;
+    font-size: 12px;
+    margin:0;
+
+}
 
