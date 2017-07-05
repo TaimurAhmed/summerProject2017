@@ -225,7 +225,101 @@ class Message {
                                 </a>";
         }
         return $return_string;
+    }
+
+    private function setMsgViewed($user){
+        $setMsgViewed_query = "UPDATE messages SET viewed = 'yes' WHERE user_to  = ?";
+        if($stmt = mysqli_prepare($this->con,$setMsgViewed_query)){
+            mysqli_stmt_bind_param($stmt, "s",$user);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+        }
+    }
+
+    private function isMsgRead($to,$from){
+        $result;
+        $query = "SELECT opened FROM messages WHERE user_to = ? AND user_from = ? ORDER BY id DESC";
+        if($stmt = mysqli_prepare($this->con,$query)){
+            mysqli_stmt_bind_param($stmt, "ss",$to,$from);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt,$result);
+            mysqli_stmt_fetch($stmt);
+            mysqli_stmt_close($stmt);
+        }
+
+        return $result === 'no';
+    }
+
+    public function getConvosDropdown($data,$limit){
+        $page = $data['page']; //Set in ajax call
+        $userLoggedIn = $this->user_obj->getUsername();
+        $return_string = "";
+        $convos = array();
+
+        if($page == 1){
+            $start = 0;
+
+        }else{
+            $start = ($page - 1 ) * $limit; //Start loading from here
+            $this->setMsgViewed($userLoggedIn);
+
+        }
+        $get_convo_query = "SELECT user_to,user_from FROM messages WHERE user_to = ? OR user_from = ? ORDER BY id DESC";
+        if($stmt = mysqli_prepare($this->con,$get_convo_query)){
+            mysqli_stmt_bind_param($stmt, "ss",$userLoggedIn,$userLoggedIn);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt,$user_to,$user_from);
+            /*Push the reciever of the msg from user persp to array*/
+            while(mysqli_stmt_fetch($stmt)){
+                $user_to_push = ($user_to != $userLoggedIn) ? $user_to : $user_from;
+                 if(!in_array($user_to_push, $convos)){
+                    array_push($convos,$user_to_push);
+                 }
+            }
+            mysqli_stmt_close($stmt);
+        }
+
+        $num_iterations = 0;
+        $count = 1;
+
+        foreach ($convos as $username) {
+
+            if($num_iterations++ < $start){
+                continue;
+            }
+            if($count++ > $limit){
+                break;
+            }
+
+            $style = ($this->isMsgRead($userLoggedIn,$username) ? "background-color:red" : "");
+
+
+            $user_found_obj = new User($this->con,$username);
+            $latest_message_details = $this->getLatestMessages($userLoggedIn,$username);
         
+
+            /*If message is over 12 characters, chop off and append with dots*/
+            $dots = (strlen($latest_message_details[1]) >= 12) ? "..." : "";
+            $split = str_split($latest_message_details[1], 12);
+            $split = $split[0] . $dots;
+
+            $return_string .= "<a href='messages.php?u=$username'>
+                                    <div class='user_found_messages' stlye='" . $style . "'>
+                                        <img src='" . $user_found_obj->getProfilePic() . "' style='border-radius: 5px; margin-right: 5px;'>
+                                        " . $user_found_obj->getFirstAndLastName() . "
+                                    <span class='timestamp_smaller' id='grey'> " . $latest_message_details[2] . "</span>
+                                    <p id='grey' style='margin: 0;'>" . $latest_message_details[0] . $split . " </p>
+                                    </div>
+                                </a>";
+        }
+
+        /*If posts were loaded*/
+        if($count > $limit){
+            $return_string .= "<input type='hidden' class='nextPageDropdownData' value='" . ($page + 1) . "'><input type='hidden' class='noMoreDropdownData' value='false'>";
+        }else{
+            $return_string .= "<input type='hidden' class='noMoreDropdownData' value='true'> <p style='text-align: center;'>No more messages to load!</p>";
+        }
+        return $return_string;
     }
 
 
