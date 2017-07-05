@@ -470,3 +470,6 @@ textarea:focus {
     margin-top:25px;
 }
 
+.dropdown_data_window{
+    height: 0px;
+}
