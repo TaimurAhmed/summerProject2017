@@ -31,12 +31,13 @@ function getUsers(value, user) {
 /*Nav Bar Drop down in header*/
 function getDropdownData(user, type) {
     console.log("FIRST");
-    if($(".dropdown_data_window").css("height") == "0px") {
+    if($(".dropdown_data_window").css("height") == "0px") { /*If div height is zero*/
         console.log("I got here");
 
         var pageName;
 
         if(type == 'notification') {
+            /* Do something */
 
         }
         else if (type == 'message') {
@@ -59,7 +60,7 @@ function getDropdownData(user, type) {
         });
 
     }
-    else {
+    else { /*Change div height for next time and close*/
         $(".dropdown_data_window").html("");
         $(".dropdown_data_window").css({"padding" : "0px", "height": "0px", "border" : "none"});
     }
