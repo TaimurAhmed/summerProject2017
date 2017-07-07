@@ -46,6 +46,7 @@ if(isset($_POST['post_message'])){
     }
 
   $link = '#profileTabs a[href="#messages_div"]';/*Otherwise there is a php error due to speech marks*/
+  /*To prevent changing tabs when messages is sent*/
   echo "<script> 
           $(function() {
               $('" . $link ."').tab('show');
@@ -142,7 +143,8 @@ if(isset($_POST['post_message'])){
                 <div role="tabpanel" class="tab-pane fade" id="messages_div"> 
                     <!--Candidate for(messages) abstracting-->
                     <?php
-                                echo "<h4>You and <a href='" . $username ."'>" . $profile_user_obj->getFirstAndLastName() . "</a></h4><hr><br>";                                echo "<div class='loaded_messages' id='scroll_messages'>";
+                                echo "<h4>You and <a href='" . $username ."'>" . $profile_user_obj->getFirstAndLastName() . "</a></h4><hr><br>";
+                                echo "<div class='loaded_messages' id='scroll_messages'>";
                                 echo $message_obj->getMessages($username);/*Loaded requested messages*/
                                 echo "</div>";
                             ?>
@@ -155,11 +157,7 @@ if(isset($_POST['post_message'])){
 
                             </div>
 
-                            <!--To prevent message form from scrolling to top when new message is sent--> 
-                            <script>
-                                var div = document.getElementById("scroll_messages");
-                                div.scrollTop = div.scrollHeight;
-                            </script>
+
                 </div>
 
 
@@ -168,6 +166,8 @@ if(isset($_POST['post_message'])){
     
 
     </div>
+
+
 
 
 
@@ -262,6 +262,7 @@ if(isset($_POST['post_message'])){
             });
 
         </script>
+
 
 
 

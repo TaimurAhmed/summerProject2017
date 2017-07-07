@@ -132,6 +132,11 @@ require './includes/header_handler.php';
       });
 
   </script>
+<!--To prevent message form from scrolling to top when new message is sent--> 
+  <script>
+      var div = document.getElementById("scroll_messages");
+      div.scrollTop = div.scrollHeight;
+  </script>
 
     <div class="wrapper">
 
