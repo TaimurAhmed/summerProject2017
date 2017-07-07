@@ -291,7 +291,7 @@ class Message {
                 break;
             }
 
-            $style = ($this->isMsgRead($userLoggedIn,$username) ? "background-color:red" : "");
+            $style = ($this->isMsgRead($userLoggedIn,$username) ? 'background-color:red;' : ';');
 
 
             $user_found_obj = new User($this->con,$username);
@@ -304,7 +304,7 @@ class Message {
             $split = $split[0] . $dots;
 
             $return_string .= "<a href='messages.php?u=$username'>
-                                    <div class='user_found_messages' stlye='" . $style . "'>
+                                    <div class='user_found_messages' style='" . $style . "'>
                                         <img src='" . $user_found_obj->getProfilePic() . "' style='border-radius: 5px; margin-right: 5px;'>
                                         " . $user_found_obj->getFirstAndLastName() . "
                                     <span class='timestamp_smaller' id='grey'> " . $latest_message_details[2] . "</span>
