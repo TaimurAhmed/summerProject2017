@@ -50,6 +50,11 @@ require './includes/header_handler.php';
         
         <!--Horizontal Top Navigation Bar-->
         <nav>
+          <?php
+            /*Unread messages*/
+            $messages = new Message($con,$userLoggedIn);
+            $num_messages = $messages->getUnreadNumber();
+          ?>
             <a href="#">
                 <?php 
                     if(isset($meta_person["first_name"])){
@@ -62,6 +67,8 @@ require './includes/header_handler.php';
             </a>
       <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')">
         <i class="fa fa-envelope"></i>
+        <!--If there are any unopened messages give a notification-->
+        <?php if($num_messages){echo "<span class='notification_badge' id='unread_message'>". $num_messages ."</span>";}?>
       </a>
             <a href="#"><i class="fa fa-bell-o"></i></a>
             <a href="requests.php"><i class="fa fa-users"></i></a>
