@@ -76,51 +76,44 @@ require './includes/header_handler.php';
 
     <!--Infinite Scrolling for messages-->
     <script>
-      var userLoggedIn = '<?php echo $userLoggedIn; ?>';
+    var userLoggedIn = '<?php echo $userLoggedIn; ?>';
 
-      $(document).ready(function() {
-          /*Show the newsfeed loading symbol*/
-          $('#loading').show();
+    $(document).ready(function() {
+ 
 
-          /*Ajax request for more posts on news feeds*/ 
-          $.ajax({
-              url: "./includes/handlers/ajax_load_posts.php",
-              type: "POST",
-              data: "page=1&userLoggedIn=" + userLoggedIn,
-              cache:false,
-
-              success: function(data) {
-                  $('loading').hide();
-                  $('.posts_area').html(data);
-              }
-          });
-
-          $(window).scroll(function() {
-              var height = $('.posts_area').height(); //Height of div containing posts
-              var scroll_top = $(this).scrollTop();
-              var page = $('.posts_area').find('.nextPage').val();/*Sets hidden inputs field*/ 
-              var noMorePosts = $('.posts_area').find('.noMorePosts').val();
+          $('.dropdown_data_window').scroll(function() {
+              var inner_height = $('.dropdown_data_window').innerHeight(); /*Div containing msg data */
+              var scroll_top = $('.dropdown_data_window').scrollTop();
+              var page = $('.dropdown_data_window').find('.nextPageDropdownData').val();/*Sets hidden inputs field*/ 
+              var noMoreData = $('.dropdown_data_window').find('.noMoreDropdownData').val();/*No more drop down msg data*/
 
               /*If no more posts via Post class is set to true, do no execute*/ 
-              if ((document.body.scrollHeight == document.body.scrollTop + window.innerHeight) && noMorePosts == 'false') {
-                  
-                  $('#loading').show();
-                  //alert("Test: I am being called");
+              if ((scroll_top + inner_height >= $('.dropdown_data_window')[0].scrollHeight) && noMoreData == 'false') {
+                
+                var pageName; /*Holds name of page to send ajax request to*/
+                var type =  $('#dropdown_data_type').val();
+                /*Input tag will get value*/
+                if(type == 'notification'){
+                  pageName = "ajax_load_notifications.php"; //TBA
+                }else{ 
+                  //if(type == "message"){
+                    pageName = "ajax_load_messages.php";//Done
+                  //}
+                }
 
-                  var ajaxReq = $.ajax({
-                      url: "./includes/handlers/ajax_load_posts.php",
-                      type: "POST",
-                      data: "page=" + page + "&userLoggedIn=" + userLoggedIn,
-                      cache:false,
 
-                      success: function(response) {
-                          $('.posts_area').find('.nextPage').remove(); //Removes current .nextpage 
-                          $('.posts_area').find('.noMorePosts').remove(); //Removes current .nextpage 
+                var ajaxReq = $.ajax({
+                    url: "includes/handlers/"+pageName,
+                    type: "POST",
+                    data: "page=" + page + "&userLoggedIn=" + userLoggedIn,
+                    cache:false,
 
-                          $('#loading').hide();
-                          $('.posts_area').append(response);
-                      }
-                  });
+                    success: function(response) {
+                        $('.dropdown_data_window').find('.nextPageDropdownData').remove(); /*Removes current .nextpage */
+                        $('.dropdown_data_window').find('.noMoreDropdownData').remove(); 
+                        $('.dropdown_data_window').append(response);
+                    }
+                });
 
               } //End if statement
 

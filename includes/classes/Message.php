@@ -291,7 +291,7 @@ class Message {
                 break;
             }
 
-            $style = ($this->isMsgRead($userLoggedIn,$username) ? 'background-color:red;' : ';');
+            $style = ($this->isMsgRead($userLoggedIn,$username) ? 'background-color:#2ecc71;' : ';');
 
 
             $user_found_obj = new User($this->con,$username);

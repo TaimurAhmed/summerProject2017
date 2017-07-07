@@ -5,7 +5,7 @@ include("../classes/Message.php");
 
 
 /*Number of messages to Load*/
-$limit = 7;
+$limit = 5;
 
 $message = new Message($con, $_REQUEST['userLoggedIn']);//Request from Ajax call
 
