@@ -482,9 +482,6 @@ textarea:focus {
     overflow: auto;
 }
 
-.dropdown_data_window a{
-    border: 1px solid silver;
-}
 
 .dropdown_data_window_footNote{
     font-family: "Bellota-LightItalic", sans-serif;
