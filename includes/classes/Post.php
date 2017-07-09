@@ -39,6 +39,7 @@ class Post{
             if($user_to === $added_by){
                 $user_to = "none";
             }
+                
                 /*Insert post into DB*/
                 $create_post_query = "INSERT INTO posts VALUES('',?,?,?,?,'no','no','0')";
                 if($stmt = mysqli_prepare($this->con,$create_post_query)){
@@ -46,7 +47,7 @@ class Post{
                     mysqli_stmt_bind_param($stmt, "ssss",$body,$added_by,$user_to,$date_added);
                     /*Execute query*/
                     mysqli_stmt_execute($stmt);
-                    /*The auto-generated surrogate key*/
+                    /*The auto-generated surrogate key to b used later*/
                     $returned_id = $this->con->insert_id;
                     /*Close prepared stmt*/
                     mysqli_stmt_close($stmt);
@@ -64,7 +65,17 @@ class Post{
                         /*Close prepared stmt*/
                         mysqli_stmt_close($stmt);
                     }
+
+                    //Insert notifications into DB
+                    if($user_to != "none" && $bool == true){
+                        $notification = new Notification($this->con);
+                        $notification->insertNotification($returned_id,$user_to, "profile_post");
+                    }
+
                 }
+
+
+
         }
     }
     /*For loading posts on newsfeed*/

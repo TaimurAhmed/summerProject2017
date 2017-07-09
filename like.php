@@ -78,6 +78,11 @@
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_close($stmt);
                 }
+
+                if($user_liked!= $userLoggedIn){
+                    $notification = new Notification($this->con,$userLoggedIn);
+                    $notification->insertNotification($returned_id,$user_to,"like");
+                }
             }
 
                 /* Insert some kind of notification!!!!!!!!!!!!!!!!!!!!!!!!!*/
