@@ -52,9 +52,15 @@ require './includes/header_handler.php';
         <!--Horizontal Top Navigation Bar-->
         <nav>
           <?php
+
             /*Unread messages*/
             $messages = new Message($con,$userLoggedIn);
             $num_messages = $messages->getUnreadNumber();
+
+            /*Unread notifications*/
+            $notifications = new Notification($con,$userLoggedIn);
+            $num_notifications = $notifications->getUnreadNumber();
+
           ?>
             <a href="#">
                 <?php 
@@ -63,16 +69,42 @@ require './includes/header_handler.php';
                     }
                 ?>                       
             </a>
+            <!--Home Page-->
             <a href="index.php">
-                <i class="fa fa-home"></i>
+                <i class="fa fa-home">
+                </i>
             </a>
-      <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')">
-        <i class="fa fa-envelope"></i>
-        <!--If there are any unopened messages give a notification-->
-        <?php if($num_messages){echo "<span class='notification_badge' id='unread_message'>". $num_messages ."</span>";}?>
-      </a>
-            <a href="#"><i class="fa fa-bell"></i></a>
-            <a href="requests.php"><i class="fa fa-users"></i></a>
+            <!--Messages-->
+            <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')">
+                <i class="fa fa-envelope"> 
+                  <!--If there are any unopened messages give a notification-->
+                  <?php 
+                    echo 
+                      ($num_messages) 
+                      ? "<span class='notification_badge' id='unread_message'>". $num_messages ."</span>" 
+                      : "";
+                  ?>
+                  </i>
+            </a>
+            <!--Notifications-->
+            <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'notification')>
+                <i class="fa fa-bell">
+                  <?php 
+                    echo 
+                      ($num_notifications) 
+                      ? "<span class='notification_badge' id='unread_notification'>". $num_notifications ."</span>" 
+                      : "";
+                  ?>
+                </i>
+            </a>
+
+            <a href="requests.php">
+                <i class="fa fa-users">
+
+
+                  
+                </i>
+            </a>
             <a href="#"><i class="fa fa-cog"></i></a>
             <a href="./includes/handlers/logout.php"><i class="fa fa-sign-out"></i></a>
         </nav>
