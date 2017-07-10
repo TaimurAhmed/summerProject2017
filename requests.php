@@ -24,6 +24,7 @@ require './includes/header.php';
         mysqli_stmt_bind_result($stmt,$friend_requests[$n]);
         while(mysqli_stmt_fetch($stmt)){
             $n++;
+            mysqli_stmt_bind_result($stmt,$friend_requests[$n]);
         }
         mysqli_stmt_close($stmt);
     }
@@ -36,6 +37,7 @@ require './includes/header.php';
            $user_from_obj = new User($con,$user_from);
 
            echo $user_from_obj->getFirstandLastName() . " sent you a friend request !";
+           echo "i: ".$i." n:".$n;
            $user_from_friend_array = $user_from_obj->getFriendArray();
 
            if(isset($_POST['accept_request' . $user_from])){
