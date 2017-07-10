@@ -49,7 +49,12 @@ class Notification {
 
         $link = "post.php?id=" . $post_id;
 
-        $insert_query = mysqli_query($this->con, "INSERT INTO notifications VALUES('', '$user_to', '$userLoggedIn', '$message', '$link', '$date_time', 'no', 'no')");
+        $insert_query = "INSERT INTO notifications VALUES('', ?, ?, ?, ?, ?, 'no', 'no')";
+        if($stmt = mysqli_prepare($this->con,$insert_query)){
+            mysqli_stmt_bind_param($stmt, "sssss",$user_to,$userLoggedIn,$message,$link,$date_time);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+        }
     }
 
     private function noNotification($userLoggedIn){
