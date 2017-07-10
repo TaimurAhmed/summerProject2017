@@ -9,6 +9,6 @@ $limit = 7;
 
 $notification = new Notification($con, $_REQUEST['userLoggedIn']);//Request from Ajax call
 
-echo $notification->getNotification($_REQUEST, $limit);
+echo $notification->getNotifications($_REQUEST, $limit);
 
 ?>

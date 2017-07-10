@@ -52,7 +52,7 @@ class Notification {
         $insert_query = mysqli_query($this->con, "INSERT INTO notifications VALUES('', '$user_to', '$userLoggedIn', '$message', '$link', '$date_time', 'no', 'no')");
     }
 
-    private function checkForNotifications($userLoggedIn){
+    private function noNotification($userLoggedIn){
         $count_notifications = "SELECT COUNT(id) FROM notifications WHERE user_to= ?";
         $result = 0;
         if($stmt = mysqli_prepare($this->con,$count_notifications)){
@@ -63,7 +63,7 @@ class Notification {
             mysqli_stmt_close($stmt);
         }
 
-        return $result > 0;
+        return $result <= 0;
     }
 
     private function getTimeStamp($date_time){
@@ -130,7 +130,7 @@ class Notification {
             }
         }
 
-        return $time_message
+        return $time_message;
     }
 
     public function getNotifications($data,$limit){
@@ -153,7 +153,7 @@ class Notification {
 
 
 
-        if(checkForNotifications($userLoggedIn)) {
+        if($this->noNotification($userLoggedIn)) {
             echo "You have no notifications!";
             return;
         }
@@ -161,7 +161,7 @@ class Notification {
         $num_iterations = 0; //Number of messages checked 
         $count = 1; //Number of messages posted
         $get_all_notifcation = "SELECT user_from,datetime,profile_pic,opened,link,message FROM notifications JOIN users ON user_from=username WHERE user_to=? ORDER BY notifications.id DESC";
-        if($stmt = mysqli_prepare($this->con,$set_viewed_query)){
+        if($stmt = mysqli_prepare($this->con,$get_all_notifcation)){
             mysqli_stmt_bind_param($stmt, "s",$userLoggedIn);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_bind_result($stmt,$user_from,$datetime,$profile_pic,$opened,$link,$message);
@@ -181,7 +181,7 @@ class Notification {
                                             <div class='notificationsProfilePic'>
                                                 <img src='" . $profile_pic . "'>
                                             </div>
-                                            <p class='timestamp_smaller' id='grey'>" . $time_message . "</p>" . $message . "
+                                            <p class='timestamp_smaller' id='grey'>" . $datetime . "</p>" . $message . "
                                         </div>
                                     </a>";
 
