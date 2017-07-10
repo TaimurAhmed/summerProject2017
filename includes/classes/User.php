@@ -22,6 +22,20 @@ class User{
         return $this->user['username']; 
     }
 
+    public function getNumOfFriendRequests(){
+        $username = $this->user['username'];
+        $getNumPosts_query = "SELECT COUNT(*) FROM friend_requests WHERE user_to = ?";
+        $result="";
+        if($stmt = mysqli_prepare($this->con,$getNumPosts_query)){
+            mysqli_stmt_bind_param($stmt, "s",$username);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt,$result);
+            mysqli_stmt_fetch($stmt);
+            mysqli_stmt_close($stmt);
+        }
+        return $result;
+    }
+
     public function  getNumPosts(){
         $username = $this->user['username'];
         $getNumPosts_query = "SELECT num_posts FROM users WHERE id = ?";
