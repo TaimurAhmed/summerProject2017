@@ -172,9 +172,10 @@ class Notification {
                     break;
                 else 
                     $count++;
-                $this->getTimeStamp($datetime);
+                /*Convert to formatted date string*/
+                $datetime=$this->getTimeStamp($datetime);
 
-                $style = ($opened == 'no') ? "background-color: #DDEDFF;" : "";
+                $style = ($opened == 'no') ? "background-color: white;" : "";
 
                 $return_string .= "<a href='" . $link . "'> 
                                         <div class='resultDisplay resultDisplayNotification' style='" . $style . "'>
