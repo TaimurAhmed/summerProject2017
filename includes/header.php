@@ -61,6 +61,9 @@ require './includes/header_handler.php';
             $notifications = new Notification($con,$userLoggedIn);
             $num_notifications = $notifications->getUnreadNumber();
 
+            /* friend requests */
+            $user_obj = new User($con,$userLoggedIn);
+            $num_requests = $user_obj->getNumOfFriendRequests();
           ?>
             <a href="#">
                 <?php 
@@ -100,9 +103,12 @@ require './includes/header_handler.php';
 
             <a href="requests.php">
                 <i class="fa fa-users">
-
-
-                  
+                  <?php 
+                    echo 
+                      ($num_requests) 
+                      ? "<span class='notification_badge' id='unread_requests'>". $num_requests ."</span>" 
+                      : "";
+                  ?>
                 </i>
             </a>
             <a href="#"><i class="fa fa-cog"></i></a>
