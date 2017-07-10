@@ -34,6 +34,7 @@ if(isset($_GET['id'])){
     <div class="posts_area">
         <?php
             $post = new Post($con,$userLoggedIn);
+            $post->getSinglePost($id);
 
         ?>
         

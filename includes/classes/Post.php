@@ -11,7 +11,7 @@ class Post{
     public function countPosts($post_id){
         $count_posts_query = "SELECT COUNT(id) FROM comments WHERE post_id = ?";
         $result = "";
-        if($stmt = mysqli_prepare($con,$count_posts_query)){
+        if($stmt = mysqli_prepare($this->con,$count_posts_query)){
             $this->user = array();
             /*Bind parameters for markers, type 's'/string */
             mysqli_stmt_bind_param($stmt, "s",$post_id);
@@ -525,6 +525,219 @@ class Post{
         }
 
         echo $str;
+    }
+
+    public function getSinglePost($post_id){
+        
+        $userLoggedIn = $this->user_obj->getUsername();
+
+
+
+        $str = ""; /*String to return*/
+        $data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE deleted='no' AND id='$post_id'");
+        
+        /*If rows greater than zero*/
+        if(mysqli_num_rows($data_query) > 0) {
+
+
+
+            /*No user inpute; No prepared statement necessary + PHP API indicates permance is better*/
+                $row = mysqli_fetch_array($data_query);
+                $p_id = $row["id"];
+                $body = $row["body"];
+                $added_by = $row["added_by"];
+                $date_time = $row["date_added"];
+
+                /*Prepare user to string if posted to a user or otherwise*/
+                if($row["user_to"] === "none"){
+                    $user_to = "";
+                }else{
+                    $user_to_obj = new User($this->con,$row['user_to']);
+                    $user_to_name = $user_to_obj->getFirstandLastName();
+                    $user_to = "to  <a href='".$row["user_to"]."'>".$user_to_name."</a>";
+                }
+
+
+                /*Has the user closed there account?*/
+                $added_by_obj = new User($this->con,$added_by);   
+                if($added_by_obj->isClosed()){ return;}
+
+                $user_logged_obj = new  User($this->con,$userLoggedIn);
+                if($user_logged_obj->isFriend($added_by)){
+
+
+
+
+                    //Bootbox delete post button: Load if comment belongs to you
+                    if($userLoggedIn == $added_by)
+                        $delete_button = "<button class='delete_button btn-danger' id='post$p_id'>X</button>";
+                    else
+                        $delete_button ="";
+
+
+                    $user_details_query = "SELECT first_name, last_name, profile_pic FROM users WHERE username = ?";
+                    $first_name = "firstname";
+                    $last_name = "lastname";
+                    $profile_pic = "";
+                    if($stmt = mysqli_prepare($this->con,$user_details_query)){
+                        mysqli_stmt_bind_param($stmt, "s",$added_by);
+                        mysqli_stmt_execute($stmt);
+                        mysqli_stmt_bind_result($stmt,$first_name,$last_name,$profile_pic);
+                        mysqli_stmt_fetch($stmt);
+                        mysqli_stmt_close($stmt);
+                    }
+
+                    ?>
+                        <script>
+                            /*Toggle1 Toggle2...Toggle100; So we know which comment to show  etc*/
+                            function toggle<?php echo $p_id; ?>(){
+                                var element = document.getElementById("toggleComment<?php echo $p_id;?>");
+                                if(element.style.display == "block"){
+                                    element.style.display = "none";
+                                }else{
+                                    element.style.display = "block";
+                                }
+                            } 
+                        </script>
+
+                    <?
+
+
+
+                    
+                    /*Time*/
+                    $date_time_now = date("Y-m-d H:i:s");
+                    $start_date = new DateTime($date_time);/*Time of post*/
+                    $end_date = new DateTime($date_time_now);/*Current Time*/
+                    $interval = $start_date->diff($end_date);/*Diff b/w two dates*/ 
+                    if($interval->y >= 1) {
+                                if($interval == 1)
+                                    $time_message = $interval->y . " year ago"; //1 year ago
+                                else 
+                                    $time_message = $interval->y . " years ago"; //1+ year ago
+                            }
+                            else if ($interval-> m >= 1) {
+                                if($interval->d == 0) {
+                                    $days = " ago";
+                                }
+                                else if($interval->d == 1) {
+                                    $days = $interval->d . " day ago";
+                                }
+                                else {
+                                    $days = $interval->d . " days ago";
+                                }
+
+
+                                if($interval->m == 1) {
+                                    $time_message = $interval->m . " month". $days;
+                                }
+                                else {
+                                    $time_message = $interval->m . " months". $days;
+                                }
+
+                            }
+                            else if($interval->d >= 1) {
+                                if($interval->d == 1) {
+                                    $time_message = "Yesterday";
+                                }
+                                else {
+                                    $time_message = $interval->d . " days ago";
+                                }
+                            }
+                            else if($interval->h >= 1) {
+                                if($interval->h == 1) {
+                                    $time_message = $interval->h . " hour ago";
+                                }
+                                else {
+                                    $time_message = $interval->h . " hours ago";
+                                }
+                            }
+                            else if($interval->i >= 1) {
+                                if($interval->i == 1) {
+                                    $time_message = $interval->i . " minute ago";
+                                }
+                                else {
+                                    $time_message = $interval->i . " minutes ago";
+                                }
+                            }
+                            else {
+                                if($interval->s < 30) {
+                                    $time_message = "Just now";
+                                }
+                                else {
+                                    $time_message = $interval->s . " seconds ago";
+                                }
+                            }
+
+                        /*On click toggle1, toggle2 etc*/
+                        $str .= "<div class='status_post' onClick='javascript:toggle$p_id()'>
+                                    <div class='post_profile_pic'>
+                                        <img src='$profile_pic' width='50'>
+                                    </div>
+
+                                    <div class='posted_by' style='color:#ACACAC;'>
+                                        <a href='$added_by'> $first_name $last_name </a> $user_to &nbsp;&nbsp;&nbsp;&nbsp;$time_message
+                                        $delete_button
+                                    </div>
+                                    <div id='post_body'>
+                                        $body
+                                        <br>
+                                        <br>
+                                        <br>
+                                    </div>
+                                    <!--Buggy when likes iframe is places on top of comments iframe-->
+                                    <div class='newsFeedPostOptions'>
+                                        comments(Placeholder)&nbsp;&nbsp;&nbsp;
+                                        <iframe src='like.php?post_id=$p_id' scrolling='no'></iframe>
+                                    </div>
+                                    <br>
+                                    <div class='post_comment' id='toggleComment$p_id' style='display:none;'>
+                                        <iframe src='comment_frame.php?post_id=$p_id' id ='comment_iframe' frameborder='0'></iframe>
+                                    </div>
+                                </div>
+                                <hr>";
+
+
+                    ?>
+        <script>
+            
+        $(document).ready(function() {
+
+            $('#post<?php echo $p_id; ?>').on('click', function() {
+                bootbox.confirm("Are you sure you want to delete this post?", function(result) {
+                /*Call reload on sucessfull callback, otherwise an http race condition is created*/
+                $.post("./includes/form_handlers/delete_post.php?post_id=<?php echo $p_id; ?>", {result:result})
+                  .done( function(){
+                    /*To prevent reload if cancelled delete post */
+                    if(result){
+                        window.location.reload(true);
+                    }
+                });
+
+
+
+                });
+            });
+
+
+        });
+
+
+        </script>
+        <?php
+        }else{ //If user tries to access alternative post
+            echo "<p>You are not friends with this user !</p>";
+            return;
+        }
+
+                
+        }else{
+            echo "<p> Link may be broken ! </p>";
+            return;
+        }
+
+        echo $str;
+
     }
 }
 ?>
