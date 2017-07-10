@@ -22,41 +22,36 @@ class Notification {
         return $result;
     }
 
-    public function insertNotification($post_id, $user_to, $type){
+    public function insertNotification($post_id, $user_to, $type) {
 
         $userLoggedIn = $this->user_obj->getUsername();
         $userLoggedInName = $this->user_obj->getFirstAndLastName();
 
-        $date_time = date("Y-m-d H:i:s ");
+        $date_time = date("Y-m-d H:i:s");
 
-        switch ($type) {
+        switch($type) {
             case 'comment':
-                $message = $userLoggedInName . "commented on your post";
+                $message = $userLoggedInName . " commented on your post";
                 break;
             case 'like':
-                $message = $userLoggedInName . "liked your post";
+                $message = $userLoggedInName . " liked your post";
                 break;
             case 'profile_post':
-                $message = $userLoggedInName . "posted on your profile";
+                $message = $userLoggedInName . " posted on your profile";
                 break;
             case 'comment_non_owner':
-                $message = $userLoggedInName . "commented on a post you commented on"; /*i.e. a comment we dont own*/
+                $message = $userLoggedInName . " commented on a post you commented on";
                 break;
             case 'profile_comment':
-                $message = $userLoggedInName . "commented on a post you commented on";
+                $message = $userLoggedInName . " commented on your profile post";
                 break;
         }
 
         $link = "post.php?id=" . $post_id;
 
-        $query = "INSERT INTO notifications VALUES ('',?,?,?,?,?,'no','no')";
-        if($stmt = mysqli_prepare($this->con,$query)){
-            mysqli_stmt_bind_param($stmt, "ss",$user_to,$userLoggedIn,$message,$link,$date_time);
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_close($stmt);
-        }
-
+        $insert_query = mysqli_query($this->con, "INSERT INTO notifications VALUES('', '$user_to', '$userLoggedIn', '$message', '$link', '$date_time', 'no', 'no')");
     }
+
 
 
 

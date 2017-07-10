@@ -87,7 +87,7 @@ require './includes/header_handler.php';
                   </i>
             </a>
             <!--Notifications-->
-            <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'notification')>
+            <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'notification')">
                 <i class="fa fa-bell">
                   <?php 
                     echo 

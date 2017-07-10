@@ -12,6 +12,7 @@
             require './config/config.php';
             include("./includes/classes/User.php");
             include("./includes/classes/Post.php");
+            include("./includes/classes/Notification.php");
 
             /*Redirect users who are not logged in*/
             if(isset($_SESSION["username"])){
@@ -78,14 +79,13 @@
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_close($stmt);
                 }
-
+                /*Insert like notifcation*/
                 if($user_liked!= $userLoggedIn){
-                    $notification = new Notification($this->con,$userLoggedIn);
-                    $notification->insertNotification($returned_id,$user_to,"like");
+                    $notification = new Notification($con, $userLoggedIn);
+                    $notification->insertNotification($post_id, $user_liked, "like");
                 }
             }
 
-                /* Insert some kind of notification!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
                 /*Unlike button*/
                 if(isset($_POST['unlike_button'])){

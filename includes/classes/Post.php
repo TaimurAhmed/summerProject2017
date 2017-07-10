@@ -66,10 +66,12 @@ class Post{
                         mysqli_stmt_close($stmt);
                     }
 
-                    //Insert notifications into DB
-                    if($user_to != "none" && $bool == true){
-                        $notification = new Notification($this->con);
+                    //Insert notifications into DB for post like
+                    if($user_to != "none"){
+
+                        $notification = new Notification($this->con,$added_by);
                         $notification->insertNotification($returned_id,$user_to, "profile_post");
+                    
                     }
 
                 }

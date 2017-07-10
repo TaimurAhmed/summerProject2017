@@ -10,6 +10,8 @@
             require './config/config.php';
             include("./includes/classes/User.php");
             include("./includes/classes/Post.php");
+            include("./includes/classes/Notification.php");
+
 
             /*Redirect users who are not logged in*/
             if(isset($_SESSION["username"])){
@@ -48,7 +50,9 @@
                 mysqli_stmt_close($stmt);
             }
             $posted_to = $comment["added_by"];
+            $user_to = $comment["user_to"];
 
+            /*Post hanlder when submit button is pressed*/
             if(isset($_POST['postComment' . $post_id])){
                 $post_body = $_POST['post_body'];
                 $post_body = mysqli_escape_string($con,$post_body);
@@ -60,7 +64,44 @@
                         mysqli_stmt_bind_param($stmt, "sssss",$post_body, $userLoggedIn, $posted_to, $date_time_now, $post_id);
                         mysqli_stmt_execute($stmt);
                         mysqli_stmt_close($stmt);
+                        if($posted_to != $userLoggedIn){
+                            $notification = new Notification($con,$userLoggedIn);
+                            $notification->insertNotification($post_id,$posted_to,"comment");
+                        }
+                        if($user_to != 'none' && $user_to != $userLoggedIn){
+                            $notification = new Notification($con,$userLoggedIn);
+                            $notification->insertNotification($post_id,$user_to,"profile_comment");
+                        }
+
+                        $get_commenters_query = "SELECT posted_by FROM comments WHERE post_id = ?";
+                        $notified_users = array();
+                        $posted_by = array();
+                        $i = 0;
+                        if($stmt = mysqli_prepare($con,$get_comments_query)){
+                            mysqli_stmt_bind_param($stmt, "s",$post_id);
+                            mysqli_stmt_execute($stmt);
+                            mysqli_stmt_bind_result($stmt,$posted_by[$i]);
+                            while(mysqli_stmt_fetch($stmt)){
+                                $i++;
+                            }
+                            $i--;
+                            mysqli_stmt_close($stmt);
+                        }
+                        for ($i;$i >= 0 ; $i--) {
+
+                                if($posted_by[$i] != $posted_to 
+                                     && $posted_by[$i] != $user_to 
+                                     && $posted_by[$i] != $userLoggedIn 
+                                     && !in_array($posted_by[$i],$notified_users)){
+                                    $notification = new Notification($con,$userLoggedIn);
+                                    $notification->insertNotification($post_id,$posted_by[$i],"comment_non_owner"); 
+                                }
+                                array_push($notified_users, $posted_by[$i]);
+
+                        }
+
                     }
+
                     echo "<p>Comment Posted ! <p>";
                 }
             }
