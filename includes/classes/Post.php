@@ -21,7 +21,6 @@ class Post{
             mysqli_stmt_close($stmt);
         }
         return $result;
-
     }
 
     public function  submitPost($body,$user_to) {
@@ -80,6 +79,7 @@ class Post{
 
         }
     }
+
     /*For loading posts on newsfeed*/
     public function loadPostFriends($data, $limit) {
         
@@ -310,8 +310,8 @@ class Post{
         }
 
         echo $str;
-
     }
+
     /*For loading posts on profile*/
     public function loadProfilePosts($data, $limit) {
         
@@ -525,7 +525,6 @@ class Post{
         }
 
         echo $str;
-
     }
 }
 ?>
