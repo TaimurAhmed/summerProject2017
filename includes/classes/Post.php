@@ -527,9 +527,21 @@ class Post{
         echo $str;
     }
 
+    private function openSinglePost($userLoggedIn,$pid){
+        $pattern = "%=".$pid;
+        $open_query = "UPDATE notifications SET opened='yes' WHERE user_to = ? AND link LIKE  ?";
+        if($stmt = mysqli_prepare($this->con,$open_query)){
+            mysqli_stmt_bind_param($stmt, "ss",$userLoggedIn,$pattern);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+        }
+    }
+
     public function getSinglePost($post_id){
         
         $userLoggedIn = $this->user_obj->getUsername();
+
+        $this->openSinglePost($userLoggedIn,$post_id);
 
 
 
