@@ -1,11 +1,16 @@
 //Executed when page loads
 $(document).ready(function() {
-    //Search Bar in header
+    //Search Bar in header will expand on click
     $('#search_text_input').focus(function() {
         if(window.matchMedia( "(min-width: 800px)" ).matches) { //if window 800px or larger expand
             $(this).animate({width: '250px'}, 500);
         }
     });
+
+    //Clicking searchbar icon will make it submit form
+    $('.button_holder').on('click', function() {
+        document.search_form.submit();
+    })
     
 
     /*Button for profile posts*/

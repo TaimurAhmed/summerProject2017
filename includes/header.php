@@ -43,11 +43,40 @@ require './includes/header_handler.php';
 
 <body>
 
-    <div class="top_bar">
+<div class="top_bar">
+
+<img src="" alt="">
+<!--Logo-->
+<div class="logo">
+    <a href="index.php"> TimsiFeed</a>
+</div>
+
+
+<!-- Search Bar-->
+<div class="search">
+
+  <form action="search.php" method="GET" name="search_form">
+    <input type="text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_text_input">
+
+    <div class="button_holder">
+      <i class="fa fa-search" aria-hidden="true"></i>
+    </div>
+
+  </form>
+
+  <div class="search_results">
+  </div>
+
+  <div class="search_results_footer_empty">
+  </div>
+
+
+
+</div>
+
+
+
         
-        <div class="logo">
-            <a href="index.php"> TimsiFeed</a>
-        </div>
         
         <!--Horizontal Top Navigation Bar-->
         <nav>
