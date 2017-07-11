@@ -1,4 +1,12 @@
+//Executed when page loads
 $(document).ready(function() {
+    //Search Bar in header
+    $('#search_text_input').focus(function() {
+        if(window.matchMedia( "(min-width: 800px)" ).matches) { //if window 800px or larger expand
+            $(this).animate({width: '250px'}, 500);
+        }
+    });
+    
 
     /*Button for profile posts*/
     $('#submit_profile_post').click(function(){
