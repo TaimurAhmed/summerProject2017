@@ -56,6 +56,7 @@ require './includes/header_handler.php';
 <div class="search">
 
   <form action="search.php" method="GET" name="search_form">
+    
     <input type="text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_text_input">
 
     <div class="button_holder">
@@ -64,11 +65,11 @@ require './includes/header_handler.php';
 
   </form>
 
-  <div class="search_results">
-  </div>
+      <div class="search_results">
+      </div>
 
-  <div class="search_results_footer_empty">
-  </div>
+      <div class="search_results_footer_empty">
+      </div>
 
 
 
