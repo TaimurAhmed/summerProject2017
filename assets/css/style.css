@@ -551,9 +551,33 @@ textarea:focus {
     border-bottom-right-radius: 3px;
 }
 
-/*Removed this from search bar because problems in chrome*/
+/*Might cause issues in chrome browser if not inline*/
 .button_holder i{
     margin-top: 4px;
     width: 20px;
+}
+
+
+.search_results {
+    background-color: #fff;
+    border: 1px solid #DADADA;
+    border-bottom: none;
+    border-top: none;
+    margin-top: 21px;
+}
+
+.search_results_footer{
+    padding: 7px 4px 0px 4px;
+    height: 30px;
+    border: 1px solid #DADADA;
+    border-top: none;
+    background-color: #2ecc71;
+    font-family: 'Bellota-BoldItalic',sans-serif;
+    text-decoration: none;
+    text-align: center;
+}
+
+.search_results_footer a {
+    color: #fff;
 }
 
