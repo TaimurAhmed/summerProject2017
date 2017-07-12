@@ -34,6 +34,24 @@ $(document).ready(function() {
 
 });
 
+$(document).click(function(m_click){
+    /*If class of the target clicked on is not equal to specific classes*/
+    if(m_click.target.class != "search_results" && m_click.target.id != "search_text_input") {
+        $(".search_results").html("");
+        $('.search_results_footer').html("");
+        $('.search_results_footer').toggleClass("search_results_footer_empty");
+        $('.search_results_footer').toggleClass("search_results_footer");
+    }
+    /*If they click on anything to make search/notifcation results dissapear*/
+    if(m_click.target.className != "dropdown_data_window") {
+        $(".dropdown_data_window").html("");
+        $(".dropdown_data_window").css({"padding" : "0px", "height" : "0px"});
+    }
+
+
+});
+
+
 /*Send request to page and when it returns set value of div with returned data (set in messages.php)*/
 function getUsers(value, user) {
     $.post("includes/handlers/ajax_friend_search.php", {query:value, userLoggedIn:user}, function(data) {
