@@ -161,7 +161,26 @@ if(isset($_GET['type'])){
                     $mutual_friends = $user_obj->getMutualFriends($username[$i]) . " friends in common";
 
 
-                echo "<div class='search_result'>
+                    //Button forms
+                    if(isset($_POST[$username[$i]])) {
+
+                        if($user_obj->isFriend($username[$i])) {
+                            $user_obj->removeFriend($username[$i]);
+                        }
+                        else if($user_obj->didRecieveRequest($username[$i])) {
+                        }
+                        else if($user_obj->didSendRequest($username[$i])) {
+
+                        }
+                        else {
+                            $user_obj->sendRequest($username[$i]);
+                        }
+
+                    }
+
+
+
+                echo "<div class='search_result_indiv'>
                             <div class='searchPageFriendButtons'>
                                 <form action='' method='POST'>
                                     " . $button . "
