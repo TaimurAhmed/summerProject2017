@@ -8,7 +8,19 @@ include("./includes/classes/Notification.php");
 
 /*Redirect users who are not logged in*/
 if(isset($_SESSION["username"])){
-    $userLoggedIn = $_SESSION["username"]; 
+    $userLoggedIn = $_SESSION["username"];
+    $userMeta = array();
+    $getUserMeta = "SELECT username FROM users WHERE username = ?";
+    if($stmt = mysqli_prepare($con,$getUserMeta)){
+          mysqli_stmt_bind_param($stmt, "s",$userLoggedIn);
+          mysqli_stmt_execute($stmt);
+          mysqli_stmt_bind_result($stmt,$userMeta['username']);
+          mysqli_stmt_fetch($stmt);
+          mysqli_stmt_close($stmt);
+    }else{
+      header("Location:register.php");
+    }
+
 
 }else{
     header("Location:register.php");
