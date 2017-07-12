@@ -12,6 +12,7 @@ $username = array();
 $first_name = array();
 $last_name = array();
 $profile_pic = array();
+$mutual_friends=""; //For some strange reason needed to be added here to prevent a search error for undefined variable
 
 
 if(strpos($query, '_') !== false){ 
