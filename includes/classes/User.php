@@ -149,6 +149,7 @@ class User{
        return $number > 0 ;
     }
 
+    /*Remove user from friends array and vice versa*/
     public function removeFriend($user_to_remove){
         $logged_in_user = $this->user['username'];
         $get_friends_query = "SELECT friend_array FROM users WHERE username = ?";
@@ -158,15 +159,23 @@ class User{
             mysqli_stmt_bind_result($stmt,$friend_array);
             mysqli_stmt_fetch($stmt);
             mysqli_stmt_close($stmt);
+            //To get user's own friends
+            if($stmt = mysqli_prepare($this->con,$get_friends_query)){
+                mysqli_stmt_bind_param($stmt, "s",$logged_in_user);
+                mysqli_stmt_execute($stmt);
+                mysqli_stmt_bind_result($stmt,$user_friend_array);
+                mysqli_stmt_fetch($stmt);
+                mysqli_stmt_close($stmt);
+
+            /*To delete friend from other persons profile too*/
+            $friend_array = str_replace($logged_in_user . ",","",$friend_array);
+            $this->deleteFriendFromArray($friend_array,$user_to_remove);
+
+            /*To delete friend from users profile*/
+            $user_friend_array = str_replace($user_to_remove . ",", "", $user_friend_array);
+            $this->deleteFriendFromArray($user_friend_array,$logged_in_user);
+            }
         }
-
-        /*To delete friend from users profile*/
-        $friend_array = str_replace($user_to_remove . ",", "", $friend_array);
-        $this->deleteFriendFromArray($friend_array,$logged_in_user);
-        /*To delete friend from other persons profile too*/
-        $friend_array = str_replace($this->user['username'] . ",","",$friend_array);
-        $this->deleteFriendFromArray($friend_array,$user_to_remove);
-
     }
 
     public function deleteFriendFromArray($friend_array,$user_to_remove){
