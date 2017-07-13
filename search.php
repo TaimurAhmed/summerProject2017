@@ -166,14 +166,18 @@ if(isset($_GET['type'])){
 
                         if($user_obj->isFriend($username[$i])) {
                             $user_obj->removeFriend($username[$i]);
+                            header("Location: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+
                         }
                         else if($user_obj->didRecieveRequest($username[$i])) {
+                            header("Location: requests.php");
                         }
                         else if($user_obj->didSendRequest($username[$i])) {
 
                         }
                         else {
                             $user_obj->sendRequest($username[$i]);
+                            header("Location: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
                         }
 
                     }
