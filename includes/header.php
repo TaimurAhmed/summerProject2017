@@ -153,7 +153,7 @@ require './includes/header_handler.php';
                   ?>
                 </i>
             </a>
-            <a href="#"><i class="fa fa-cog"></i></a>
+            <a href="settings.php"><i class="fa fa-cog"></i></a>
             <a href="./includes/handlers/logout.php"><i class="fa fa-sign-out"></i></a>
         </nav>
         
