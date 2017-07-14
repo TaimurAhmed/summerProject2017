@@ -82,10 +82,15 @@ if(isset($_POST['update_password'])) {
                 }
         }
     }
+}else{
+    //if not set
+    $password_message="";
 }
 
 
-
+if(isset($_POST['close_account'])) {
+    header("Location: close_account.php");
+}
 
 
 

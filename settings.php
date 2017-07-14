@@ -53,6 +53,7 @@ include("includes/form_handlers/settings_handler.php");
         <br>
         Confirm New Password: <input type="password" name="new_password_2" >
         <br>
+        <?php echo $password_message; ?>
         <input type="submit" name="update_password" id="save_details" value="Update Password">
         <br>
     </form>
