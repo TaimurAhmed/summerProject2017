@@ -10,11 +10,11 @@ include("./includes/classes/Notification.php");
 if(isset($_SESSION["username"])){
     $userLoggedIn = $_SESSION["username"];
     $userMeta = array();
-    $getUserMeta = "SELECT username,profile_pic FROM users WHERE username = ?";
+    $getUserMeta = "SELECT username,profile_pic,first_name,last_name,email FROM users WHERE username = ?";
     if($stmt = mysqli_prepare($con,$getUserMeta)){
           mysqli_stmt_bind_param($stmt, "s",$userLoggedIn);
           mysqli_stmt_execute($stmt);
-          mysqli_stmt_bind_result($stmt,$userMeta['username'],$userMeta['profile_pic']);
+          mysqli_stmt_bind_result($stmt,$userMeta['username'],$userMeta['profile_pic'],$userMeta['first_name'],$userMeta['last_name'],$userMeta['email']);
           mysqli_stmt_fetch($stmt);
           mysqli_stmt_close($stmt);
     }else{
