@@ -2,6 +2,24 @@
 
 include("includes/header.php");
 
+/*Send me back to where i came from...hopefully?*/
+if(isset($_POST['cancel'])) {
+    header("Location: settings.php");
+}
+
+if(isset($_POST['close_account'])) {
+    $close_query = "UPDATE users SET user_closed='yes' WHERE username=?";
+    if($stmt = mysqli_prepare($con,$close_query)){
+        mysqli_stmt_bind_param($stmt, "s",$userLoggedIn);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        session_destroy();
+        header("Location: register.php");
+    }
+
+}
+
+
 ?>
 
 <div class="main_column column">
