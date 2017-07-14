@@ -88,8 +88,9 @@ if(isset($_POST['update_password'])) {
 }
 
 
+/*Redirect to closing page*/
 if(isset($_POST['close_account'])) {
-    header("Location: close_account.php");
+    header("Location: ./close_account.php");
 }
 
 
