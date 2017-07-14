@@ -66,18 +66,12 @@ if(isset($_POST['update_password'])) {
 
         if(! password_verify($old_password,$encrypted_password)){
             $password_message = "Incorrect password old password";
-            echo $password_message;
         }else if (strlen($new_password_1) <= 5){
             $password_message = "Password should be longer than 5 characters";
-                        echo $password_message;
 
         }else if ($new_password_1 != $new_password_2){
             $password_message = "New passwords did not match";
-                        echo $password_message;
-
         }else{
-            echo "got here";
-
             $new_password_encrypted = password_hash($new_password_1,PASSWORD_DEFAULT,$options); 
             $update_password_query = "UPDATE users SET password = ? WHERE username=?";
                 if($stmt = mysqli_prepare($con,$update_password_query)){
@@ -85,9 +79,6 @@ if(isset($_POST['update_password'])) {
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_close($stmt);
                     $password_message = "Password has been changed !";
-                    echo "got here too";
-                                echo $password_message;
-
                 }
         }
     }
