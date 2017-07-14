@@ -39,4 +39,63 @@ if(isset($_POST['update_details'])) {
 
 
 
+/**Password Handler**/
+
+
+
+
+if(isset($_POST['update_password'])) {
+    // To set hash cost. Please refactor when deployed.
+    $options = [
+    'cost' => 12,
+    ];
+
+
+    $old_password = strip_tags($_POST['old_password']);
+    $new_password_1 = strip_tags($_POST['new_password_1']);
+    $new_password_2 = strip_tags($_POST['new_password_2']);
+
+
+    $password_query = "SELECT password FROM users WHERE username= ?";
+    if($stmt = mysqli_prepare($con,$password_query)){
+        mysqli_stmt_bind_param($stmt, "s",$userLoggedIn);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt,$encrypted_password);
+        mysqli_stmt_fetch($stmt);
+        mysqli_stmt_close($stmt);
+
+        if(! password_verify($old_password,$encrypted_password)){
+            $password_message = "Incorrect password old password";
+            echo $password_message;
+        }else if (strlen($new_password_1) <= 5){
+            $password_message = "Password should be longer than 5 characters";
+                        echo $password_message;
+
+        }else if ($new_password_1 != $new_password_2){
+            $password_message = "New passwords did not match";
+                        echo $password_message;
+
+        }else{
+            echo "got here";
+
+            $new_password_encrypted = password_hash($new_password_1,PASSWORD_DEFAULT,$options); 
+            $update_password_query = "UPDATE users SET password = ? WHERE username=?";
+                if($stmt = mysqli_prepare($con,$update_password_query)){
+                    mysqli_stmt_bind_param($stmt,"ss",$new_password_encrypted,$userLoggedIn);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_close($stmt);
+                    $password_message = "Password has been changed !";
+                    echo "got here too";
+                                echo $password_message;
+
+                }
+        }
+    }
+}
+
+
+
+
+
+
 ?>
