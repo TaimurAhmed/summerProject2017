@@ -15,17 +15,33 @@ include("includes/form_handlers/settings_handler.php");
     <a href="upload.php">Upload New Profile Picture</a><br><br><br>
 
     Modify details and click  'Update Details'.
+    
+
+
+    <?php
+    //To refresh page as well
+    $user_data_query = "SELECT first_name,last_name, email FROM users WHERE username= ?";
+    if($stmt = mysqli_prepare($con,$user_data_query)){
+        mysqli_stmt_bind_param($stmt, "s",$userLoggedIn);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt,$first_name,$last_name,$email);
+        mysqli_stmt_fetch($stmt);
+        mysqli_stmt_close($stmt);
+    }
+    ?>
+
 
     <!--Non encryped user meta data-->
     <form action="settings.php" method="POST">
-        First Name: <input type="text" name="first_name" value="<?php echo $userMeta['first_name']; ?>">
+        First Name: <input type="text" name="first_name" value="<?php echo $first_name; ?>">
         <br>
-        Last Name: <input type="text" name="last_name" value="<?php echo $userMeta['last_name']; ?>">
+        Last Name: <input type="text" name="last_name" value="<?php echo $last_name; ?>">
         <br>
-        Email: <input type="text" name="email" value="<?php echo $userMeta['email']; ?>">
+        Email: <input type="text" name="email" value="<?php echo $email; ?>">
         <br>
         <input type="submit" name="update_details" id="save_details" value="Update Details">
         <br>
+        <?php echo $message; ?>
     </form>
 
     <!--Encryped user meta data-->

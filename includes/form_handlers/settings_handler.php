@@ -16,7 +16,7 @@ if(isset($_POST['update_details'])) {
 
     /*i) If email is not already used. ii) If it belongs to the person who is logged in */
     if($matched_user == "" || $matched_user == $userLoggedIn) {
-        $message = "Details updated!<br><br>";
+        $message = "Details sucessfully updated!<br><br>";
 
         $update_meta = "UPDATE users SET first_name=?, last_name=?, email=? WHERE username=?";
         if($stmt = mysqli_prepare($con,$update_meta)){
