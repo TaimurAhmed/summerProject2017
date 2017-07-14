@@ -1,6 +1,6 @@
 <?php 
 include("includes/header.php");
-//include("includes/settings_handler.php");
+//include("includes/settings_handler.php"); UNCOMMENT LATER !!!!
 
 ?>
 
