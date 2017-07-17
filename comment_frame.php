@@ -77,7 +77,7 @@
                         $notified_users = array();
                         $posted_by = array();
                         $i = 0;
-                        if($stmt = mysqli_prepare($con,$get_comments_query)){
+                        if($stmt = mysqli_prepare($con,$get_commenters_query)){
                             mysqli_stmt_bind_param($stmt, "s",$post_id);
                             mysqli_stmt_execute($stmt);
                             mysqli_stmt_bind_result($stmt,$posted_by[$i]);
