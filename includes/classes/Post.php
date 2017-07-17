@@ -23,10 +23,28 @@ class Post{
         return $result;
     }
 
+    private function youTubeEmbedder($body){
+            $body_array = preg_split("/\s+/", $body);
+            foreach($body_array as $key => $value) {
+                if(strpos($value, "www.youtube.com/watch?v=") !== false) {
+                    $link = preg_split("!&!", $value);
+                    $value = preg_replace("!watch\?v=!", "embed/", $link[0]);
+                    $value = "<br><iframe width='420' height='315' src='" . $value ."'></iframe><br>";
+                    $body_array[$key] = $value;
+                }
+
+            }
+            $body = implode(" ", $body_array);
+
+        return $body;
+    }
+
     public function  submitPost($body,$user_to) {
         $body = strip_tags($body); /*Remove HTML tags*/
         $body = mysqli_real_escape_string($this->con,$body);
         $check_empty = preg_replace('/\s+/', '', $body);/*Delete all spaces*/
+        
+        if($check_empty != "") {$body = $this->youTubeEmbedder($body); }
 
         /*If string is not empty insert post*/
         if($check_empty != ""){

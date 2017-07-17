@@ -80,8 +80,8 @@
                         if($stmt = mysqli_prepare($con,$get_commenters_query)){
                             mysqli_stmt_bind_param($stmt, "s",$post_id);
                             mysqli_stmt_execute($stmt);
-                            mysqli_stmt_bind_result($stmt,$posted_by[$i]);
                             while(mysqli_stmt_fetch($stmt)){
+                                mysqli_stmt_bind_result($stmt,$posted_by[$i]);
                                 $i++;
                             }
                             $i--;
