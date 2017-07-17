@@ -609,5 +609,33 @@ textarea:focus {
     margin-bottom: 0px;
 }
 
+.small_profile_pics {
+    height: 55px;
+    margin: 1px 12px 0 2px;    
+}
+
+#settings_input {
+    border: 1px solid #ccc;
+    height: 20px;
+    padding: 4px 6px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 20px;
+    float: center;
+    clear: both;
+    max-width: 100px;
+}
+
+.settings_submit {
+    border: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    color: #fff;
+}
+.settings_form_all{
+    max-width: 200px;
+}
+
 
 
