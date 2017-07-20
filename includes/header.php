@@ -114,6 +114,14 @@ require './includes/header_handler.php';
                     }
                 ?>                       
             </a>
+          <!-- Fiddle -->
+          <a href='https://fiddles.io/'>
+
+              <i class="fa fa-code" aria-hidden="true">
+                
+              </i>
+
+          </a>
             <!--Home Page-->
             <a href="index.php">
                 <i class="fa fa-home">
