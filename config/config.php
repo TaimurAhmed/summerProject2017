@@ -1,5 +1,13 @@
 <?php
 
+/*
+See:
+
+OWASP PHP (Session Hijacking):https://www.owasp.org/index.php/PHP_Security_Cheat_Sheet#Session_Expiration
+Reference of implementation: https://www.youtube.com/watch?v=KnX0p2Ey3Ek
+
+*/
+
 /*Turns on output buffering*/
 ob_start(); 
 
@@ -7,6 +15,9 @@ ob_start();
 /*Reccomended: Consider using an SSL protocol to prevent session hijacking. In that case set parameter to true instead*/
 session_set_cookie_params(time()+30,'/','localhost',false,true);
 session_start();
+
+/*Set a random session variable. My alternative to binding to IP, as this would cause problems on open Wifi*/
+$_SESSION["ses_var"] = "green";
 
 $time_zone = date_default_timezone_set("Europe/London");
 

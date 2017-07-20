@@ -6,6 +6,8 @@ include("./includes/classes/Post.php");
 include("./includes/classes/Message.php");
 include("./includes/classes/Notification.php");
 
+/*Regenerate cookies */
+session_regenerate_id(true); //True parameter to enhance security i.e. delete session cookie from tmp
 /*Redirect users who are not logged in*/
 if(isset($_SESSION["username"])){
     $userLoggedIn = $_SESSION["username"];
