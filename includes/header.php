@@ -92,7 +92,7 @@ require './includes/header_handler.php';
         
         
         <!--Horizontal Top Navigation Bar-->
-        <nav class='upper_right_nav_bar'>
+        <nav id='upper_right_nav_bar'>
           <?php
 
             /*Unread messages*/
