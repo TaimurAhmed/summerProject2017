@@ -92,7 +92,7 @@ require './includes/header_handler.php';
         
         
         <!--Horizontal Top Navigation Bar-->
-        <nav>
+        <nav class='upper_right_nav_bar'>
           <?php
 
             /*Unread messages*/
@@ -114,6 +114,7 @@ require './includes/header_handler.php';
                     }
                 ?>                       
             </a>
+          
           <!-- Fiddle -->
           <a href='https://fiddles.io/'>
 
@@ -122,11 +123,13 @@ require './includes/header_handler.php';
               </i>
 
           </a>
+            
             <!--Home Page-->
             <a href="index.php">
                 <i class="fa fa-home">
                 </i>
             </a>
+            
             <!--Messages-->
             <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')">
                 <i class="fa fa-envelope"> 
@@ -139,6 +142,7 @@ require './includes/header_handler.php';
                   ?>
                   </i>
             </a>
+            
             <!--Notifications-->
             <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'notification')">
                 <i class="fa fa-bell">
@@ -151,6 +155,8 @@ require './includes/header_handler.php';
                 </i>
             </a>
 
+
+            <!-- Friend Requests -->
             <a href="requests.php">
                 <i class="fa fa-users">
                   <?php 
@@ -161,8 +167,18 @@ require './includes/header_handler.php';
                   ?>
                 </i>
             </a>
+            
+            <!--Settings Page-->
             <a href="settings.php"><i class="fa fa-cog"></i></a>
+            
+            <!-- Sign Out-->
             <a href="./includes/handlers/logout.php"><i class="fa fa-sign-out"></i></a>
+
+            <!--Help Page-->
+            <a href="https://github.com/TaimurAhmed/summerProject2017">
+                <i class="fa fa-question" aria-hidden="true"></i>
+            </a>
+        
         </nav>
         
         <div class="dropdown_data_window">
