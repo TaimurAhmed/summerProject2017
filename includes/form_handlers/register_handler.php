@@ -1,5 +1,9 @@
 <?php
 
+$email_options = array();
+$email_options["limit_email"] = true; //Change to false if all emails are ok
+$email_options["valid_email"] = "my.bristol.ac.uk"; //Emails must end with this
+
 //Declaring variables to prevent errors
 $fname = ""; //first name
 $lname = "";//last name
@@ -93,6 +97,9 @@ if(isset($_POST['register_button'])){
     if(strlen($password) > 30 || strlen($password) < 5) {
             array_push($error_array,"Your password must be between 5 to 30 characters <br>");
     }
+
+    
+
 
 
     /**
