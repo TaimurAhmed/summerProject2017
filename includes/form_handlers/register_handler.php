@@ -98,7 +98,12 @@ if(isset($_POST['register_button'])){
             array_push($error_array,"Your password must be between 5 to 30 characters <br>");
     }
 
-    
+    if($email_options["limit_email"]) {
+        if((strlen($em2) <= strlen($email_options["valid_email"]) || ! substr_compare($em2, $email_options["valid_email"], strlen($em2) - strlen($email_options["valid_email"]), strlen($email_options["valid_email"]) === 0)))
+            array_push($error_array,"Use your UoB email that ends with :". $email_options['valid_email'] . " <br>");
+    }
+
+
 
 
 

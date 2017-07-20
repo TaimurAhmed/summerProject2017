@@ -106,6 +106,7 @@ if(isset($_POST['register_button'])){
             if(in_array("Email already being used <br>",$error_array)) echo "Email already being used <br>";
             else if (in_array("Invalid email format <br>",$error_array)) echo "Invalid email format <br>";
             else if (in_array("Emails dont match <br>",$error_array)) echo "Emails dont match <br>";
+            else if (in_array("Use your UoB email that ends with :". $email_options['valid_email'] . " <br>",$error_array)) echo "Use your UoB email that ends with :". $email_options['valid_email'] . " <br>" ;
          ?>
 
 
