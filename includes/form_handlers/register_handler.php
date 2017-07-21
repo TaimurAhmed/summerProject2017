@@ -1,8 +1,8 @@
 <?php
 
 $email_options = array();
-$email_options["limit_email"] = true; //Change to false if all emails are ok
-$email_options["valid_email"] = "my.bristol.ac.uk"; //Emails must end with this
+$email_options["limit_email"] = true; //Change to true if all emails are ok
+$email_options["valid_email"] = "@my.bristol.ac.uk"; //Emails must end with this
 
 //Declaring variables to prevent errors
 $fname = ""; //first name
@@ -99,8 +99,11 @@ if(isset($_POST['register_button'])){
     }
 
     if($email_options["limit_email"]) {
-        if((strlen($em2) <= strlen($email_options["valid_email"]) || ! substr_compare($em2, $email_options["valid_email"], strlen($em2) - strlen($email_options["valid_email"]), strlen($email_options["valid_email"]) === 0)))
+        $inputLength = strlen($em2);
+        $validLength = strlen($email_options["valid_email"]);
+        if((substr_compare($em2, $email_options["valid_email"],  $inputLength - $validLength , $validLength,true) !== 0))
             array_push($error_array,"Use your UoB email that ends with :". $email_options['valid_email'] . " <br>");
+            echo (substr_compare($em2, $email_options["valid_email"],  $inputLength - $validLength , $validLength) === 0);
     }
 
 
