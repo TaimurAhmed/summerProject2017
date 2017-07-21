@@ -1,3 +1,4 @@
+/*The script for making form with id 'signup and signin' hide and unhide on registration page*/
 $(document).ready(function() {
     
     //On click , hide login and show registration form
@@ -15,7 +16,5 @@ $(document).ready(function() {
             $("#first_form").slideDown("slow");
         });
     });
-
-
 
 });
