@@ -643,3 +643,9 @@ textarea:focus {
 
 
 
+.sign_up_about{
+    font-family: sans-serif;
+    color: black;
+    text-decoration: underline;
+    font-size: 15;
+}

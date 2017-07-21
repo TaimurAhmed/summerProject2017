@@ -1,6 +1,6 @@
 <?php 
 /*Note: Order matters in PHP :'( */
-require './config/config.php'; /*Checked*/
+require './config/config.php';
 require './includes/form_handlers/register_handler.php';
 require './includes/form_handlers/login_handler.php';
 ?>
@@ -14,6 +14,8 @@ require './includes/form_handlers/login_handler.php';
   <link rel="stylesheet" type="text/css" href="./assets/css/register_style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="./assets/js/register.js"></script>
+  <!--Favicon of UoB logo used purely for demonstration, please replace if deploying-->
+  <link rel="icon" href="./assets/favicon/logo-colour.jpg" type="image/ico">
 </head>
 
   
@@ -66,7 +68,14 @@ require './includes/form_handlers/login_handler.php';
                         }
                 ?>
                 <a href="#" id ="signup" class = "signup"> Dont have an account ? Click here to register !</a>
+                <br>
+                <br>
+                <a href="https://github.com/TaimurAhmed/summerProject2017/blob/master/README.md" class="sign_up_about">About</a>
+                &nbsp;
+                <a href="https://github.com/TaimurAhmed/summerProject2017/issues" class="sign_up_about">Contact</a>
+
            </form>
+
     </div>
   
 

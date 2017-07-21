@@ -110,3 +110,10 @@ input[type = "text"]:hover,[type = "email"]:hover ,[type = "password"]:hover {
 #second_form {
     display: none;
 }
+
+.sign_up_about{
+    font-family: sans-serif;
+    color: black;
+    text-decoration: underline;
+    font-size: 15;
+}
