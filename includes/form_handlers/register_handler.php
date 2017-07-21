@@ -1,5 +1,5 @@
 <?php
-
+/*checked */
 $email_options = array();
 $email_options["limit_email"] = true; //Change to true if all emails are ok
 $email_options["valid_email"] = "@my.bristol.ac.uk"; //Emails must end with this

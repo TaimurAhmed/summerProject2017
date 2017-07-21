@@ -1,11 +1,13 @@
 <?php 
-/*Order matters in PHP :'( */
-require './config/config.php';
+/*Note: Order matters in PHP :'( */
+require './config/config.php'; /*Checked*/
 require './includes/form_handlers/register_handler.php';
 require './includes/form_handlers/login_handler.php';
 ?>
 
+
 <html>
+
 
 <head>
   <title>Welcome to UoB Social Network</title>
@@ -13,30 +15,33 @@ require './includes/form_handlers/login_handler.php';
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="./assets/js/register.js"></script>
 </head>
+
   
 <body> 
-<?php
-if(isset($_POST['register_button'])){
-    echo '
-        <script>
-            $(document).ready(function(){
-                $("#first_form").hide();
-                $("#second_form").show();
-            });
-        </script>
-    ';
-} 
-?>
 
 
+    <?php
+    if(isset($_POST['register_button'])){
+        echo '
+            <script>
+                $(document).ready(function(){
+                    $("#first_form").hide();
+                    $("#second_form").show();
+                });
+            </script>
+        ';
+    } 
+    ?>
 
 
 <div class = "wrapper">
 
+
 <div class="login_box">
     
+
     <div class="login_header">
-        <h1>TimsiFeed</h1>
+        <h1>Artemis</h1>
         Log in or Sign Up below !
     </div>
   
