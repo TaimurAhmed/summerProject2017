@@ -8,7 +8,7 @@ class Post{
         $this->user_obj = new User($con,$user);
     }
 
-    public function countPosts($post_id){
+    public function countComments($post_id){
         $count_posts_query = "SELECT COUNT(id) FROM comments WHERE post_id = ?";
         $result = "";
         if($stmt = mysqli_prepare($this->con,$count_posts_query)){
@@ -278,7 +278,7 @@ class Post{
                                     </div>
                                     <!--Buggy when likes iframe is places on top of comments iframe-->
                                     <div class='newsFeedPostOptions'>
-                                        comments(Placeholder)&nbsp;&nbsp;&nbsp;
+                                        comments(". $this->countComments($p_id) .")&nbsp;&nbsp;&nbsp;
                                         <iframe src='like.php?post_id=$p_id' scrolling='no'></iframe>
                                     </div>
                                     <br>
@@ -493,7 +493,7 @@ class Post{
                                     </div>
                                     <!--Buggy when likes iframe is places on top of comments iframe-->
                                     <div class='newsFeedPostOptions'>
-                                        comments(Placeholder)&nbsp;&nbsp;&nbsp;
+                                        comments(".$this->countComments($p_id).")&nbsp;&nbsp;&nbsp;
                                         <iframe src='like.php?post_id=$p_id' scrolling='no'></iframe>
                                     </div>
                                     <br>
@@ -717,7 +717,7 @@ class Post{
                                     </div>
                                     <!--Buggy when likes iframe is places on top of comments iframe-->
                                     <div class='newsFeedPostOptions'>
-                                        comments(Placeholder)&nbsp;&nbsp;&nbsp;
+                                        comments(".$this->countComments($p_id).")&nbsp;&nbsp;&nbsp;
                                         <iframe src='like.php?post_id=$p_id' scrolling='no'></iframe>
                                     </div>
                                     <br>
