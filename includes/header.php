@@ -53,7 +53,7 @@ require './includes/header_handler.php';
    <!--CSS: Font Awesome CDN-->
    <script src="https://use.fontawesome.com/342380e526.js"></script>
    <script src="./assets/js/bootbox.min.js"></script>
-  <!--Favicon of UoB logo used purely for demonstration, please replace if deploying-->
+   <!--Favicon of UoB logo used purely for demonstration, please replace if deploying-->
   <link rel="icon" href="./assets/favicon/logo-colour.jpg" type="image/ico">
 </head>
 

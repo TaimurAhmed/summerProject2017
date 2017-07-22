@@ -138,8 +138,9 @@ if(isset($_POST['post_message'])){
                 <!--About Div-->
                 <div role="tabpanel" class="tab-pane fade" id="about_div">
                 <?php
-                    echo 'name';
-                    echo '<br>uid';
+                    echo "Name : ". $logged_in_user_obj->getFirstAndLastName(). "<br>";
+                    echo "User ID: " . $logged_in_user_obj->getUsername(). "<br>";
+                
 
                 ?>
 
