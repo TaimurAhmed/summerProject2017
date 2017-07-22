@@ -649,3 +649,9 @@ textarea:focus {
     text-decoration: underline;
     font-size: 15;
 }
+
+#about_div {
+    color: black;
+    padding: 1em 0em 8em 0em;
+    font-size: 1em;
+}
