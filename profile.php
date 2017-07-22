@@ -3,6 +3,23 @@ require './includes/header.php';
 $message_obj =  new Message($con,$userLoggedIn) ;
 
 
+/*If user does not exist redirect to index.php. Do same if DB connection fails*/
+$does_user_exist = "SELECT COUNT(username) FROM users WHERE username = ?";
+if($stmt = mysqli_prepare($con,$does_user_exist)){
+    mysqli_stmt_bind_param($stmt, "s",$_GET['profile_username']);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt,$user_exists);
+    mysqli_stmt_fetch($stmt);
+    mysqli_stmt_close($stmt);
+}else{
+    header("Location: index.php");
+}
+if(! $user_exists){
+    header("Location: index.php");
+}
+
+
+
 if(isset($_GET['profile_username'])){
     $username = $_GET['profile_username'];
     $build_user_profile_query = "SELECT profile_pic,friend_array,num_posts,num_likes FROM users WHERE username = ?";
@@ -34,7 +51,7 @@ if(isset($_POST['add_friend'])){
 
 /*Redirect to respond friend request*/
 if(isset($_POST['respond_request'])){
-    header("Location: requests.phps");
+    header("Location: requests.php");
 }
 
 /**/
