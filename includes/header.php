@@ -37,7 +37,7 @@ require './includes/header_handler.php';
 
 <head>
    <meta charset="UTF-8">
-   <title>TimsiFeed:Wall </title>
+   <title>Artemis</title>
    <!--J Qeury-->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <!--JS-->
@@ -54,7 +54,7 @@ require './includes/header_handler.php';
    <script src="https://use.fontawesome.com/342380e526.js"></script>
    <script src="./assets/js/bootbox.min.js"></script>
    <!--Favicon of UoB logo used purely for demonstration, please replace if deploying-->
-  <link rel="icon" href="./assets/favicon/logo-colour.jpg" type="image/ico">
+   <link rel="icon" href="./assets/favicon/logo-colour.jpg" type="image/ico">
 </head>
 
 <body>
@@ -64,7 +64,7 @@ require './includes/header_handler.php';
 <img src="" alt="">
 <!--Logo-->
 <div class="logo">
-    <a href="index.php"> TimsiFeed</a>
+    <a href="index.php"> Artemis</a>
 </div>
 
 

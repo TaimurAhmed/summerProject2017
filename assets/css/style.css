@@ -272,6 +272,7 @@ textarea:focus {
      border-right: 10px solid #2ecc71;
      color: #ecf0f1;
      margin-right: 20px;
+     min-height: 75em;/*Intentional to be a bit bigger than the wall*/      
 }
 
 .profile_left img{
@@ -654,4 +655,8 @@ textarea:focus {
     color: black;
     padding: 1em 0em 8em 0em;
     font-size: 1em;
+}
+#newsfeed_div{
+    overflow: auto;
+    max-height: 68em;
 }
