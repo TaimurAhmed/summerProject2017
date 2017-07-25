@@ -133,6 +133,7 @@ if(isset($_GET['type'])){
                 }
 
 
+
                 echo "<p id='grey'>Try searching for:</p>";
                         echo "<a href='search.php?q=" . $query ."&type=name'>Names</a>, <a href='search.php?q=" . $query ."&type=username'>Usernames</a><br><br><hr id='search_hr'>";
 
