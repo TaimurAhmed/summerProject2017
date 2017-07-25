@@ -22,6 +22,7 @@ if(! $user_exists){
 
 if(isset($_GET['profile_username'])){
     $username = $_GET['profile_username'];
+    $profile_user_obj  = new User($con,$username); /*The user obj of the person who the profile page belongs to*/
     $build_user_profile_query = "SELECT profile_pic,friend_array,num_posts,num_likes FROM users WHERE username = ?";
     $user_profile_array = array();
         if($stmt = mysqli_prepare($con,$build_user_profile_query)){
@@ -83,6 +84,9 @@ if(isset($_POST['post_message'])){
     <div class="profile_left">
         <img src="<?php echo $user_profile_array['profile_pic'];?>"/>
             <div class="profile_info ">
+            <div class="profile_page_username">
+                <p><?php echo $profile_user_obj->getFirstAndLastName(); ?></p>
+            </div>
             <p><?php echo "Posts: ". $user_profile_array['num_posts'] ?></p>
             <p><?php echo "Likes: ". $user_profile_array['num_likes'] ?></p>
             <p><?php echo "Friends : ". $num_friends ?></p>
@@ -90,7 +94,7 @@ if(isset($_POST['post_message'])){
         
         <form action="<?php echo $username; ?>" method="POST">
             <?php
-                $profile_user_obj  = new User($con,$username);
+                
                 if($profile_user_obj->isClosed()){
                     header("Location: user_closed.php");
                 }
@@ -155,8 +159,8 @@ if(isset($_POST['post_message'])){
                 <!--About Div-->
                 <div role="tabpanel" class="tab-pane fade" id="about_div">
                 <?php
-                    echo "Name : ". $logged_in_user_obj->getFirstAndLastName(). "<br><br><br>";
-                    echo "User ID: " . $logged_in_user_obj->getUsername(). "<br>";
+                    echo "Name : ". $profile_user_obj->getFirstAndLastName(). "<br><br><br>";
+                    echo "User ID: " . $profile_user_obj->getUsername(). "<br>";
                 ?>
 
                 </div>

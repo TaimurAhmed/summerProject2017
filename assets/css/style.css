@@ -295,7 +295,11 @@ textarea:focus {
     margin: 0 0 0 20px;
     word-wrap:break-word; 
 }
-
+.profile_page_username{
+    font-family: Bellota-LightItalic,sans-serif;
+    font-size: 1.5em;
+    padding-bottom: 0.4em;
+}
 .danger {
     background-color: #e74c3c;
 }
