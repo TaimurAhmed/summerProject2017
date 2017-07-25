@@ -74,7 +74,6 @@ require './includes/form_handlers/login_handler.php';
                 <br>
                 <br>
                 <br>
-                <br>
 
                 <!--About the Artemis Project-->
                 <a title="About the Artemis Project" href="https://github.com/TaimurAhmed/summerProject2017/blob/master/README.md" class="sign_up_about">
