@@ -16,6 +16,8 @@ require './includes/form_handlers/login_handler.php';
   <script src="./assets/js/register.js"></script>
   <!--Favicon of UoB logo used purely for demonstration, please replace if deploying-->
   <link rel="icon" href="./assets/favicon/logo-colour.jpg" type="image/ico">
+   <!--CSS: Font Awesome CDN-->
+   <script src="https://use.fontawesome.com/342380e526.js"></script>
 </head>
 
   
