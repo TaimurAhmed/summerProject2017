@@ -62,20 +62,31 @@ require './includes/form_handlers/login_handler.php';
                 <br>
                 <input type="password" name = "log_password" placeholder="Password">
                 <br>
-                <input type="submit" name="login_button" value="Login">
+                <input title='Click to Submit Login Details' type="submit" name="login_button" value="Login">
                 <br>
                 <?php
                     if (in_array ("Email or password credentials are incorrect <br>",$error_array)){
                             echo "Email or password credentials are incorrect <br>";
                         }
                 ?>
-                <a href="#" id ="signup" class = "signup"> Dont have an account ? Click here to register !</a>
+                <a href="#" id ="signup" class = "signup"> Dont have an account ? <br>Click here to register !</a>
                 <br>
                 <br>
-                <a href="https://github.com/TaimurAhmed/summerProject2017/blob/master/README.md" class="sign_up_about">About</a>
-                &nbsp;
-                <a href="https://github.com/TaimurAhmed/summerProject2017/issues" class="sign_up_about">Contact</a>
 
+                <!--About the Artemis Project-->
+                <a title="About Artemis" href="https://github.com/TaimurAhmed/summerProject2017/blob/master/README.md" class="sign_up_about">
+                    <i class="fa fa-question-circle-o fa-2x" aria-hidden="true"></i>  
+                </a>
+                &nbsp;
+                <!--About the Team behind the Project-->
+                <a title="About Artemis" href="https://github.com/TaimurAhmed" class="sign_up_about">
+                    <i class="fa fa-github fa-2x" aria-hidden="true"></i>
+                </a>
+                &nbsp;
+                <!--Report a problem-->
+                <a title="Report a Bug" href="https://github.com/TaimurAhmed/summerProject2017/issues" class="sign_up_about">
+                    <i class="fa fa-bug fa-2x" aria-hidden="true"></i>
+                </a>
            </form>
 
     </div>
