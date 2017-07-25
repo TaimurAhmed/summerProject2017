@@ -111,7 +111,7 @@ require './includes/header_handler.php';
             $user_obj = new User($con,$userLoggedIn);
             $num_requests = $user_obj->getNumOfFriendRequests();
           ?>
-            <a href="#">
+            <a href='<?php echo $userLoggedIn; ?>'>
                 <?php 
                     if(isset($meta_person["first_name"])){
                         echo $meta_person["first_name"];
@@ -179,7 +179,7 @@ require './includes/header_handler.php';
             <a href="./includes/handlers/logout.php"><i class="fa fa-sign-out"></i></a>
 
             <!--Help Page-->
-            <a href="https://github.com/TaimurAhmed/summerProject2017">
+            <a href="https://github.com/TaimurAhmed/summerProject2017" class="help_header_icon">
                 <i class="fa fa-question" aria-hidden="true"></i>
             </a>
         

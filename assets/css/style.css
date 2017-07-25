@@ -510,6 +510,10 @@ textarea:focus {
     top: -5px;
 }
 
+.help_header_icon{
+    color: #e74c3c;
+    padding-left: 0.60em;
+}
 .resultDisplayNotification {
     height: auto;
     color: #2ecc71;
