@@ -114,6 +114,13 @@ input[type = "text"]:hover,[type = "email"]:hover ,[type = "password"]:hover {
 .sign_up_about{
     font-family: sans-serif;
     color: black;
-    text-decoration: underline;
     font-size: 15;
+}
+
+.register_page_icons{
+    color: #2c3e50;
+}
+
+.register_page_icons:hover{
+    color: #27ae60;
 }
