@@ -63,7 +63,7 @@ require './includes/header.php';
                     mysqli_stmt_close($stmt);
                 }
                 echo "You are now friends !";
-                //header("Location:requests.php"); 
+                header("Location:requests.php"); 
 
 
            }
