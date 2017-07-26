@@ -515,8 +515,11 @@ textarea:focus {
 }
 
 .help_header_icon{
-    color: #e74c3c;
-    padding-left: 0.60em;
+    padding-left: 1em;
+}
+#header_loggedInUser_name{
+    padding-right: 1em;
+    border-bottom:none;
 }
 .resultDisplayNotification {
     height: auto;

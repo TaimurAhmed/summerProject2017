@@ -54,7 +54,7 @@ require './includes/header_handler.php';
    <script src="https://use.fontawesome.com/342380e526.js"></script>
    <script src="./assets/js/bootbox.min.js"></script>
    <!--Favicon of UoB logo used purely for demonstration, please replace if deploying-->
-   <link rel="icon" href="./assets/favicon/logo-colour.jpg" type="image/ico">
+   <link rel="icon" href="./assets/favicon/logo.jpg" type="image/ico">
 </head>
 
 <body>
@@ -111,7 +111,7 @@ require './includes/header_handler.php';
             $user_obj = new User($con,$userLoggedIn);
             $num_requests = $user_obj->getNumOfFriendRequests();
           ?>
-            <a href='<?php echo $userLoggedIn; ?>'>
+            <a href='<?php echo $userLoggedIn; ?>' id=header_loggedInUser_name>
                 <?php 
                     if(isset($meta_person["first_name"])){
                         echo $meta_person["first_name"];
@@ -119,6 +119,7 @@ require './includes/header_handler.php';
                 ?>                       
             </a>
           
+
           <!-- Fiddle -->
           <a href='https://fiddles.io/'>
 
@@ -175,13 +176,15 @@ require './includes/header_handler.php';
             <!--Settings Page-->
             <a href="settings.php"><i class="fa fa-cog"></i></a>
             
-            <!-- Sign Out-->
-            <a href="./includes/handlers/logout.php"><i class="fa fa-sign-out"></i></a>
+
 
             <!--Help Page-->
             <a href="https://github.com/TaimurAhmed/summerProject2017" class="help_header_icon">
-                <i class="fa fa-question" aria-hidden="true"></i>
+                <i class="fa fa-question-circle-o" aria-hidden="true"></i>
             </a>
+
+            <!-- Sign Out-->
+            <a href="./includes/handlers/logout.php"><i class="fa fa-sign-out"></i></a>
         
         </nav>
         
