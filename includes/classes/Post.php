@@ -39,13 +39,22 @@ class Post{
         return $body;
     }
 
+    private function newLineHanlder($body){
+        //Windows,Linux and Mac have different return carriages
+        $body = str_replace('\r\n','<br>',$body);
+        $body = str_replace('\n','<br>',$body);
+        $body = str_replace('\r','<br>',$body);
+
+        return $body;
+    }
+
     public function  submitPost($body,$user_to) {
         $body = strip_tags($body); /*Remove HTML tags*/
         $body = mysqli_real_escape_string($this->con,$body);
         $check_empty = preg_replace('/\s+/', '', $body);/*Delete all spaces*/
         
-        if($check_empty != "") {$body = $this->youTubeEmbedder($body); }
-
+        if($check_empty != "") {$body = $this->youTubeEmbedder($body);}
+        if($check_empty != "") {$body = $this->newLineHanlder($body);}
         /*If string is not empty insert post*/
         if($check_empty != ""){
             /*Current date and time*/
