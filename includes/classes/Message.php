@@ -317,8 +317,9 @@ class Message {
         if($count > $limit){
             $return_string .= "<input type='hidden' class='nextPageDropdownData' value='" . ($page + 1) . "'><input type='hidden' class='noMoreDropdownData' value='false'>";
         }else{
-            $return_string .= "<div class='dropdown_data_window_footNote'><input type='hidden' class='noMoreDropdownData' value='true'> <p style='text-align: center;'> Nothing more to show!</p></div>";
+            $return_string .= "<a href='messages.php'><div class='dropdown_data_window_footNote'><input type='hidden' class='noMoreDropdownData' value='true'> <p style='text-align: center;'> Nothing more to show!<br> Click to Access Messenger </p></div></a>";
         }
+
         return $return_string;
     }
 
