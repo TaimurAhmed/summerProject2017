@@ -111,7 +111,7 @@ require './includes/header_handler.php';
             $user_obj = new User($con,$userLoggedIn);
             $num_requests = $user_obj->getNumOfFriendRequests();
           ?>
-            <a href='<?php echo $userLoggedIn; ?>' id=header_loggedInUser_name>
+            <a href='<?php echo $userLoggedIn; ?>' id=header_loggedInUser_name title="Click to go to your wall">
                 <?php 
                     if(isset($meta_person["first_name"])){
                         echo $meta_person["first_name"];
@@ -121,7 +121,7 @@ require './includes/header_handler.php';
           
 
           <!-- Fiddle -->
-          <a href='https://fiddles.io/'>
+          <a href='https://fiddles.io/' title='Find the code fiddle you need!'>
 
               <i class="fa fa-code" aria-hidden="true">
                 
@@ -129,14 +129,14 @@ require './includes/header_handler.php';
 
           </a>
             
-            <!--Home Page-->
-            <a href="index.php">
+            <!--Home Page i.e. New Feed-->
+            <a title="Artemis Newsfeed" href="index.php">
                 <i class="fa fa-home">
                 </i>
             </a>
             
             <!--Messages-->
-            <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')">
+            <a title='Messages' href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')" >
                 <i class="fa fa-envelope"> 
                   <!--If there are any unopened messages give a notification-->
                   <?php 
@@ -149,7 +149,7 @@ require './includes/header_handler.php';
             </a>
             
             <!--Notifications-->
-            <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'notification')">
+            <a title='Notifications' href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'notification')">
                 <i class="fa fa-bell">
                   <?php 
                     echo 
@@ -162,7 +162,7 @@ require './includes/header_handler.php';
 
 
             <!-- Friend Requests -->
-            <a href="requests.php">
+            <a title='Friend Requests' href="requests.php">
                 <i class="fa fa-users">
                   <?php 
                     echo 
@@ -174,17 +174,17 @@ require './includes/header_handler.php';
             </a>
             
             <!--Settings Page-->
-            <a href="settings.php"><i class="fa fa-cog"></i></a>
+            <a title='Profile Settings' href="settings.php"><i class="fa fa-cog"></i></a>
             
 
 
             <!--Help Page-->
-            <a href="https://github.com/TaimurAhmed/summerProject2017" class="help_header_icon">
+            <a title='About' href="https://github.com/TaimurAhmed/summerProject2017" class="help_header_icon">
                 <i class="fa fa-question-circle-o" aria-hidden="true"></i>
             </a>
 
             <!-- Sign Out-->
-            <a href="./includes/handlers/logout.php"><i class="fa fa-sign-out"></i></a>
+            <a title='Sign Out' href="./includes/handlers/logout.php"><i class="fa fa-sign-out"></i></a>
         
         </nav>
         
