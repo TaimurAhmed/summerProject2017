@@ -58,6 +58,10 @@
                 $post_body = mysqli_escape_string($con,$post_body);
                 $date_time_now = date("Y-m-d H:i:s");
                 $insert_comment_query = "INSERT INTO comments VALUES ('',?,?,?,?,'no',?)";
+                /*Abstract into function later*/
+                $post_body = str_replace('\r\n','<br>',$post_body);
+                $post_body = str_replace('\n','<br>',$post_body);
+                $post_body = str_replace('\r','<br>',$post_body);
                 /*If post is not empty insert it*/
                 if($post_body !=""){
                     if($stmt = mysqli_prepare($con,$insert_comment_query)){
