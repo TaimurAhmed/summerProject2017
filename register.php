@@ -63,15 +63,15 @@ require './includes/form_handlers/login_handler.php';
                 <br>
                 <input aria-required="true" aria-invalid="false" type="password" name = "log_password" placeholder="Password">
                 <br>
-                <input title='Click to Submit Login Details' type="submit" name="login_button" value="Login">
+                <input aria-label ="Click to submit Login details" title='Click to submit Login details' type="submit" name="login_button" value="Login">
                 <br>
                 <?php
                     if (in_array ("Email or password credentials are incorrect <br>",$error_array)){
-                            echo "Email or password credentials are incorrect <br>";
+                            echo "<div class='reg_errors' role='alert' aria-relevant='all'> Email or password credentials are incorrect !</div> <br>";
                         }
                 ?>
                 <br>
-                <a href="#" id ="signup" class = "signup"> Dont have an account ? <br>Click here to register !</a>
+                <a aria-label ="Click to access registration form instead" title="Click to access registration form instead" href="#" id ="signup" class = "signup"> Dont have an account ? <br>Click here to register !</a>
                 <br>
                 <br>
                 <br>
@@ -95,7 +95,7 @@ require './includes/form_handlers/login_handler.php';
             }
          ?>" required>
          <br>
-         <?php if(in_array("Your first name must be between 2 and 25 characters <br>", $error_array)) echo "Your first name must be between 2 and 25 characters <br>"?>
+         <?php if(in_array("Your first name must be between 2 and 25 characters <br>", $error_array)) echo "<div class='reg_errors' role='alert' aria-relevant='all'>Your first name must be between 2 and 25 characters</div> <br>"?>
          
 
          <input type="text" name = "reg_lname" placeholder="Last Name" value = "<?php
@@ -104,7 +104,7 @@ require './includes/form_handlers/login_handler.php';
             }
          ?>" required>
          <br>
-         <?php if(in_array("Your last name must be between 2 and 25 characters <br>",$error_array)) echo"Your last name must be between 2 and 25 characters <br>"?>
+         <?php if(in_array("Your last name must be between 2 and 25 characters <br>",$error_array)) echo"<div class='reg_errors' role='alert' aria-relevant='all'>Your last name must be between 2 and 25 characters</div> <br>"?>
 
 
          <input type="email" name = "reg_email" placeholder="Email" value = "<?php
@@ -122,10 +122,10 @@ require './includes/form_handlers/login_handler.php';
          ?>" required>
          <br>
          <?php
-            if(in_array("Email already being used <br>",$error_array)) echo "Email already being used <br>";
-            else if (in_array("Invalid email format <br>",$error_array)) echo "Invalid email format <br>";
-            else if (in_array("Emails dont match <br>",$error_array)) echo "Emails dont match <br>";
-            else if (in_array("Use your UoB email that ends with :". $email_options['valid_email'] . " <br>",$error_array)) echo "Use your UoB email that ends with :". $email_options['valid_email'] . " <br>" ;
+            if(in_array("Email already being used <br>",$error_array)) echo "<div class='reg_errors' role='alert' aria-relevant='all'>Email already being used </div><br>";
+            else if (in_array("Invalid email format <br>",$error_array)) echo "<div class='reg_errors' role='alert' aria-relevant='all'>Invalid email format </div><br>";
+            else if (in_array("Emails dont match <br>",$error_array)) echo "<div class='reg_errors' role='alert' aria-relevant='all'>Emails dont match </div><br>";
+            else if (in_array("Use your UoB email that ends with :". $email_options['valid_email'] . " <br>",$error_array)) echo "<div class='reg_errors' role='alert' aria-relevant='all'>Use your UoB email that ends with :". $email_options['valid_email'] . "</div> <br>" ;
          ?>
 
 
@@ -137,11 +137,11 @@ require './includes/form_handlers/login_handler.php';
          <br>
          <?php
             if(in_array("Your passwords do not match <br>",$error_array))
-                echo "Your passwords do not match <br>";
+                echo "<div class='reg_errors' role='alert' aria-relevant='all'>Your passwords do not match </div><br>";
             else if (in_array("Your password can only contain standard english characters or numbers <br>",$error_array))
-                echo "Your password can only contain standard english characters or numbers <br>";
+                echo "<div class='reg_errors' role='alert' aria-relevant='all'>Your password can only contain standard english characters or numbers </div><br>";
             else if (in_array("Your password must be between 5 to 30 characters <br>",$error_array))
-                echo "Your password must be between 5 to 30 characters <br>";
+                echo "<div class='reg_errors' role='alert' aria-relevant='all'>Your password must be between 5 to 30 characters </div><br>";
          ?>
 
 
@@ -150,11 +150,11 @@ require './includes/form_handlers/login_handler.php';
 
         <?php
             if(in_array("<span style='color: #14C800;'> Sucesfully created new user ! </span> <br>",$error_array))
-                echo "<span style='color: #14C800;'> Sucesfully created new user ! </span> <br>";
+                echo "<div class='reg_success' role='alert' aria-relevant='all'><span style='color: #14C800;'> Sucesfully created new user ! </span> </div><br>";
          ?>
 
          <br>
-         <a href="#" id= "signin" class = "signin" >Already have an account ? Sign in here !</a>
+         <a aria-label ="Click to access sign in form instead" title="Click to access sign in form instead" href="#" id= "signin" class = "signin" >Already have an account ? Sign in here !</a>
          <br>
          <br>   
          <!--Contact Dev Team-->

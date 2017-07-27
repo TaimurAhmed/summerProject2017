@@ -124,3 +124,11 @@ input[type = "text"]:hover,[type = "email"]:hover ,[type = "password"]:hover {
 .register_page_icons:hover{
     color: #27ae60;
 }
+
+.reg_errors{
+    color: red;
+}
+.reg_success{
+    color:green;
+}
+
