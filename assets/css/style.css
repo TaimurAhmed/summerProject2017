@@ -315,8 +315,8 @@ textarea:focus {
 .info {
     background-color: #3498db;
 }
-.deep_blue {
-    background-color: red;
+.post_button {
+    background-color: #3498db;
 }
 .profile_left input[type="submit"]{
     width: 90%;

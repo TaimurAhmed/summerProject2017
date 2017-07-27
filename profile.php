@@ -118,7 +118,7 @@ if(isset($_POST['post_message'])){
             }
             ?>
         </form>
-        <input type="submit" class="deep_blue" data-toggle="modal" data-target="#post_form" value="Post Something">
+        <input type="submit" class="post_button" data-toggle="modal" data-target="#post_form" value="Post Something">
         
         <?php
             if($userLoggedIn != $username){
