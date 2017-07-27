@@ -69,7 +69,7 @@ require './includes/header_handler.php';
 
 
 <!-- Search Bar-->
-<div class="search">
+<div class="search" role="search">
 
   <form action="search.php" method="GET" name="search_form">
     
@@ -96,7 +96,8 @@ require './includes/header_handler.php';
         
         
         <!--Horizontal Top Navigation Bar-->
-        <nav id='upper_right_nav_bar'>
+        <!--Explicit and Implicit Nav Bar WAI-ARIA role declaration-->
+        <nav id='upper_right_nav_bar' role="Navigation">
           <?php
 
             /*Unread messages*/
@@ -123,7 +124,7 @@ require './includes/header_handler.php';
           <!-- Fiddle -->
           <a href='https://fiddles.io/' title='Find the code fiddle you need!'>
 
-              <i class="fa fa-code" aria-hidden="true">
+              <i class="fa fa-code" aria-label="fiddle.io">
                 
               </i>
 
@@ -131,13 +132,13 @@ require './includes/header_handler.php';
             
             <!--Home Page i.e. New Feed-->
             <a title="Artemis Newsfeed" href="index.php">
-                <i class="fa fa-home">
+                <i class="fa fa-home" aria-label="home">
                 </i>
             </a>
             
             <!--Messages-->
             <a title='Messages' href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')" >
-                <i class="fa fa-envelope"> 
+                <i class="fa fa-envelope" aria-label="message drop down"> 
                   <!--If there are any unopened messages give a notification-->
                   <?php 
                     echo 

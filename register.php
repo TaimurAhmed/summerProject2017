@@ -50,9 +50,10 @@ require './includes/form_handlers/login_handler.php';
     </div>
   
     <!-- Sign in form:  For existing users-->
-    <div id = "first_form">
+    <!--Aria Role:Sign In-->
+    <div id = "first_form" role="sign_in" aria-hidden="false">
         <form action="register.php" method="POST">
-                <input  type="email" name="log_email" placeholder="Email Address"
+                <input  aria-required="true" aria-invalid="false" type="email" name="log_email" placeholder="Email Address"
                         value = "<?php 
                                     if(isset($_SESSION['log_email'])){
                                     echo $_SESSION['log_email'];
@@ -60,7 +61,7 @@ require './includes/form_handlers/login_handler.php';
                         required
                 >
                 <br>
-                <input type="password" name = "log_password" placeholder="Password">
+                <input aria-required="true" aria-invalid="false" type="password" name = "log_password" placeholder="Password">
                 <br>
                 <input title='Click to Submit Login Details' type="submit" name="login_button" value="Login">
                 <br>
@@ -74,28 +75,17 @@ require './includes/form_handlers/login_handler.php';
                 <br>
                 <br>
                 <br>
+                
+                <!--Contact Dev Team-->
+                <?php include './includes/register_contact.php'; ?>
 
-                <!--About the Artemis Project-->
-                <a title="About the Artemis Project" href="https://github.com/TaimurAhmed/summerProject2017/blob/master/README.md" class="sign_up_about">
-                    <i class="fa fa-question-circle-o fa-2x register_page_icons" aria-hidden="true"></i>  
-                </a>
-                &nbsp;
-                <!--About the Team behind the Project-->
-                <a title="The People Behind Artemis" href="https://github.com/TaimurAhmed" class="sign_up_about">
-                    <i class="fa fa-github fa-2x register_page_icons" aria-hidden="true"></i>
-                </a>
-                &nbsp;
-                <!--Report a problem-->
-                <a title="Report a Bug or Issue" href="https://github.com/TaimurAhmed/summerProject2017/issues" class="sign_up_about">
-                    <i class="fa fa-bug fa-2x register_page_icons" aria-hidden="true"></i>
-                </a>
            </form>
 
     </div>
   
 
     <!--Sign up form: For new users-->
-    <div id="second_form">
+    <div id="second_form" aria-hidden="true">
         <form action="register.php" method="POST">
 
          
@@ -165,8 +155,13 @@ require './includes/form_handlers/login_handler.php';
 
          <br>
          <a href="#" id= "signin" class = "signin" >Already have an account ? Sign in here !</a>
+         <br>
+         <br>   
+         <!--Contact Dev Team-->
+         <?php include './includes/register_contact.php'; ?>
       </form>
-        
+      
+
     </div>
 
 </body>
