@@ -270,7 +270,7 @@ textarea:focus {
      float: left;
      position: relative;
      background-color: #27ae60;
-     border-right: 10px solid #2ecc71;
+     border-right: 10px solid #39b36d;
      color: #ecf0f1;
      margin-right: 20px;
      min-height: 75em;/*Intentional to be a bit bigger than the wall*/      
