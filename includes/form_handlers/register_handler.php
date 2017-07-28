@@ -103,7 +103,6 @@ if(isset($_POST['register_button'])){
         $validLength = strlen($email_options["valid_email"]);
         if((substr_compare($em2, $email_options["valid_email"],  $inputLength - $validLength , $validLength,true) !== 0))
             array_push($error_array,"Use your UoB email that ends with :". $email_options['valid_email'] . " <br>");
-            echo (substr_compare($em2, $email_options["valid_email"],  $inputLength - $validLength , $validLength) === 0);
     }
 
 
