@@ -55,31 +55,28 @@ require './includes/header_handler.php';
 
 <div class="top_bar">
 
-<!--Logo-->
-<div class="logo">
-    <a role="Link to home page or Newsfeed"  title="Artemis Homepage" href="index.php"> Artemis</a>
-</div>
+      <!--Logo-->
+      <div class="logo">
+          <a role="Link to home page or Newsfeed"  title="Artemis Homepage" href="index.php"> Artemis</a>
+      </div>
 
 
-<!-- Search Bar-->
-<div class="search" role="search">
+      <!-- Search Bar-->
+      <div class="search" role="search">
+        
+        <form action="search.php" method="GET" name="search_form">
+          <input type="text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_text_input">
+          <div class="button_holder" title="Search for other users">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </div>
+        </form>
 
-  <form action="search.php" method="GET" name="search_form">
-    <input type="text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_text_input">
-    <div class="button_holder" title="Search for other users">
-      <i class="fa fa-search" aria-hidden="true"></i>
-    </div>
-  </form>
+          <div class="search_results">
+          </div>
 
-    <div class="search_results">
-    </div>
-
-    <div class="search_results_footer_empty">
-    </div>
-
-
-
-</div>
+          <div class="search_results_footer_empty">
+          </div>
+      </div>
 
 
 
@@ -87,9 +84,8 @@ require './includes/header_handler.php';
         
         <!--Horizontal Top Navigation Bar-->
         <!--Explicit and Implicit Nav Bar WAI-ARIA role declaration-->
-        <nav id='upper_right_nav_bar' role="Navigation">
+        <nav id='upper_right_nav_bar' role="Navigation Bar">
           <?php
-
             /*Unread messages*/
             $messages = new Message($con,$userLoggedIn);
             $num_messages = $messages->getUnreadNumber();
@@ -102,7 +98,7 @@ require './includes/header_handler.php';
             $user_obj = new User($con,$userLoggedIn);
             $num_requests = $user_obj->getNumOfFriendRequests();
           ?>
-            <a href='<?php echo $userLoggedIn; ?>' id=header_loggedInUser_name title="Click to go to your wall">
+            <a href='<?php echo $userLoggedIn; ?>' id=header_loggedInUser_name title="Personal Wall" role="Personal Wall">
                 <?php 
                     if(isset($meta_person["first_name"])){
                         echo $meta_person["first_name"];
@@ -112,28 +108,26 @@ require './includes/header_handler.php';
           
 
           <!-- Fiddle -->
-          <a href='https://fiddles.io/' title='Find the code fiddle you need!'>
-
-              <i class="fa fa-code" aria-label="fiddle.io">
+          <a aria-label="fiddle.io" href='https://fiddles.io/' title='Find the code fiddle you need!'>
+              <i class="fa fa-code" aria-hidden="true" >
                 
               </i>
-
           </a>
             
-            <!--Home Page i.e. New Feed-->
-            <a title="Artemis Newsfeed" href="index.php">
-                <i class="fa fa-home" aria-label="home">
-                </i>
-            </a>
+          <!--Home Page i.e. New Feed-->
+          <a aria-label="Newsfeed" role="Artemis Newsfeed" title="Artemis Newsfeed" href="index.php">
+              <i class="fa fa-home" aria-hidden="true">
+              </i>
+          </a>
             
             <!--Messages-->
-            <a title='Messages' href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')" >
-                <i class="fa fa-envelope" aria-label="message drop down"> 
+            <a aria-label="Messages" title='Messages' role="Messages" href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')" >
+                <i class="fa fa-envelope" aria-hidden="true"> 
                   <!--If there are any unopened messages give a notification-->
                   <?php 
                     echo 
                       ($num_messages) 
-                      ? "<span class='notification_badge' id='unread_message'>". $num_messages ."</span>" 
+                      ? "<div role='alert' aria-relevant='all'><span class='notification_badge' id='unread_message'>". $num_messages ."</span></div>" 
                       : "";
                   ?>
                   </i>
