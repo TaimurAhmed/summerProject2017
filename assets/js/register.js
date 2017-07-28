@@ -1,9 +1,11 @@
-/*The script for making form with id 'signup and signin' hide and unhide on registration page*/
+/**
+ * Purpose: On click toggles b/w registration and sign in form by hiding one of them.
+ * Purpose: On click when toggling changes ARIA labels to help screen readers understand that form is hidden or visible
+ */
 $(document).ready(function() {
     
     //On click , hide login and show registration form
     $("#signup").click(function() {
-        
         /* Act on the event */
         $("#first_form").slideUp("slow",function(){
             $("#second_form").slideDown("slow");
@@ -12,15 +14,12 @@ $(document).ready(function() {
     });
 
 
-
     //On click , hide login and show registration form
     $("#signin").click(function() {
         /* Act on the event */
         $("#second_form").slideUp("slow",function(){
             $("#first_form").slideDown("slow");
         });
-
-
     });
 
     /*WAI-ARIA: Hide first form from screen reader on click and reveal second form*/
