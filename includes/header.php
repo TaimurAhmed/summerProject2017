@@ -1,5 +1,4 @@
 <?php 
-
 require './config/config.php';
 include("./includes/classes/User.php");
 include("./includes/classes/Post.php"); 
@@ -22,15 +21,11 @@ if(isset($_SESSION["username"])){
     }else{
       header("Location:register.php");
     }
-
-
 }else{
     header("Location:register.php");
 }
 
 require './includes/header_handler.php';
-
-
 ?>
 
 <html lang="en">
@@ -45,7 +40,6 @@ require './includes/header_handler.php';
    <script src="./assets/js/timsi.js"></script>
    <script src="./assets/js/jcrop_bits.js"></script> 
    <script src="./assets/js/jquery.Jcrop.js"></script> 
-
    <!--CSS-->
    <link rel=stylesheet type="text/css" href="./assets/bootstrap-3.3.7-dist/css/bootstrap.css"></link>
    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
@@ -61,10 +55,9 @@ require './includes/header_handler.php';
 
 <div class="top_bar">
 
-<img src="" alt="">
 <!--Logo-->
 <div class="logo">
-    <a href="index.php"> Artemis</a>
+    <a role="Link to home page or Newsfeed"  title="Artemis Homepage" href="index.php"> Artemis</a>
 </div>
 
 
@@ -72,20 +65,17 @@ require './includes/header_handler.php';
 <div class="search" role="search">
 
   <form action="search.php" method="GET" name="search_form">
-    
     <input type="text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_text_input">
-
-    <div class="button_holder">
+    <div class="button_holder" title="Search for other users">
       <i class="fa fa-search" aria-hidden="true"></i>
     </div>
-
   </form>
 
-      <div class="search_results">
-      </div>
+    <div class="search_results">
+    </div>
 
-      <div class="search_results_footer_empty">
-      </div>
+    <div class="search_results_footer_empty">
+    </div>
 
 
 
