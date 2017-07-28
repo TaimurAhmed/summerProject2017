@@ -3,8 +3,7 @@
 
         $get_first_name_query = "SELECT first_name,last_name,profile_pic,num_posts,num_likes FROM users WHERE username = ?";
         /*Create prepared statement*/
-        if($stmt = mysqli_prepare($con,$get_first_name_query)){
-            
+        if($stmt = mysqli_prepare($con,$get_first_name_query)){       
             /*Bind parameters for markers, type 's'/string */
             mysqli_stmt_bind_param($stmt, "s",$userLoggedIn);
             /*Execute query*/
