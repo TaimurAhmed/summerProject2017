@@ -108,7 +108,7 @@ require './includes/header_handler.php';
           
 
           <!-- Fiddle -->
-          <a aria-label="fiddle.io" href='https://fiddles.io/' title='Find the code fiddle you need!'>
+          <a aria-label="fiddle.io" code="Code Fiddles" title="Code Fiddles" href='https://fiddles.io/' >
               <i class="fa fa-code" aria-hidden="true" >
                 
               </i>
@@ -121,7 +121,7 @@ require './includes/header_handler.php';
           </a>
             
             <!--Messages-->
-            <a aria-label="Messages" title='Messages' role="Messages" href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')" >
+            <a aria-label="Messages" role="Messages" title='Messages' href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')" >
                 <i class="fa fa-envelope" aria-hidden="true"> 
                   <!--If there are any unopened messages give a notification-->
                   <?php 
@@ -134,12 +134,12 @@ require './includes/header_handler.php';
             </a>
             
             <!--Notifications-->
-            <a title='Notifications' href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'notification')">
-                <i class="fa fa-bell">
+            <a aria-label="Notification" role="Notifications" title='Notifications'   href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'notification')">
+                <i class="fa fa-bell" aria-hidden="true">
                   <?php 
                     echo 
                       ($num_notifications) 
-                      ? "<span class='notification_badge' id='unread_notification'>". $num_notifications ."</span>" 
+                      ? "<div role='alert' aria-relevant='all'><span class='notification_badge' id='unread_notification'>". $num_notifications ."</span></div>" 
                       : "";
                   ?>
                 </i>
@@ -147,12 +147,12 @@ require './includes/header_handler.php';
 
 
             <!-- Friend Requests -->
-            <a title='Friend Requests' href="requests.php">
-                <i class="fa fa-users">
+            <a aria-label="Friend Requests" role="Friend Requests" title="Friend Requests" href="requests.php">
+                <i class="fa fa-users" aria-hidden="true">
                   <?php 
                     echo 
                       ($num_requests) 
-                      ? "<span class='notification_badge' id='unread_requests'>". $num_requests ."</span>" 
+                      ? "<div role='alert' aria-relevant='all'><span class='notification_badge' id='unread_requests'>". $num_requests ."</span></div>" 
                       : "";
                   ?>
                 </i>
