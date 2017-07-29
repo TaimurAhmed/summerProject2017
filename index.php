@@ -22,10 +22,10 @@ if(isset($_POST['post'])){
         <div 
             class="user_details_left_right">
             <a 
-            aria-label="Personal Wall" 
-            role="Personal Wall" 
-            title='Personal Wall' 
-            href="<?php echo $userLoggedIn; ?>">
+                aria-label="Personal Wall" 
+                role="Personal Wall" 
+                title='Personal Wall' 
+                href="<?php echo $userLoggedIn; ?>">
                 <?php if(isset($meta_person["first_name"])){echo $meta_person["first_name"];}            
                       if(isset($meta_person["last_name"])){echo " " . $meta_person["last_name"];}
                 ?>
@@ -37,7 +37,8 @@ if(isset($_POST['post'])){
         </div>
     </div>
 
-        <div class="main_column column">
+        <div 
+            class="main_column column">
             
             <form 
                 class="post_form" 
@@ -50,14 +51,21 @@ if(isset($_POST['post'])){
                     name="post_text" id="post_text" 
                     placeholder="Got something to say ?">
                 </textarea>
-                <input aria-label="lic" role="Personal Wall" title='Personal Wall' type="submit" name = "post" id ="post_button" value = "Post ">
+                <input 
+                    aria-label="lic" 
+                    role="Personal Wall" 
+                    title='Personal Wall' 
+                    type="submit" 
+                    name = "post" 
+                    id ="post_button" 
+                    value = "Post ">
                 <hr> 
             </form>
 
         
             <div class="posts_area"></div>
-            <div id='#loading'> 
-                <i class="fa fa-refresh fa-spin fa-3x fa-fw" ></i>
+            <div role='alert' aria-relevant='all' role="No more messages to show" title="No more messages to show" id='#loading'> 
+                <i aria-hidden="true" class="fa fa-refresh fa-spin fa-3x fa-fw" ></i>
             </div>
 
         </div> 
