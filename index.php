@@ -11,14 +11,21 @@ if(isset($_POST['post'])){
 
 
 ?>
-    <div class ="user_details column">
-        <a href="<?php echo $userLoggedIn; ?>"><img src="
+    <div 
+        class ="user_details column">
+        <a 
+            aria-label="Personal Wall" role="Personal Wall" title='Personal Wall' href="<?php echo $userLoggedIn; ?>"><img src="
             <?php if(isset($meta_person["profile_pic"])){echo $meta_person["profile_pic"];}?>" 
            alt="">
         </a>
 
-        <div class="user_details_left_right">
-            <a href="<?php echo $userLoggedIn; ?>">
+        <div 
+            class="user_details_left_right">
+            <a 
+            aria-label="Personal Wall" 
+            role="Personal Wall" 
+            title='Personal Wall' 
+            href="<?php echo $userLoggedIn; ?>">
                 <?php if(isset($meta_person["first_name"])){echo $meta_person["first_name"];}            
                       if(isset($meta_person["last_name"])){echo " " . $meta_person["last_name"];}
                 ?>
@@ -32,9 +39,18 @@ if(isset($_POST['post'])){
 
         <div class="main_column column">
             
-            <form class="post_form" action="index.php" method="POST">
-                <textarea name="post_text" id="post_text" placeholder="Got something to say ?"></textarea>
-                <input type="submit" name = "post" id ="post_button" value = "Post ">
+            <form 
+                class="post_form" 
+                action="index.php" 
+                method="POST">
+                <textarea 
+                    aria-label="Type Post Here to Share With Friends" 
+                    role="Type Post Here to Share With Friends" 
+                    title='Type Post Here to Share With Friends' 
+                    name="post_text" id="post_text" 
+                    placeholder="Got something to say ?">
+                </textarea>
+                <input aria-label="lic" role="Personal Wall" title='Personal Wall' type="submit" name = "post" id ="post_button" value = "Post ">
                 <hr> 
             </form>
 
