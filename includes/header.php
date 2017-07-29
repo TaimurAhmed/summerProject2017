@@ -159,17 +159,17 @@ require './includes/header_handler.php';
             </a>
             
             <!--Settings Page-->
-            <a title='Profile Settings' href="settings.php"><i class="fa fa-cog"></i></a>
+            <a aria-label="Friend Requests" role="Profile Settings" title='Profile Settings' href="settings.php"><i class="fa fa-cog" aria-hidden="true"></i></a>
             
 
 
             <!--Help Page-->
-            <a title='About' href="https://github.com/TaimurAhmed/summerProject2017" class="help_header_icon">
+            <a aria-label="About" role="About" title='About' href="https://github.com/TaimurAhmed/summerProject2017" class="help_header_icon">
                 <i class="fa fa-question-circle-o" aria-hidden="true"></i>
             </a>
 
             <!-- Sign Out-->
-            <a title='Sign Out' href="./includes/handlers/logout.php"><i class="fa fa-sign-out"></i></a>
+            <a aria-label="Sign Out" role="Sign Out" title='Sign Out' href="./includes/handlers/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
         
         </nav>
         
@@ -180,6 +180,7 @@ require './includes/header_handler.php';
 
     <!--Infinite Scrolling for messages-->
     <script>
+
     var userLoggedIn = '<?php echo $userLoggedIn; ?>';
 
     $(document).ready(function() {
