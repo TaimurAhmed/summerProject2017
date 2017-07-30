@@ -107,6 +107,19 @@ class Post{
         }
     }
 
+    private function findFirstName($uName){
+        $firstNameQuery = "SELECT first_name FROM users WHERE username = ? LIMIT 1";
+        $result = "";
+        if($stmt = mysqli_prepare($this->con,$firstNameQuery)){
+            mysqli_stmt_bind_param($stmt, "s",$uName);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt,$result);
+            mysqli_stmt_fetch($stmt);
+            mysqli_stmt_close($stmt);
+        }
+        return $result;
+    }
+
     /*For loading posts on newsfeed*/
     public function loadPostFriends($data, $limit) {
         
@@ -133,7 +146,7 @@ class Post{
 
 
 
-            /*No user inpute; No prepared statement necessary + PHP API indicates permance is better*/
+            /*No user inpute; No prepared statement necessary + PHP API indicates performance is better*/
             while($row = mysqli_fetch_array($data_query)){
                 $p_id = $row["id"];
                 $body = $row["body"];
@@ -146,7 +159,7 @@ class Post{
                 }else{
                     $user_to_obj = new User($this->con,$row['user_to']);
                     $user_to_name = $user_to_obj->getFirstandLastName();
-                    $user_to = "to  <a href='".$row["user_to"]."'>".$user_to_name."</a>";
+                    $user_to = "to  <a title='".'Click to go to '.$this->findFirstName($row["user_to"])."&#039s Personal Wall' href='".$row["user_to"]."'>".$user_to_name."</a>";
                 }
 
 
@@ -170,7 +183,7 @@ class Post{
 
                     //Bootbox delete post button: Load if comment belongs to you
                     if($userLoggedIn == $added_by)
-                        $delete_button = "<button class='delete_button btn-danger' id='post$p_id'>X</button>";
+                        $delete_button = "<button class='delete_button btn-danger' id='post$p_id' role='Click button to delete post' title='Click button to delete post'>X</button>";
                     else
                         $delete_button ="";
 
@@ -275,8 +288,8 @@ class Post{
                                         <img src='$profile_pic' width='50'>
                                     </div>
 
-                                    <div class='posted_by' style='color:#ACACAC;'>
-                                        <a href='$added_by'> $first_name $last_name </a> $user_to &nbsp;&nbsp;&nbsp;&nbsp;$time_message
+                                    <div role='posted_by' class='posted_by' style='color:#ACACAC;'>
+                                        <a aria-label='Click to go to ".$first_name .' '.$last_name."&#039s Personal Wall, who sent this post' role='Click to go to ".$first_name .' '.$last_name."&#039s Personal Wall , who sent this post'  title='Click to go to ".$first_name .' '.$last_name."&#039s Personal Wall' href='$added_by'> $first_name $last_name </a> $user_to &nbsp;&nbsp;&nbsp;&nbsp;$time_message
                                         $delete_button
                                     </div>
                                     <div id='post_body'>
