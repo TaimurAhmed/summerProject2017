@@ -127,7 +127,7 @@ require './includes/header_handler.php';
                   <?php 
                     echo 
                       ($num_messages) 
-                      ? "<div role='alert' aria-relevant='all'><span class='notification_badge' id='unread_message'>". $num_messages ."</span></div>" 
+                      ? "<div role='alert' aria-relevant='all' role='number of unread messages' title='".$num_messages." unread message' <span class='notification_badge' id='unread_message'>". $num_messages ."</span></div>" 
                       : "";
                   ?>
                   </i>
@@ -139,7 +139,7 @@ require './includes/header_handler.php';
                   <?php 
                     echo 
                       ($num_notifications) 
-                      ? "<div role='alert' aria-relevant='all'><span class='notification_badge' id='unread_notification'>". $num_notifications ."</span></div>" 
+                      ? "<div role='alert' aria-relevant='all' role='number of unread notifications' title='".$num_notifications." unread notification'><span class='notification_badge' id='unread_notification'>". $num_notifications ."</span></div>" 
                       : "";
                   ?>
                 </i>
@@ -152,7 +152,7 @@ require './includes/header_handler.php';
                   <?php 
                     echo 
                       ($num_requests) 
-                      ? "<div role='alert' aria-relevant='all'><span class='notification_badge' id='unread_requests'>". $num_requests ."</span></div>" 
+                      ? "<div role='alert' aria-relevant='all' role='number of unread requests' title='".$num_notifications." unchecked friend requests'><span class='notification_badge' id='unread_requests'>". $num_requests ."</span></div>" 
                       : "";
                   ?>
                 </i>
