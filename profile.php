@@ -92,7 +92,7 @@ if(isset($_POST['post_message'])){
             <p><?php echo "<div class='profile_data' title='Number of things Liked' role='Number of things Liked' aria-label='Number of things Liked'> Likes: ". $user_profile_array['num_likes'] .'</div>' ?></p>
             <p><?php echo "<div class='profile_data' title='Number of Friends' role='Number of Friends' aria-label='Number of Friends'> Friends : ". $num_friends . '</div>' ?></p>
             <?php if($userLoggedIn != $username) 
-                     echo "<p><div class='profile_data'> Mutual Friends: " . $logged_in_user_obj->getMutualFriends($username) ."</div></p>"; ?>
+                     echo "<p><div class='profile_data' title='Number of Mutual Friends' role='Number of Mutual Friends' aria-label='Number of Mutual Friends'> Mutual Friends: " . $logged_in_user_obj->getMutualFriends($username) ."</div></p>";
             ?>
             </div>
         

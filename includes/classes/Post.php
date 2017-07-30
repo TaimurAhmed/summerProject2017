@@ -183,7 +183,7 @@ class Post{
 
                     //Bootbox delete post button: Load if comment belongs to you
                     if($userLoggedIn == $added_by)
-                        $delete_button = "<button class='delete_button btn-danger' id='post$p_id' role='Click button to delete post' title='Click button to delete post'>X</button>";
+                        $delete_button = "<button aria-label='Delete Post Button' role='Delete Post Button' title='Delete Post' class='delete_button btn-danger' id='post$p_id' role='Click button to delete post' title='Click button to delete post'>X</button>";
                     else
                         $delete_button ="";
 
@@ -398,7 +398,7 @@ class Post{
 
                     //Bootbox delete post button: Load if comment belongs to you
                     if($userLoggedIn == $added_by)
-                        $delete_button = "<button class='delete_button btn-danger' id='post$p_id'>X</button>";
+                        $delete_button = "<button aria-label='Delete Post Button' role='Delete Post Button' title='Delete Post' class='delete_button btn-danger' id='post$p_id'>X</button>";
                     else
                         $delete_button ="";
 
@@ -514,7 +514,7 @@ class Post{
                                         <br>
                                     </div>
                                     <!--Buggy when likes iframe is places on top of comments iframe-->
-                                    <div class='newsFeedPostOptions'>
+                                    <div aria-label='Click to Comment' role='Click to Comment' title='Click to Comment' class='newsFeedPostOptions'>
                                         comments(".$this->countComments($p_id).")&nbsp;&nbsp;&nbsp;
                                         <iframe src='like.php?post_id=$p_id' scrolling='no'></iframe>
                                     </div>
