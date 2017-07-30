@@ -29,7 +29,7 @@ class Post{
                 if(strpos($value, "www.youtube.com/watch?v=") !== false) {
                     $link = preg_split("!&!", $value);
                     $value = preg_replace("!watch\?v=!", "embed/", $link[0]);
-                    $value = "<br><iframe width='420' height='315' src='" . $value ."'></iframe><br>";
+                    $value = "<br><div role='External Youtube Video' title='External Youtube Video'><iframe role='External Youtube Video' title='External Youtube Video' width='420' height='315' src='" . $value ."'></iframe></div><br>";
                     $body_array[$key] = $value;
                 }
 

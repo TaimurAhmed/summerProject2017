@@ -32,8 +32,8 @@ if(isset($_POST['post'])){
                 
             </a>
             <br>
-            <?php if(isset($meta_person["num_posts"])){echo "Posts:". $meta_person["num_posts"]."<br>";}?>
-            <?php if(isset($meta_person["num_likes"])){echo "Likes:". $meta_person["num_likes"];}?>  
+            <?php if(isset($meta_person["num_posts"])){echo "<div role='Number of Posts by User' title='Number of Posts by User'>Posts:". $meta_person["num_posts"]."</div><br>";}?>
+            <?php if(isset($meta_person["num_likes"])){echo "<div role='Number of Posts liked by User' title='Number of Posts liked by User'>Likes:". $meta_person["num_likes"]."</div>";}?>  
         </div>
     </div>
 
