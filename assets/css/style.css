@@ -292,7 +292,7 @@ textarea:focus {
 }
 
 .profile_info p{
-    margin: 0 0 0 20px;
+    margin: 0 0 0 1.3em;
     word-wrap:break-word; 
 }
 .profile_page_username{
@@ -668,7 +668,12 @@ textarea:focus {
     padding: 1em 0em 8em 0em;
     font-size: 1em;
 }
+
 #newsfeed_div{
     overflow: auto;
     max-height: 68em;
+}
+
+.profile_data{
+    padding-left: 2em;
 }

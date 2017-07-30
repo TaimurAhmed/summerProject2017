@@ -87,9 +87,9 @@ if(isset($_POST['post_message'])){
             <div class="profile_page_username">
                 <p><?php echo $profile_user_obj->getFirstAndLastName(); ?></p>
             </div>
-            <p><?php echo "Posts: ". $user_profile_array['num_posts'] ?></p>
-            <p><?php echo "Likes: ". $user_profile_array['num_likes'] ?></p>
-            <p><?php echo "Friends : ". $num_friends ?></p>
+            <p><?php echo "<div class='profile_data' title='Number of Posts Made' role='Number of Posts Made' aria-label='Number of Posts Made'> Posts: ". $user_profile_array['num_posts']."</div>" ?></p>
+            <p><?php echo "<div class='profile_data' title='Number of things Liked' role='Number of things Liked' aria-label='Number of things Liked'> Likes: ". $user_profile_array['num_likes'] .'</div>' ?></p>
+            <p><?php echo "<div class='profile_data' title='Number of Friends' role='Number of Friends' aria-label='Number of Friends'> Friends : ". $num_friends . '</div>' ?></p>
             </div>
         
         <form action="<?php echo $username; ?>" method="POST">
