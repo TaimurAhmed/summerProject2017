@@ -299,7 +299,7 @@ class Post{
                                         <br>
                                     </div>
                                     <!--Buggy when likes iframe is places on top of comments iframe-->
-                                    <div class='newsFeedPostOptions'>
+                                    <div role='Number of Comments.Click to open comments.' aria-relevant='Number of Comments.Click to open comments.' title='Number of Comments, Click to See them!' class='newsFeedPostOptions'>
                                         comments(". $this->countComments($p_id) .")&nbsp;&nbsp;&nbsp;
                                         <iframe src='like.php?post_id=$p_id' scrolling='no'></iframe>
                                     </div>
@@ -317,7 +317,7 @@ class Post{
         $(document).ready(function() {
 
             $('#post<?php echo $p_id; ?>').on('click', function() {
-                bootbox.confirm("Are you sure you want to delete this post?", function(result) {
+                bootbox.confirm("<div role='alert' aria-relevant='all'>Are you sure you want to delete this post?</div>", function(result) {
                 /*Call reload on sucessfull callback, otherwise an http race condition is created*/
                 $.post("./includes/form_handlers/delete_post.php?post_id=<?php echo $p_id; ?>", {result:result})
                   .done( function(){

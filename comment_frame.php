@@ -112,7 +112,7 @@
         ?>
         <form action="comment_frame.php?post_id=<?php echo $post_id; ?>" id="comment_form" name="postComment<?php echo $post_id; ?>" method="POST">
             <textarea name="post_body"></textarea>
-            <input type="submit" name="postComment<?php echo $post_id; ?>" value="Post">
+            <input aria-label='Click to Comment' role='Click to Comment' title='Click to Comment' type="submit" name="postComment<?php echo $post_id; ?>" value="Comment">
         </form>
 
         <!-- Load comments for post -->
@@ -129,7 +129,7 @@
             }
 
             if($count == 0){
-                echo "<center><br>No comments to show ! <br></center>";
+                echo "<center><br><div role='alert' aria-relevant='all' >No comments to show ! </div><br></center>";
             }else{
             $get_comments_query = "SELECT post_body,posted_by,posted_to,date_added,removed FROM comments WHERE post_id = ? ORDER BY date_added DESC";
             $comments_array = array();
@@ -233,7 +233,7 @@
                                 <img src='<?php echo $user_obj->getProfilePic();?>' title= "<?php echo $posted_by;?>" style ="float:left;" height = "30"/>
 
                             </a>
-                            <a href="<?php echo $posted_by;?>" target="_parent">
+                            <a role='Link to <?php echo $user_obj->getFirstandLastName ();?> profile' title='Link to <?php echo $user_obj->getFirstandLastName ();?> profile' href="<?php echo $posted_by;?>" target="_parent">
                                  <b>
                                      <?php echo $user_obj->getFirstandLastName (); ?>
                                  </b>
