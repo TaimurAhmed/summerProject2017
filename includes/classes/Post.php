@@ -504,7 +504,7 @@ class Post{
                                     </div>
 
                                     <div class='posted_by' style='color:#ACACAC;'>
-                                        <a href='$added_by'> $first_name $last_name </a> &nbsp;&nbsp;&nbsp;&nbsp;$time_message
+                                        <a aria-label='Click link to go to user profile' role='link to user profile 'title='Click to go to user profile' href='$added_by'> $first_name $last_name </a> &nbsp;&nbsp;&nbsp;&nbsp;$time_message
                                         $delete_button
                                     </div>
                                     <div id='post_body'>

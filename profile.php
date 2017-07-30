@@ -87,9 +87,13 @@ if(isset($_POST['post_message'])){
             <div class="profile_page_username">
                 <p><?php echo $profile_user_obj->getFirstAndLastName(); ?></p>
             </div>
+            <?php $logged_in_user_obj = new User($con,$userLoggedIn); ?>
             <p><?php echo "<div class='profile_data' title='Number of Posts Made' role='Number of Posts Made' aria-label='Number of Posts Made'> Posts: ". $user_profile_array['num_posts']."</div>" ?></p>
             <p><?php echo "<div class='profile_data' title='Number of things Liked' role='Number of things Liked' aria-label='Number of things Liked'> Likes: ". $user_profile_array['num_likes'] .'</div>' ?></p>
             <p><?php echo "<div class='profile_data' title='Number of Friends' role='Number of Friends' aria-label='Number of Friends'> Friends : ". $num_friends . '</div>' ?></p>
+            <?php if($userLoggedIn != $username) 
+                     echo "<p><div class='profile_data'> Mutual Friends: " . $logged_in_user_obj->getMutualFriends($username) ."</div></p>"; ?>
+            ?>
             </div>
         
         <form action="<?php echo $username; ?>" method="POST">
@@ -100,33 +104,27 @@ if(isset($_POST['post_message'])){
                 }
             
 
-            $logged_in_user_obj = new User($con,$userLoggedIn);
+            
             if($userLoggedIn != $username) {
 
                 if($logged_in_user_obj->isFriend($username)) {
-                    echo '<input type="submit" name="remove_friend" class="danger" value="Remove Friend"><br>';
+                    echo '<input aria-label="Remove Friend Button" role="Click to delete friend" title="Click to delete friend" type="submit" name="remove_friend" class="danger" value="Remove Friend"><br>';
                 }
                 else if ($logged_in_user_obj->didRecieveRequest($username)) {
-                    echo '<input type="submit" name="respond_request" class="warning" value="Respond to Request"><br>';
+                    echo '<input aria-label="Respond to Friend Request Button" role="Click to Accept Friend Request" title="Click to Accept Friend Request" type="submit" name="respond_request" class="warning" value="Respond to Request"><br>';
                 }
                 else if ($logged_in_user_obj->didSendRequest($username)) {
-                    echo '<input type="submit" name="" class="default" value="Request Sent"><br>';
+                    echo '<input aria-label="Friend Request Sent" role="Friend Request Has Been Sent" title="Friend Request Has Been Sent" type="submit" name="" class="default" value="Request Sent"><br>';
                 }
                 else 
-                    echo '<input type="submit" name="add_friend" class="success" value="Add Friend"><br>';
+                    echo '<input aria-label="Send Friend Request Button" role="Click to Send Friend Request" title="Click to Send Friend Request" type="submit" name="add_friend" class="success" value="Add Friend"><br>';
 
             }
             ?>
         </form>
-        <input type="submit" class="post_button" data-toggle="modal" data-target="#post_form" value="Post Something">
+        <input aria-label="Click to Submit Post" role='Click to Submit Post' title="Click to Submit Post" type="submit" class="post_button" data-toggle="modal" data-target="#post_form" value="Post Something">
         
-        <?php
-            if($userLoggedIn != $username){
-                echo "<div class='profile_info_bottom'>";
-                echo "Mutual Friends: " . $logged_in_user_obj->getMutualFriends($username);
-                echo "</div>";
-            }
-        ?>
+
 
 
 
@@ -138,9 +136,9 @@ if(isset($_POST['post_message'])){
     <div class="profile_main_column column">
         <!--Bootstrap Tabs-->
         <ul class="nav nav-tabs" role="tablist" id="profileTabs">
-          <li role="presentation" class="active"><a href="#newsfeed_div" aria-controls="newsfeed_div" role="tab" data-toggle="tab">Home</a></li>
-          <li role="presentation"><a href="#about_div" aria-controls="about_div " role="tab" data-toggle="tab">About</a></li>
-          <li role="presentation"><a href="#messages_div" aria-controls="messages_div " role="tab" data-toggle="tab">Messages</a></li>
+          <li aria-label="Friend's Wall" title="Wall" role="presentation" class="active"><a href="#newsfeed_div" aria-controls="newsfeed_div" role="tab" data-toggle="tab">Home</a></li>
+          <li aria-label="Information About Friend" title="Information About Friend" role="presentation"><a href="#about_div" aria-controls="about_div " role="tab" data-toggle="tab">About</a></li>
+          <li aria-label="Personal Messages" title="Personal Messages" role="presentation"><a href="#messages_div" aria-controls="messages_div " role="tab" data-toggle="tab">Messages</a></li>
         </ul>
 
         <div class="tab-content">
@@ -208,7 +206,7 @@ if(isset($_POST['post_message'])){
       </div>
 
       <div class="modal-body">
-        <p>This will appear on the user's profile page and also their newsfeed for your friends to see!</p>
+        <div role='alert' aria-label='all'><p>This will appear on the user's profile page and also their newsfeed for your friends to see!</p></div>
 
         <form class="profile_post" action="" method="POST">
             <div class="form-group">
@@ -221,8 +219,8 @@ if(isset($_POST['post_message'])){
 
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" name="post_button" id="submit_profile_post">Post</button>
+        <button role='button' aria-label='click to close alert' type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button role='button' aria-label='click to make a post on user wall' type="button" class="btn btn-primary" name="post_button" id="submit_profile_post">Post</button>
       </div>
     </div>
   </div>
