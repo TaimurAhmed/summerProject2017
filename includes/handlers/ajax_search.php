@@ -75,7 +75,7 @@ if($query != ""){
             $mutual_friends == "";
 
         echo "<div class='resultDisplay'>
-                    <a aria-label='Click to go to ".$first_name[$n]."'s profile' role='Click to go to ".$first_name[$n]."'s profile' title='Click to go to ".$first_name[$n]." profile' href='" . $username[$n] . "' style='color: green'>
+                    <a aria-label='Click to go to ".$first_name[$n]."&#039s profile' role='Click to go to ".$first_name[$n]."'s profile' title='Click to go to ".$first_name[$n]." profile' href='" . $username[$n] . "' style='color: green'>
                         <div class='liveSearchProfilePic'>
                             <img src='" . $profile_pic[$n]."'>
                         </div>

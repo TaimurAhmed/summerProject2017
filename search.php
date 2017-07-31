@@ -152,13 +152,13 @@ if(isset($_GET['type'])){
                             if($userMeta['username'] != $username[$i]) {//If not the user themselves
                                 //Generate button depending on friendship status and with individual names...(class from bootstrap)
                                 if($user_obj->isFriend($username[$i])){
-                                    $button = "<input type='submit' name='" . $username[$i] . "' class='danger' value='Remove Friend'>";
+                                    $button = "<input aria-label='Click to remove ".$firstName[$i]." as friend' role='Click to remove ".$firstName[$i]." as friend' title='Click to remove ".$firstName[$i]." as friend' type='submit' name='" . $username[$i] . "' class='danger' value='Remove Friend'>";
                                 }else if($user_obj->didRecieveRequest($username[$i])){
-                                    $button = "<input type='submit' name='" . $username[$i] . "' class='warning' value='Respond to request'>";
+                                    $button = "<input aria-label='Click to respond to ".$firstName[$i]."&#039s friend request' role='Click to respond to ".$firstName[$i]."&#039s friend request' title='Click to respond to ".$firstName[$i]."&#039s friend request' type='submit' name='" . $username[$i] . "' class='warning' value='Respond to request'>";
                                 }else if($user_obj->didSendRequest($username[$i])){
-                                    $button = "<input type='submit' class='default' value='Request Sent'>";
+                                    $button = "<input aria-label='Friend Request sent to ".$firstName[$i]."' role='Friend Request sent to ".$firstName[$i]."' title='Friend Request sent to ".$firstName[$i]."' type='submit' class='default' value='Request Sent'>";
                                 }else{ 
-                                    $button = "<input type='submit' name='" . $username[$i] . "' class='success' value='Add Friend'>";
+                                    $button = "<input aria-label='Click to add  ".$firstName[$i]."' role='Click to add  ".$firstName[$i]."' title='Click to add  ".$firstName[$i]."' type='submit' name='" . $username[$i] . "' class='success' value='Add Friend'>";
                                 }
                             }
                             $mutual_friends = $user_obj->getMutualFriends($username[$i]) . " friends in common";
@@ -197,10 +197,10 @@ if(isset($_GET['type'])){
 
 
                                     <div class='result_profile_pic'>
-                                        <a href='" . $username[$i] ."'><img src='". $profilePic[$i] ."' style='height: 100px;'></a>
+                                        <a aria-label='Click to go to ".$firstName[$i]."&#039s profile' role='Click to go to ".$firstName[$i]."&#039s profile' title='Click to go to ".$firstName[$i]."&#039s profile'  href='" . $username[$i] ."'><img src='". $profilePic[$i] ."' style='height: 100px;'></a>
                                     </div>
 
-                                    <a href='" . $username[$i] ."'> " . $firstName[$i] . " " . $lastName[$i] . "
+                                    <a aria-label='Click to go to ".$firstName[$i]."&#039s profile' role='Click to go to ".$firstName[$i]."&#039s profile' title='Click to go to ".$firstName[$i]."&#039s profile' href='" . $username[$i] ."'> " . $firstName[$i] . " " . $lastName[$i] . "
                                     <p id='grey'> " . $username[$i] ."</p>
                                     </a>
                                     <br>
