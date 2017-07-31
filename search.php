@@ -134,8 +134,8 @@ if(isset($_GET['type'])){
 
 
 
-                echo "<p id='grey'>Try searching for:</p>";
-                        echo "<a href='search.php?q=" . $query ."&type=name'>Names</a>, <a href='search.php?q=" . $query ."&type=username'>Usernames</a><br><br><hr id='search_hr'>";
+                echo "<p aria-label='Links to use alternative search criteria are provided below' role='Links to use alternative search criteria are provided below' title='Links to use alternative search criteria are provided below' id='grey'>Try searching for:</p>";
+                        echo "<a aria-label='Search using a name' role='Search using a name' title='Search using a name' href='search.php?q=" . $query ."&type=name'>Names</a>, <a aria-label='Search using a username' role='Search using a username' title='Search using a username' href='search.php?q=" . $query ."&type=username'>Usernames</a><br><br><hr id='search_hr'>";
 
                 if(!$n){
                     echo "Couldnt find anyone with ". $type. " like: ". $query;
