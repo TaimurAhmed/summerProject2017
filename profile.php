@@ -167,7 +167,7 @@ if(isset($_POST['post_message'])){
                 <div role="tabpanel" class="tab-pane fade" id="messages_div"> 
                     <!--Candidate for(messages) abstracting-->
                     <?php
-                                echo "<h4>You and <a href='" . $username ."'>" . $profile_user_obj->getFirstAndLastName() . "</a></h4><hr><br>";
+                                echo "<h4>You and <a aria-label='Click to go to ".$profile_user_obj->getFirstAndLastName()."&#039s wall' role='Click to go to ".$profile_user_obj->getFirstAndLastName()."&#039s wall' title='Click to go to ".$profile_user_obj->getFirstAndLastName()."&#039s wall' href='" . $username ."'>" . $profile_user_obj->getFirstAndLastName() . "</a></h4><hr><br>";
                                 echo "<div class='loaded_messages' id='scroll_messages'>";
                                 echo $message_obj->getMessages($username);/*Loaded requested messages*/
                                 echo "</div>";
@@ -175,8 +175,8 @@ if(isset($_POST['post_message'])){
 
                             <div class="message_post">
                                 <form action="" method="POST">
-                                        <textarea name='message_body' id='message_textarea' placeholder='Write your message ...'></textarea>
-                                        <input type='submit' name='post_message' class='info' id='message_submit' value='Send'>
+                                        <textarea aria-label='Write Personal Message Here' role='Write Personal Message Here' title="'Write Personal Message Here'" name='message_body' id='message_textarea' placeholder='Write a private message here...'></textarea>
+                                        <input aria-label='Button for Submitting Personal Message' role='private message button' title="Click Button to send private message" type='submit' name='post_message' class='info' id='message_submit' value='Send'>
                                 </form>
 
                             </div>
