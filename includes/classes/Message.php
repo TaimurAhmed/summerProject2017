@@ -215,7 +215,7 @@ class Message {
             $split = str_split($latest_message_details[1], 12);
             $split = $split[0] . $dots;
 
-            $return_string .= "<a href='messages.php?u=$username'> 
+            $return_string .= "<a aria-label='Click this Message from ".$user_found_obj->getFirstAndLastName()." to message them back' role='Click this Message from ".$user_found_obj->getFirstAndLastName()." to message them back' title='Click this Message from ".$user_found_obj->getFirstAndLastName()." to message them back' href='messages.php?u=$username'> 
                                     <div class='user_found_messages'>
                                         <img src='" . $user_found_obj->getProfilePic() . "' style='border-radius: 5px; margin-right: 5px;'>
                                         " . $user_found_obj->getFirstAndLastName() . "
@@ -303,7 +303,7 @@ class Message {
             $split = str_split($latest_message_details[1], 12);
             $split = $split[0] . $dots;
 
-            $return_string .= "<a href='messages.php?u=$username'>
+            $return_string .= "<a aria-label='Click this Message from ".$user_found_obj->getFirstAndLastName()." to message them back' role='Click this Message from ".$user_found_obj->getFirstAndLastName()." to message them back' title='Click this Message from ".$user_found_obj->getFirstAndLastName()." to message them back' href='messages.php?u=$username'>
                                     <div class='user_found_messages' style='" . $style . "'>
                                         <img src='" . $user_found_obj->getProfilePic() . "' style='border-radius: 5px; margin-right: 5px;'>
                                         " . $user_found_obj->getFirstAndLastName() . "
