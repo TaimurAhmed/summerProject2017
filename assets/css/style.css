@@ -642,6 +642,7 @@ textarea:focus {
     float: center;
     clear: both;
     max-width: 100px;
+    font-size: 1rem;
 }
 
 .settings_submit {
