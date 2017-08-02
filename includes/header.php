@@ -173,7 +173,7 @@ require './includes/header_handler.php';
         
         </nav>
         
-        <div class="dropdown_data_window">
+        <div aria-live="polite" aria-relevant="additions removals" aria-label='A drop down menu to see messages from other users' role='A drop down menu to see messages from other users' title='live region' class="dropdown_data_window">
           <input type="hidden" id="drop_down_data_type" value="">
         </div>
     </div>
