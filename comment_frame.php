@@ -111,8 +111,8 @@
             }
         ?>
         <form action="comment_frame.php?post_id=<?php echo $post_id; ?>" id="comment_form" name="postComment<?php echo $post_id; ?>" method="POST">
-            <textarea name="post_body"></textarea>
-            <input aria-label='Click to Comment' role='Click to Comment' title='Click to Comment' type="submit" name="postComment<?php echo $post_id; ?>" value="Comment">
+            <textarea placeholder='Type Comment Here !' aria-label='Type Comment Here' role='Type Comment Here' title='Type Comment Here' name="post_body"></textarea>
+            <input aria-label='Click to Comment' role='Click to Comment' title='Comment on this post here!' type="submit" name="postComment<?php echo $post_id; ?>" value="Comment">
         </form>
 
         <!-- Load comments for post -->

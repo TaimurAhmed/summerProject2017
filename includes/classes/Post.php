@@ -299,7 +299,7 @@ class Post{
                                         <br>
                                     </div>
                                     <!--Buggy when likes iframe is places on top of comments iframe-->
-                                    <div role='Number of Comments.Click to open comments.' aria-relevant='Number of Comments.Click to open comments.' title='Number of Comments, Click to See them!' class='newsFeedPostOptions'>
+                                    <div role='Number of Comments.Click to open comments.' aria-relevant='Number of Comments.Click to open comments.' title='Click to see ".$this->countComments($p_id)." comment(s)' class='newsFeedPostOptions'>
                                         comments(". $this->countComments($p_id) .")&nbsp;&nbsp;&nbsp;
                                         <iframe src='like.php?post_id=$p_id' scrolling='no'></iframe>
                                     </div>
