@@ -22,10 +22,9 @@ if(isset($_POST['close_account'])) {
 
 ?>
 
-<div class="main_column column">
+<div role='alert' aria-relevant='all' class="main_column column">
 
     <h4>Close Account</h4>
-
         Are you sure you want to close your account?
         <br>
         <br>
@@ -38,9 +37,9 @@ if(isset($_POST['close_account'])) {
 
     <form action="close_account.php" method="POST">
 
-        <input type="submit" name="close_account" id="close_account" value="Yes, Close my account!" class="danger settings_submit">
+        <input aria-label='Click to close account' role='Click to close account' title='Click to close account' type="submit" name="close_account" id="close_account" value="Yes, Close my account!" class="danger settings_submit">
 
-        <input type="submit" name="cancel" id="update_details" value="No way!" class="success settings_submit">
+        <input aria-label='Click to go back to settings page' role='Click to go back to settings page' title='Click to go back to settings page' type="submit" name="cancel" id="update_details" value="No way!" class="success settings_submit">
 
     </form>
 
