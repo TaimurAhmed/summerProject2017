@@ -38,9 +38,9 @@ include("includes/form_handlers/settings_handler.php");
         <br>
         Last Name: <input aria-label='Type a new Last Name Here' role='Type a new Last Name Here' title='Type a new Last Name Here' type="text" name="last_name" value="<?php echo $last_name; ?>" id="settings_input">
         <br>
-        Email: <input aria-label='Type new email here' role='Type new email here' title='Type new email here' type="text" name="email" value="<?php echo $email; ?>" id="settings_input">
+        Email: <input aria-label='Type new email here' role='Type new email here' title='Type new email here∏' type="text" name="email" value="<?php echo $email; ?>" id="settings_input">
         <br>
-        <input type="submit" name="update_details" id="save_details" value="Update Details" class="warning settings_submit">
+        <input aria-label='Click to update user Details' role='Click to update user Details' title='Click to update user Details' type="submit" name="update_details" id="save_details" value="Update Details" class="warning settings_submit">
         <br>
         <?php echo $message; ?>
     </form>
@@ -50,14 +50,14 @@ include("includes/form_handlers/settings_handler.php");
     <h5>Change Password</h5>
     <br>
     <form action="settings.php" method="POST">
-        Old Password: <input type="password" name="old_password" id="settings_input">
+        Old Password: <input aria-label='Type old password here' role='Type old password here' title='Type old password here' type="password" name="old_password" id="settings_input">
         <br>
-        New Password: <input type="password" name="new_password_1" id="settings_input">
+        New Password: <input aria-label='Type new password here' role='Type new password here' title='Type new password here' type="password" name="new_password_1" id="settings_input">
         <br>
-        Confirm New Password: <input type="password" name="new_password_2" id="settings_input">
+        Confirm New Password: <input aria-label='Type to confirm new password here' role='Type to confirm new  password here' title='Type to confirm new  password here' type="password" name="new_password_2" id="settings_input">
         <br>
         <?php echo $password_message; ?>
-        <input type="submit" name="update_password" id="save_details" value="Update Password" class="warning settings_submit">
+        <input aria-label='Click to submit new password details' role='Click to submit new password details' title='Click to submit new password details' type="submit" name="update_password" id="save_details" value="Update Password" class="warning settings_submit">
         <br>
     </form>
 
@@ -66,7 +66,7 @@ include("includes/form_handlers/settings_handler.php");
     <h5>Close Account</h5>
     <br>
     <form action="settings.php" method="POST">
-        <input type="submit" name="close_account" id="close_account" value="Close Account" class="danger settings_submit">
+        <input aria-label='Click to Close Account' role='Click to Close Account' title='Click to Close Account' type="submit" name="close_account" id="close_account" value="Close Account" class="danger settings_submit">
     </form>
 
 
