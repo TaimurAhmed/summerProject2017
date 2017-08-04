@@ -44,21 +44,9 @@ if(isset($_POST['post'])){
                 class="post_form" 
                 action="index.php" 
                 method="POST">
-                <textarea 
-                    aria-label="Type Post Here to Share With Friends" 
-                    role="Type Post Here to Share With Friends" 
-                    title='Type Post Here to Share With Friends' 
-                    name="post_text" id="post_text" 
-                    placeholder="Got something to say ?">
+                <textarea aria-label="Type Post Here to Share With Friends" role="Type Post Here to Share With Friends" placeholder="Type Post Here to Share With Friends" title='Type Post Here to Share With Friends' name="post_text" id="post_text"> 
                 </textarea>
-                <input 
-                    aria-label="lic" 
-                    role="Personal Wall" 
-                    title='Personal Wall' 
-                    type="submit" 
-                    name = "post" 
-                    id ="post_button" 
-                    value = "Post ">
+                <input aria-label="lic" role="Personal Wall" title='Personal Wall' type="submit" name = "post" id ="post_button" value = "Post ">
                 <hr> 
             </form>
 
