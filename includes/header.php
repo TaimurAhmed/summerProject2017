@@ -79,7 +79,6 @@ require './includes/header_handler.php';
       </div>
 
 
-
         
         
         <!--Horizontal Top Navigation Bar-->
