@@ -108,7 +108,7 @@ require './includes/header_handler.php';
           
 
           <!-- Fiddle -->
-          <a aria-label="fiddle.io" code="Code Fiddles" title="Code Fiddles" href='https://fiddles.io/' >
+          <a aria-label="fiddle.io" role="Code Fiddles" title="Code Fiddles" href='https://fiddles.io/' >
               <i class="fa fa-code" aria-hidden="true" >
                 
               </i>
