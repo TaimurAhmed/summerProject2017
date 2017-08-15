@@ -1,6 +1,5 @@
 <?php
 
-/*Show ollie something!!!!!!!!!!!!!!!!!!*/
 /*
 See:
 
