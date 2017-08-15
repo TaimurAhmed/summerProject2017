@@ -1,4 +1,6 @@
 <?php
+
+/*Show ollie something!!!!!!!!!!!!!!!!!!*/
 /*
 See:
 
@@ -24,3 +26,4 @@ Reference of implementation: https://www.youtube.com/watch?v=KnX0p2Ey3Ek
     $con->set_charset('utf8'); //Check API !!!!! Many new attack vectors rely on encoding bypassing. Use UTF-8 as your database and application charset unless you have a mandatory requirement to use another encoding
 
 ?>
+
