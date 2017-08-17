@@ -23,6 +23,11 @@ require './includes/form_handlers/login_handler.php';
   
 <body> 
 
+<!--Self XSS Warning-->
+<?php
+    include './selfXSSwarning.php';
+?>
+
 <!--Script-->
 <?php
     if(isset($_POST['register_button'])){
