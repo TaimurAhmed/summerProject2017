@@ -163,7 +163,7 @@ require './includes/header_handler.php';
 
 
             <!--Help Page-->
-            <a aria-label="About" role="About" title='About' href="https://github.com/TaimurAhmed/summerProject2017" class="help_header_icon">
+            <a aria-label="About" role="About" title='About' href="https://github.com/TaimurAhmed/summerProject2017/wiki" class="help_header_icon">
                 <i class="fa fa-question-circle-o" aria-hidden="true"></i>
             </a>
 
