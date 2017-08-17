@@ -1,7 +1,7 @@
 
 
 <!--About the Artemis Project-->
-<a aria-label="View information about the Artemis Project" title="About the Artemis Project" href="https://github.com/TaimurAhmed/summerProject2017/blob/master/README.md" class="sign_up_about">
+<a aria-label="View information about the Artemis Project" title="About the Artemis Project" href="https://github.com/TaimurAhmed/summerProject2017/wiki" class="sign_up_about">
     <i class="fa fa-question-circle-o fa-2x register_page_icons" aria-hidden="true"></i>  
 </a>
 &nbsp;
