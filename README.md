@@ -1,15 +1,7 @@
-# summerProject2017
+# Artemis Project 2017
 
-A social network TEL solution.
+A TEL solution to enable blended and flexible pedagogies via a social network.
 Written via sublime.
 
-Note: Configure to HTTPS
 
 
-WIP:
-
-Tracing code sequentially from register.php
-
-
-Finished:
-config.php

@@ -52,6 +52,9 @@ require './includes/header_handler.php';
 </head>
 
 <body>
+<?php
+include './selfXSSwarning.php';
+?>
 
 <div class="top_bar">
 
@@ -234,6 +237,7 @@ require './includes/header_handler.php';
       var div = document.getElementById("scroll_messages");
       div.scrollTop = div.scrollHeight;
   </script>
+
 
     <div class="wrapper">
 
