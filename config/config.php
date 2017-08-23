@@ -10,8 +10,15 @@ Reference of implementation: https://www.youtube.com/watch?v=KnX0p2Ey3Ek
 
     /*Turns on output buffering*/
     ob_start(); 
-    /*Set: Cookie expiration/lifetime, cookie works on all domain paths, cookie domains, no SSL, http only i.e. to prevent JS injection*/
-    /*Reccomended: Consider using an SSL protocol to prevent session hijacking. In that case set parameter to true instead*/
+    /*
+     *These settings need to be changed on deployment !!!!!
+     *Arguments: i) To set session cookie expiration time
+     *           ii) Set root folder
+     *           iii)Set domain
+     *           iv) Set secure protocol i.e. ssl , you must change this to true
+     *           v) HTTP only session cookie i.e. you must refactor this to true
+     * 
+     */
     session_set_cookie_params(time()+30,'/','localhost',false,true);
     session_start();
     /*Set a random session variable. My alternative to binding to IP, as this would cause problems on open Wifi*/
