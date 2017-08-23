@@ -17,7 +17,6 @@ Reference of implementation: https://www.youtube.com/watch?v=KnX0p2Ey3Ek
      *           iii)Set domain
      *           iv) Set secure protocol i.e. ssl , you must change this to true
      *           v) HTTP only session cookie i.e. you must refactor this to true
-     * 
      */
     session_set_cookie_params(time()+30,'/','localhost',false,true);
     session_start();

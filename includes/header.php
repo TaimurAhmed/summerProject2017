@@ -39,7 +39,8 @@ require './includes/header_handler.php';
    <script src="./assets/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
    <script src="./assets/js/timsi.js"></script>
    <script src="./assets/js/jcrop_bits.js"></script> 
-   <script src="./assets/js/jquery.Jcrop.js"></script> 
+   <script src="./assets/js/jquery.Jcrop.js"></script>
+   <script src='https://www.google.com/recaptcha/api.js'></script>
    <!--CSS-->
    <link rel=stylesheet type="text/css" href="./assets/bootstrap-3.3.7-dist/css/bootstrap.css"></link>
    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">

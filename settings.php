@@ -59,6 +59,7 @@ include("includes/form_handlers/settings_handler.php");
         <?php echo $password_message; ?>
         <input aria-label='Click to submit new password details' role='Click to submit new password details' title='Click to submit new password details' type="submit" name="update_password" id="save_details" value="Update Password" class="warning settings_submit">
         <br>
+        <div class="g-recaptcha" data-sitekey="6Ldtzi0UAAAAAFkGLqtcCj6PKzAsoE71BsoXmY1S"></div>
     </form>
 
     <br><br><br>
