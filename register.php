@@ -51,7 +51,7 @@ require './includes/form_handlers/login_handler.php';
         </div>
         <!-- Sign in form:  For existing users-->
         <!--Aria Role:Sign In-->
-        <div id = "first_form" aria-labelledby='first_form' role="list"  title='Sign In Here !' aria-hidden="false">
+        <div id = "first_form" aria-labelledby='first_form' aria-describedby='signIn' role="list"  title='Sign In Here !' aria-hidden="false">
             <form action="register.php" method="POST">
                     <input  aria-required="true" role='listitem' type="email" name="log_email" placeholder="Email Address"
                             aria-invalid="<?php echo (in_array ("Email or password credentials are incorrect <br>",$error_array)) ?  'true': 'false' ;?>"
@@ -67,7 +67,7 @@ require './includes/form_handlers/login_handler.php';
                            aria-invalid="<?php echo (in_array ("Email or password credentials are incorrect <br>",$error_array)) ?  'true': 'false' ;?>"
                     >
                     <br>
-                    <input aria-label ="Click to submit Login details" title='Click to submit Login details' type="submit" name="login_button" value="Login">
+                    <input aria-labelledby='first_form second_form' aria-describedby= 'toggleForms' role='link' title='Click to submit Login details' type="submit" name="login_button" value="Login">
                     <br>
                     <?php
                         if (in_array ("Email or password credentials are incorrect <br>",$error_array)){
@@ -75,7 +75,7 @@ require './includes/form_handlers/login_handler.php';
                             }
                     ?>
                     <br>
-                    <a aria-labelledby='first_form second_form' aria-describedby= 'toggle forms' role='link' title="Click to access registration form instead" href="#" id ="signup" class = "signup"> Dont have an account ? <br>Click here to register !</a>
+                    <a aria-labelledby='first_form second_form' aria-describedby= 'toggleForms' role='link' title="Click to access registration form instead" href="#" id ="signup" class = "signup"> Dont have an account ? <br>Click here to register !</a>
                     <br>
                     <br>
                     <br> 
@@ -86,41 +86,85 @@ require './includes/form_handlers/login_handler.php';
       
 
         <!--Sign up form: For new users-->
-        <div id="second_form" aria-hidden="true">
+        <div id="second_form" aria-labelledby="second_form" aria-describedby="registration" aria-hidden="true">
             <form action="register.php" method="POST">
 
              
-             <input type="text" name = "reg_fname" placeholder="First Name" value = "<?php
-                if(isset($_SESSION['reg_fname'])){
-                    echo $_SESSION['reg_fname'];
-                }
-             ?>" required>
+             <!--First Name-->
+             <input type="text" name = "reg_fname" placeholder="First Name"
+                    aria-required="true"
+                    aria-invalid ="<?php echo (in_array ("Your first name must be between 2 and 25 characters <br>",$error_array)) ?  'true': 'false' ;?>"
+                    value = "<?php
+                                    if(isset($_SESSION['reg_fname'])){
+                                        echo $_SESSION['reg_fname'];
+                                    }
+                            ?>"
+                    required
+             >
              <br>
              <?php if(in_array("Your first name must be between 2 and 25 characters <br>", $error_array)) echo "<div class='reg_errors' role='alert' aria-relevant='all'>Your first name must be between 2 and 25 characters</div> <br>"?>
              
 
-             <input type="text" name = "reg_lname" placeholder="Last Name" value = "<?php
-                if(isset($_SESSION['reg_lname'])){
-                    echo $_SESSION['reg_lname'];
-                }
-             ?>" required>
+            <!--Last Name-->
+             <input type="text" name = "reg_lname" placeholder="Last Name"
+                    aria-required="true"
+                    aria-invalid ="<?php echo (in_array ("Your last name must be between 2 and 25 characters <br>",$error_array)) ?  'true': 'false' ;?>"
+                    value = "<?php
+                                if(isset($_SESSION['reg_lname'])){
+                                    echo $_SESSION['reg_lname'];
+                                }
+                            ?>" 
+                    required>
              <br>
              <?php if(in_array("Your last name must be between 2 and 25 characters <br>",$error_array)) echo"<div class='reg_errors' role='alert' aria-relevant='all'>Your last name must be between 2 and 25 characters</div> <br>"?>
 
+            
 
-             <input type="email" name = "reg_email" placeholder="Email" value = "<?php
-                if(isset($_SESSION['reg_email'])){
-                    echo $_SESSION['reg_email'];
-                }
-             ?>" required>
+            <!--Email-->
+             <input type="email" name = "reg_email" placeholder="Email"
+                    aria-required="true"
+                    aria-invalid="<?php
+                                    if(
+                                        in_array('Email already being used <br>',$error_array)||
+                                        in_array('Invalid email format <br>',$error_array)||
+                                        in_array('Emails dont match <br>',$error_array)||
+                                        in_array("Use your UoB email that ends with :". $email_options['valid_email'] . " <br>",$error_array)
+                                      ){
+                                        echo 'true';
+                                      }else{
+                                        echo 'false';
+                                      }
+                                  ?>" 
+                    value = "<?php
+                                if(isset($_SESSION['reg_email'])){
+                                    echo $_SESSION['reg_email'];
+                                }
+                            ?>"
+                    required>
              <br>
 
-
-             <input type="email" name = "reg_email2" placeholder="Confirm Email" value = "<?php
-                if(isset($_SESSION['reg_email2'])){
-                    echo $_SESSION['reg_email2'];
-                }
-             ?>" required>
+            <!--Email Confirmation-->
+             <input type="email" name = "reg_email2" placeholder="Confirm Email"
+                    aria-required="true"
+                    aria-invalid="<?php
+                                    if(
+                                        in_array('Email already being used <br>',$error_array)||
+                                        in_array('Invalid email format <br>',$error_array)||
+                                        in_array('Emails dont match <br>',$error_array)||
+                                        in_array("Use your UoB email that ends with :". $email_options['valid_email'] . " <br>",$error_array)
+                                      ){
+                                        echo 'true';
+                                      }else{
+                                        echo 'false';
+                                      }
+                                  ?>" 
+                    value = "<?php
+                                if(isset($_SESSION['reg_email2'])){
+                                    echo $_SESSION['reg_email2'];
+                                }
+                            ?>" 
+                    required
+            >
              <br>
              <?php
                 if(in_array("Email already being used <br>",$error_array)) echo "<div class='reg_errors' role='alert' aria-relevant='all'>Email already being used </div><br>";
@@ -130,12 +174,41 @@ require './includes/form_handlers/login_handler.php';
              ?>
 
 
-             <input type="password" name = "reg_password" placeholder="Password" required>
+            <!--Password-->
+             <input type="password" name = "reg_password" placeholder="Password"
+                    aria-required="true"
+                    aria-invalid="<?php
+                                    if(
+                                        in_array('Your passwords do not match <br>',$error_array)||
+                                        in_array('Your password can only contain standard english characters or numbers <br>',$error_array)||
+                                        in_array('Your password must be between 5 to 30 characters <br>',$error_array)
+                                       ){
+                                        echo 'true';
+                                      }else{
+                                        echo 'false';
+                                      }
+                                  ?>" 
+                    required
+            >
+             <br>
+            <!--Password Confirmation-->
+             <input type="password" name = "reg_password2" placeholder="Confirm password"
+                    aria-required="true"
+                    aria-invalid="<?php
+                                    if(
+                                        in_array('Your passwords do not match <br>',$error_array)||
+                                        in_array('Your password can only contain standard english characters or numbers <br>',$error_array)||
+                                        in_array('Your password must be between 5 to 30 characters <br>',$error_array)
+                                       ){
+                                        echo 'true';
+                                      }else{
+                                        echo 'false';
+                                      }
+                                  ?>"
+                    required
+             >
              <br>
 
-
-             <input type="password" name = "reg_password2" placeholder="Confirm password" required>
-             <br>
              <?php
                 if(in_array("Your passwords do not match <br>",$error_array))
                     echo "<div class='reg_errors' role='alert' aria-relevant='all'>Your passwords do not match </div><br>";
@@ -155,7 +228,7 @@ require './includes/form_handlers/login_handler.php';
              ?>
 
              <br>
-             <a aria-label ="Click to access sign in form instead" title="Click to access sign in form instead" href="#" id= "signin" class = "signin" >Already have an account ? Sign in here !</a>
+             <a aria-labelledby='first_form second_form' aria-describedby= 'toggleForms' role='link' title="Click to access sign in form instead" href="#" id= "signin" class = "signin" >Already have an account ? Sign in here !</a>
              <br>
              <br>   
              <!--Contact Dev Team-->
