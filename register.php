@@ -51,10 +51,10 @@ require './includes/form_handlers/login_handler.php';
         </div>
         <!-- Sign in form:  For existing users-->
         <!--Aria Role:Sign In-->
-        <div id = "first_form" aria-labelby='first_form' role="list"  title='Sign In Here !' aria-hidden="false">
+        <div id = "first_form" aria-labelledby='first_form' role="list"  title='Sign In Here !' aria-hidden="false">
             <form action="register.php" method="POST">
                     <input  aria-required="true" role='listitem' type="email" name="log_email" placeholder="Email Address"
-                            aria-invalid="<?php echo (isset($_SESSION['log_email'])) ?  'true': 'false' ;?>"
+                            aria-invalid="<?php echo (in_array ("Email or password credentials are incorrect <br>",$error_array)) ?  'true': 'false' ;?>"
                             value = "<?php 
                                         if(isset($_SESSION['log_email'])){
                                             echo $_SESSION['log_email'];
@@ -64,7 +64,7 @@ require './includes/form_handlers/login_handler.php';
                     >
                     <br>
                     <input aria-required="true" role='listitem' type="password" name = "log_password" placeholder="Password"
-                           aria-invalid="<?php echo (isset($_SESSION['log_email'])) ?  'true': 'false' ;?>"
+                           aria-invalid="<?php echo (in_array ("Email or password credentials are incorrect <br>",$error_array)) ?  'true': 'false' ;?>"
                     >
                     <br>
                     <input aria-label ="Click to submit Login details" title='Click to submit Login details' type="submit" name="login_button" value="Login">
@@ -75,7 +75,7 @@ require './includes/form_handlers/login_handler.php';
                             }
                     ?>
                     <br>
-                    <a aria-labelby='first_form second_form' aria-describedby= 'toggle forms' role='link' title="Click to access registration form instead" href="#" id ="signup" class = "signup"> Dont have an account ? <br>Click here to register !</a>
+                    <a aria-labelledby='first_form second_form' aria-describedby= 'toggle forms' role='link' title="Click to access registration form instead" href="#" id ="signup" class = "signup"> Dont have an account ? <br>Click here to register !</a>
                     <br>
                     <br>
                     <br> 
