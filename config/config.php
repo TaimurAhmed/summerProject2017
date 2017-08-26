@@ -11,12 +11,13 @@ Reference of implementation: https://www.youtube.com/watch?v=KnX0p2Ey3Ek
     /*Turns on output buffering*/
     ob_start(); 
     /*
-     *These settings need to be changed on deployment !!!!!
+     *These settings need to be changed on deployment for a secure session!!!!!
      *Arguments: i) To set session cookie expiration time
      *           ii) Set root folder
      *           iii)Set domain
      *           iv) Set secure protocol i.e. ssl , you must change this to true
      *           v) HTTP only session cookie i.e. you must refactor this to true
+     * Please note that you're likely to need a domain name for the last two.
      */
     session_set_cookie_params(time()+30,'/','localhost',false,true);
     session_start();
@@ -29,6 +30,5 @@ Reference of implementation: https://www.youtube.com/watch?v=KnX0p2Ey3Ek
        exit();
     }
     $con->set_charset('utf8'); //Check API !!!!! Many new attack vectors rely on encoding bypassing. Use UTF-8 as your database and application charset unless you have a mandatory requirement to use another encoding
-
 ?>
 
