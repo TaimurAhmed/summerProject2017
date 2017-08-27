@@ -66,10 +66,10 @@ include './selfXSSwarning.php';
 
 
       <!-- Search Bar-->
-      <div class="search" role="search">
+      <div class="search">
         
-        <form action="search.php" method="GET" name="search_form">
-          <input type="text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_text_input">
+        <form action="search.php" method="GET" name="search_form" role="search">
+          <input id="search_text_input" type="search" aria-label="search text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off">
           <div class="button_holder" title="Search for other users">
             <i class="fa fa-search" aria-hidden="true"></i>
           </div>
@@ -87,7 +87,7 @@ include './selfXSSwarning.php';
         
         <!--Horizontal Top Navigation Bar-->
         <!--Explicit and Implicit Nav Bar WAI-ARIA role declaration-->
-        <nav id='upper_right_nav_bar' role="Navigation Bar">
+        <nav id='upper_right_nav_bar' role="navigation" aria-labelledby='upper_right_nav_bar' aria-describedby='navBar' >
           <?php
             /*Unread messages*/
             $messages = new Message($con,$userLoggedIn);
@@ -101,7 +101,7 @@ include './selfXSSwarning.php';
             $user_obj = new User($con,$userLoggedIn);
             $num_requests = $user_obj->getNumOfFriendRequests();
           ?>
-            <a href='<?php echo $userLoggedIn; ?>' id=header_loggedInUser_name title="Personal Wall" role="Personal Wall">
+            <a id=header_loggedInUser_name title="Personal Wall" role="link" aria-labelledby='header_loggedInUser_name' aria-describedby='personalWall' href='<?php echo $userLoggedIn; ?>'>
                 <?php 
                     if(isset($meta_person["first_name"])){
                         echo $meta_person["first_name"];
@@ -111,20 +111,20 @@ include './selfXSSwarning.php';
           
 
           <!-- Fiddle -->
-          <a aria-label="fiddle.io" role="Code Fiddles" title="Code Fiddles" href='https://fiddles.io/' >
+          <a aria-label="fiddle.io" role="link" title="Code Fiddles" href='https://fiddles.io/' >
               <i class="fa fa-code" aria-hidden="true" >
                 
               </i>
           </a>
             
           <!--Home Page i.e. New Feed-->
-          <a aria-label="Newsfeed" role="Artemis Newsfeed" title="Artemis Newsfeed" href="index.php">
+          <a aria-label="Newsfeed" role="link" title="Artemis Newsfeed" href="index.php">
               <i class="fa fa-home" aria-hidden="true">
               </i>
           </a>
             
             <!--Messages-->
-            <a aria-label="Messages" role="Messages" title='Messages' href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')" >
+            <a aria-label="Messages" role="link" title='Messages' href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')" >
                 <i class="fa fa-envelope" aria-hidden="true"> 
                   <!--If there are any unopened messages give a notification-->
                   <?php 
@@ -137,7 +137,7 @@ include './selfXSSwarning.php';
             </a>
             
             <!--Notifications-->
-            <a aria-label="Notification" role="Notifications" title='Notifications'   href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'notification')">
+            <a aria-label="Notifications" role="link" title='Notifications'   href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'notification')">
                 <i class="fa fa-bell" aria-hidden="true">
                   <?php 
                     echo 
@@ -150,7 +150,7 @@ include './selfXSSwarning.php';
 
 
             <!-- Friend Requests -->
-            <a aria-label="Friend Requests" role="Friend Requests" title="Friend Requests" href="requests.php">
+            <a aria-label="Friend Requests" role="link" title="Friend Requests" href="requests.php">
                 <i class="fa fa-users" aria-hidden="true">
                   <?php 
                     echo 
@@ -162,21 +162,22 @@ include './selfXSSwarning.php';
             </a>
             
             <!--Settings Page-->
-            <a aria-label="Friend Requests" role="Profile Settings" title='Profile Settings' href="settings.php"><i class="fa fa-cog" aria-hidden="true"></i></a>
+            <a aria-label="Friend Requests" role="link" title='Profile Settings' href="settings.php"><i class="fa fa-cog" aria-hidden="true"></i></a>
             
 
 
             <!--Help Page-->
-            <a aria-label="About" role="About" title='About' href="https://github.com/TaimurAhmed/summerProject2017/wiki" class="help_header_icon">
+            <a aria-label="About" role="link" title='About' href="https://github.com/TaimurAhmed/summerProject2017/wiki" class="help_header_icon">
                 <i class="fa fa-question-circle-o" aria-hidden="true"></i>
             </a>
 
             <!-- Sign Out-->
-            <a aria-label="Sign Out" role="Sign Out" title='Sign Out' href="./includes/handlers/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+            <a aria-label="Sign Out" role="link" title='Sign Out' href="./includes/handlers/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
         
         </nav>
         
-        <div aria-live="polite" aria-relevant="additions removals" aria-label='A drop down menu to see messages from other users' role='A drop down menu to see messages from other users' title='live region' class="dropdown_data_window">
+        <!--Live region which will 'politely' alert device of additions and removals...additions text is the default-->
+        <div aria-live="polite" aria-relevant="additions removals" role='link' aria-label='notifications' title='Click Notification' class="dropdown_data_window">
           <input type="hidden" id="drop_down_data_type" value="">
         </div>
     </div>

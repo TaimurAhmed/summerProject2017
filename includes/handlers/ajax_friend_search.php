@@ -87,8 +87,12 @@
                     $mutual_friends = "";
                 }
 
+                $id = $queryCount;
+                $id += 1;
+                $id .= 'searchResult';
+                
                 if($user->isFriend($username[$queryCount])) {
-                    echo "<div class='resultDisplay'>
+                    echo "<div role=listbox class='resultDisplay'>
                             <a href='messages.php?u=" . $username[$queryCount] . "' style='color: #000'>
                                 <div class='liveSearchProfilePic'>
                                     <img src='". $profilePic[$queryCount] . "'>
