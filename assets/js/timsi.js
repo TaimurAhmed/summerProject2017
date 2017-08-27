@@ -111,7 +111,7 @@ function getLiveSearchUsers(value, user) {
         }
 
         $('.search_results').html(data);
-        $('.search_results_footer').html("<a aria-label='Click link to view all search results' role='Click link to view all search results' title='Click link to view all search results' href='search.php?q=" + value + "'>See All Results</a>");
+        $('.search_results_footer').html("<a  role='link' title='Click link to view all search results' href='search.php?q=" + value + "'>See All Results</a>");
 
         if(data == "") {
             $('.search_results_footer').html("");
