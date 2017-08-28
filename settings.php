@@ -12,7 +12,7 @@ include("includes/form_handlers/settings_handler.php");
         echo "<img aria-hidden='true' src='" .$userMeta['profile_pic']. "' class='small_profile_pics'/>";
     ?>
     <br>
-    <a aria-label='Link for Uploading and Cropping New Photograph' role='Link for Uploading and Cropping New Photograph' title='Link for Uploading and Cropping New Photograph' href="upload.php">Upload New Profile Picture</a><br><br><br>
+    <a aria-label='uploadPhotograph' role='link' title='Link for Uploading and Cropping New Photograph' href="upload.php">Upload New Profile Picture</a><br><br><br>
 
     <h5> Modify User Details</h5>
     <br> 
@@ -33,14 +33,14 @@ include("includes/form_handlers/settings_handler.php");
 
 
     <!--Non encryped user meta data-->
-    <form action="settings.php" method="POST" class=settings_form_all>
-        First Name: <input aria-label='Type a new First Name Here' role='Type a new First Name Here' title='Type a new First Name Here' type="text" name="first_name" value="<?php echo $first_name; ?>" id="settings_input">
+    <form id='details' aria-labelledby='details' aria-describedby='personalDetails' action="settings.php" method="POST" class=settings_form_all>
+        First Name: <input id='firstName' aria-labelledby='details firstName' role='textbox' title='Type a new First Name Here' type="text" name="first_name" value="<?php echo $first_name; ?>" id="settings_input">
         <br>
-        Last Name: <input aria-label='Type a new Last Name Here' role='Type a new Last Name Here' title='Type a new Last Name Here' type="text" name="last_name" value="<?php echo $last_name; ?>" id="settings_input">
+        Last Name: <input id='lastName' aria-labelledby='details lastName' role='textbox' title='Type a new Last Name Here' type="text" name="last_name" value="<?php echo $last_name; ?>" id="settings_input">
         <br>
-        Email: <input aria-label='Type new email here' role='Type new email here' title='Type new email here∏' type="text" name="email" value="<?php echo $email; ?>" id="settings_input">
+        Email: <input id='email' aria-labelledby='details email' role='textbox' title='Type new email here∏' type="text" name="email" value="<?php echo $email; ?>" id="settings_input">
         <br>
-        <input aria-label='Click to update user Details' role='Click to update user Details' title='Click to update user Details' type="submit" name="update_details" id="save_details" value="Update Details" class="warning settings_submit">
+        <input id='submit' aria-labelledby='details submit' role='button' title='Click to update user Details' type="submit" name="update_details" id="save_details" value="Update Details" class="warning settings_submit">
         <br>
         <?php echo $message; ?>
     </form>
@@ -49,25 +49,26 @@ include("includes/form_handlers/settings_handler.php");
     <!--Encryped user meta data-->
     <h5>Change Password</h5>
     <br>
-    <form action="settings.php" method="POST">
-        Old Password: <input aria-label='Type old password here' role='Type old password here' title='Type old password here' type="password" name="old_password" id="settings_input">
+    <form id='updatePassword' action="settings.php" method="POST">
+        Old Password: <input id='oldPassword' aria-labelledby='updatePassword oldPassword' role='textbox' title='Type old password here' type="password" name="old_password" id="settings_input">
         <br>
-        New Password: <input aria-label='Type new password here' role='Type new password here' title='Type new password here' type="password" name="new_password_1" id="settings_input">
+        New Password: <input id='newPassword' aria-labelledby='updatePassword newPassword' role='textbox' title='Type new password here' type="password" name="new_password_1" id="settings_input">
         <br>
-        Confirm New Password: <input aria-label='Type to confirm new password here' role='Type to confirm new  password here' title='Type to confirm new  password here' type="password" name="new_password_2" id="settings_input">
+        Confirm New Password: <input id='confirmPassword' aria-labelledby='updatePassword confirmPassword' role='textbox' title='Type to confirm new  password here' type="password" name="new_password_2" id="settings_input">
         <br>
         <?php echo $password_message; ?>
-        <input aria-label='Click to submit new password details' role='Click to submit new password details' title='Click to submit new password details' type="submit" name="update_password" id="save_details" value="Update Password" class="warning settings_submit">
+        <input id='submitPassword' aria-labelledby='updatePassword submitPassword' role='button' title='Click to submit new password details' type="submit" name="update_password" id="save_details" value="Update Password" class="warning settings_submit">
         <br>
         <div class="g-recaptcha" data-sitekey="6Ldtzi0UAAAAAFkGLqtcCj6PKzAsoE71BsoXmY1S"></div>
     </form>
 
     <br><br><br>
+    
     <!--Close Account-->
     <h5>Close Account</h5>
     <br>
     <form action="settings.php" method="POST">
-        <input aria-label='Click to Close Account' role='Click to Close Account' title='Click to Close Account' type="submit" name="close_account" id="close_account" value="Close Account" class="danger settings_submit">
+        <input aria-label='closeAccount' role='link' title='Click to Close Account' type="submit" name="close_account" id="close_account" value="Close Account" class="danger settings_submit">
     </form>
 
 
