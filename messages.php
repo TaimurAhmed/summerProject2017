@@ -33,13 +33,13 @@ if(isset($_POST['post_message'])){
 ?>
     <!-- Same as one from index.php. Consider abstracting?-->
     <div class ="user_details column">
-        <a aria-label='Link to your wall' role='Link to your wall' title='Link to your wall' href="<?php echo $userLoggedIn; ?>"><img src="
+        <a aria-label='linkToWall' role='link' title='Link to your wall' href="<?php echo $userLoggedIn; ?>"><img src="
             <?php if(isset($meta_person["profile_pic"])){echo $meta_person["profile_pic"];}?>" 
            alt="">
         </a>
 
         <div class="user_details_left_right">
-            <a aria-label='Link to your wall' role='Link to your wall' title='Link to your wall' href="<?php echo $userLoggedIn; ?>">
+            <a aria-label='linkToWall' role='Link to your wall' title='Link to your wall' href="<?php echo $userLoggedIn; ?>">
                 <?php if(isset($meta_person["first_name"])){echo $meta_person["first_name"];}            
                       if(isset($meta_person["last_name"])){echo " " . $meta_person["last_name"];}
                 ?>

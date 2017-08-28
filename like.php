@@ -133,7 +133,7 @@
             if($num_rows > 0) {
                 echo '<div class="like_page_form">
                         <form action="like.php?post_id=' . $post_id . '" method="POST">
-                            <input role="like button" title="like button" aria-pressed="true" type="submit" class="comment_like" name="unlike_button" value="Unlike">
+                            <input role="button" title="like button" aria-pressed="true" type="submit" class="comment_like" name="unlike_button" value="Unlike">
                             <div class="like_value">
                                 '. $total_likes .' Likes
                             </div>
@@ -144,7 +144,7 @@
             else {
                 echo '<div class="like_page_form">
                         <form action="like.php?post_id=' . $post_id . '" method="POST">
-                            <input role="like button" title="like button" aria-pressed="false" type="submit" class="comment_like" name="like_button" value="Like">
+                            <input role="button" title="like button" aria-pressed="false" type="submit" class="comment_like" name="like_button" value="Like">
                             <div class="like_value">
                                 '. $total_likes .' Likes
                             </div>

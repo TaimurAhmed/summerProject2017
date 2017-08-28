@@ -88,11 +88,11 @@ if(isset($_POST['post_message'])){
                 <p><?php echo $profile_user_obj->getFirstAndLastName(); ?></p>
             </div>
             <?php $logged_in_user_obj = new User($con,$userLoggedIn); ?>
-            <p><?php echo "<div class='profile_data' title='Number of Posts Made' role='Number of Posts Made' aria-label='Number of Posts Made'> Posts: ". $user_profile_array['num_posts']."</div>" ?></p>
-            <p><?php echo "<div class='profile_data' title='Number of things Liked' role='Number of things Liked' aria-label='Number of things Liked'> Likes: ". $user_profile_array['num_likes'] .'</div>' ?></p>
-            <p><?php echo "<div class='profile_data' title='Number of Friends' role='Number of Friends' aria-label='Number of Friends'> Friends : ". $num_friends . '</div>' ?></p>
+            <p><?php echo "<div class='profile_data' title='Number of Posts Made'  > Posts: ". $user_profile_array['num_posts']."</div>" ?></p>
+            <p><?php echo "<div class='profile_data' title='Number of things Liked' > Likes: ". $user_profile_array['num_likes'] .'</div>' ?></p>
+            <p><?php echo "<div class='profile_data' title='Number of Friends' > Friends : ". $num_friends . '</div>' ?></p>
             <?php if($userLoggedIn != $username) 
-                     echo "<p><div class='profile_data' title='Number of Mutual Friends' role='Number of Mutual Friends' aria-label='Number of Mutual Friends'> Mutual Friends: " . $logged_in_user_obj->getMutualFriends($username) ."</div></p>";
+                     echo "<p><div class='profile_data' title='Number of Mutual Friends' > Mutual Friends: " . $logged_in_user_obj->getMutualFriends($username) ."</div></p>";
             ?>
             </div>
         
@@ -108,21 +108,21 @@ if(isset($_POST['post_message'])){
             if($userLoggedIn != $username) {
 
                 if($logged_in_user_obj->isFriend($username)) {
-                    echo '<input aria-label="Remove Friend Button" role="Click to delete friend" title="Click to delete friend" type="submit" name="remove_friend" class="danger" value="Remove Friend"><br>';
+                    echo '<input aria-label="deleteFriendButton" role="button" title="Click to delete friend" type="submit" name="remove_friend" class="danger" value="Remove Friend"><br>';
                 }
                 else if ($logged_in_user_obj->didRecieveRequest($username)) {
-                    echo '<input aria-label="Respond to Friend Request Button" role="Click to Accept Friend Request" title="Click to Accept Friend Request" type="submit" name="respond_request" class="warning" value="Respond to Request"><br>';
+                    echo '<input  aria-label="acceptFriendButton" role="button" title="Click to Accept Friend Request" type="submit" name="respond_request" class="warning" value="Respond to Request"><br>';
                 }
                 else if ($logged_in_user_obj->didSendRequest($username)) {
-                    echo '<input aria-label="Friend Request Sent" role="Friend Request Has Been Sent" title="Friend Request Has Been Sent" type="submit" name="" class="default" value="Request Sent"><br>';
+                    echo '<input aria-label="friendRequestPending" title="Friend Request Has Been Sent" type="submit" name="" class="default" value="Request Sent"><br>';
                 }
                 else 
-                    echo '<input aria-label="Send Friend Request Button" role="Click to Send Friend Request" title="Click to Send Friend Request" type="submit" name="add_friend" class="success" value="Add Friend"><br>';
+                    echo '<input aria-label="sendFriendRequestButton" role="button" title="Click to Send Friend Request" type="submit" name="add_friend" class="success" value="Add Friend"><br>';
 
             }
             ?>
         </form>
-        <input aria-label="Click to Submit Post" role='Click to Submit Post' title="Click to Submit Post" type="submit" class="post_button" data-toggle="modal" data-target="#post_form" value="Post Something">
+        <input role='textbox' title="Click to Submit Post" type="submit" class="post_button" data-toggle="modal" data-target="#post_form" value="Post Something">
         
 
 
