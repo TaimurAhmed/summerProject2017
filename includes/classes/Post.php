@@ -643,7 +643,7 @@ class Post{
 
                     //Bootbox delete post button: Load if comment belongs to you
                     if($userLoggedIn == $added_by)
-                        $delete_button = "<button class='delete_button btn-danger' id='post$p_id' aria-labelledby='post$p_id' aria-describedby='deletePostButton' title='click to delete post'>X</button>";
+                        $delete_button = "<button class='delete_button btn-danger' id='post$p_id' aria-labelledby='singleWallPost post$p_id' aria-describedby='deletePostButton' title='click to delete post'>X</button>";
                     else
                         $delete_button ="";
 
@@ -773,7 +773,7 @@ class Post{
                                     </div>
                                     <br>
                                     <!--Post Comments-->
-                                    <div class='post_comment' id='toggleComment$p_id' style='display:none;'>
+                                    <div class='post_comment' id='toggleComment$p_id' aria-labelledby='toggleComment$p_id' aria-describedby='hideUnhideComments' aria-hidden='true' style='display:none;'>
                                         <iframe src='comment_frame.php?post_id=$p_id' id ='comment_iframe' frameborder='0'></iframe>
                                     </div>
                                 </div>
