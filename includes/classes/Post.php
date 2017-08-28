@@ -244,10 +244,10 @@ class Post{
 
 
                                 if($interval->m == 1) {
-                                    $time_message = $interval->m . " month". $days;
+                                    $time_message = $interval->m . " month ". $days;
                                 }
                                 else {
-                                    $time_message = $interval->m . " months". $days;
+                                    $time_message = $interval->m . " months ". $days;
                                 }
 
                             }
@@ -475,10 +475,10 @@ class Post{
 
 
                                 if($interval->m == 1) {
-                                    $time_message = $interval->m . " month". $days;
+                                    $time_message = $interval->m . " month ". $days;
                                 }
                                 else {
-                                    $time_message = $interval->m . " months". $days;
+                                    $time_message = $interval->m . " months ". $days;
                                 }
 
                             }
@@ -643,7 +643,7 @@ class Post{
 
                     //Bootbox delete post button: Load if comment belongs to you
                     if($userLoggedIn == $added_by)
-                        $delete_button = "<button class='delete_button btn-danger' id='post$p_id'>X</button>";
+                        $delete_button = "<button class='delete_button btn-danger' id='post$p_id' aria-labelledby='post$p_id' aria-describedby='deletePostButton' title='click to delete post'>X</button>";
                     else
                         $delete_button ="";
 
@@ -704,10 +704,10 @@ class Post{
 
 
                                 if($interval->m == 1) {
-                                    $time_message = $interval->m . " month". $days;
+                                    $time_message = $interval->m . " month ". $days;
                                 }
                                 else {
-                                    $time_message = $interval->m . " months". $days;
+                                    $time_message = $interval->m . " months ". $days;
                                 }
 
                             }
@@ -745,27 +745,34 @@ class Post{
                             }
 
                         /*On click toggle1, toggle2 etc*/
-                        $str .= "<div class='status_post' onClick='javascript:toggle$p_id()'>
-                                    <div class='post_profile_pic'>
+                        $str .= "<div id='singleWallPost' aria-labelledby='singleWallPost' aria-describedby='singlePost' class='status_post' onClick='javascript:toggle$p_id()'>
+                                    
+                                    <!--Post Picture-->
+                                    <div id='postPicture' aria-labelledby='singleWallPost postPicture' aria-describedby='senderProfilePicture' class='post_profile_pic'>
                                         <img src='$profile_pic' width='50'>
                                     </div>
-
-                                    <div class='posted_by' style='color:#ACACAC;'>
+                                    
+                                    <!--Post Controls-->
+                                    <div id='postControls' aria-labelledby='singleWallPost postControls' aria-describedby='postControlButton' class='posted_by' style='color:#ACACAC;'>
                                         <a href='$added_by'> $first_name $last_name </a> $user_to &nbsp;&nbsp;&nbsp;&nbsp;$time_message
                                         $delete_button
                                     </div>
-                                    <div id='post_body'>
+
+                                    <!--Post Body-->
+                                    <div id='post_body' aria-labelledby='singleWallPost post_body' aria-describedby='postMessagepostMessage'>
                                         $body
                                         <br>
                                         <br>
                                         <br>
                                     </div>
+
                                     <!--Buggy when likes iframe is places on top of comments iframe-->
-                                    <div class='newsFeedPostOptions'>
+                                    <div id='postLike' aria-labelledby='singleWallPost postLike' aria-describedby='likeButton' class='newsFeedPostOptions'>
                                         comments(".$this->countComments($p_id).")&nbsp;&nbsp;&nbsp;
                                         <iframe src='like.php?post_id=$p_id' scrolling='no'></iframe>
                                     </div>
                                     <br>
+                                    <!--Post Comments-->
                                     <div class='post_comment' id='toggleComment$p_id' style='display:none;'>
                                         <iframe src='comment_frame.php?post_id=$p_id' id ='comment_iframe' frameborder='0'></iframe>
                                     </div>
