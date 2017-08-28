@@ -74,8 +74,9 @@ include './selfXSSwarning.php';
             <i class="fa fa-search" aria-hidden="true"></i>
           </div>
         </form>
-
-          <div class="search_results">
+          
+          <!--Live region:Polite-->
+          <div id='searchBarResults' aria-labelledby='searchBarResults' aria-describedby='searchResultsList' aria-live='polite' role='list' class="search_results">
           </div>
 
           <div class="search_results_footer_empty">

@@ -67,6 +67,8 @@ if($query != ""){
 
 
     for($n=0; $n < $i; $n++) {
+        $ariaCount=$n+1;//For aria tags
+
         $user = new User($con, $userLoggedIn);
 
         if($username[$n] != $userLoggedIn)
@@ -74,8 +76,8 @@ if($query != ""){
         else 
             $mutual_friends == "";
 
-        echo "<div class='resultDisplay'>
-                    <a aria-label='Click to go to ".$first_name[$n]."&#039s profile' role='Click to go to ".$first_name[$n]."'s profile' title='Click to go to ".$first_name[$n]." profile' href='" . $username[$n] . "' style='color: green'>
+        echo "<div role='listitem' id='result$ariaCount' aria-labelledby='searchBarResults result$ariaCount' aria-describedby='searchResultItem' class='resultDisplay'>
+                    <a  role='link' title='Click to go to ".$first_name[$n]." profile' href='" . $username[$n] . "' style='color: green'>
                         <div class='liveSearchProfilePic'>
                             <img src='" . $profile_pic[$n]."'>
                         </div>

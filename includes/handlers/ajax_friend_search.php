@@ -76,9 +76,12 @@
             }
         }
 
+        $ariaCount=0;//For Aria Tags
+
         if($query!= "" && $queryCount != 0){
             for($queryCount;$queryCount>=0;$queryCount--){
                 $user = new User($con, $userLoggedIn);
+                $ariaCount++;
                 
                 if($username[$queryCount] != $userLoggedIn) {
                     $mutual_friends = $user->getMutualFriends($username[$queryCount]) . " friends in common";
@@ -92,7 +95,7 @@
                 $id .= 'searchResult';
                 
                 if($user->isFriend($username[$queryCount])) {
-                    echo "<div role=listbox class='resultDisplay'>
+                    echo "<div role='listitem' id='result$ariaCount' aria-labelledby='searchBarResults result$ariaCount' aria-describedby='searchResultItem' class='resultDisplay'>
                             <a href='messages.php?u=" . $username[$queryCount] . "' style='color: #000'>
                                 <div class='liveSearchProfilePic'>
                                     <img src='". $profilePic[$queryCount] . "'>
@@ -110,7 +113,7 @@
                 }
             }
         }else{
-            echo "<div class='resultDisplay'>
+            echo "<div role='listitem' id='result$ariaCount' aria-labelledby='searchBarResults result$ariaCount' aria-describedby='searchResultItem' class='resultDisplay'>
                         <div class='liveSearchProfilePic'>
                             <i class='fa fa-frown-o' aria-hidden='true'>
                                 <div class='liveSearchText'>

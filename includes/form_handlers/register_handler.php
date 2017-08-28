@@ -193,7 +193,7 @@ if(isset($_POST['register_button'])){
         }
         
         /*Sucesfully created user message*/
-        array_push($error_array,"<span style='color: #14C800;'> Sucesfully created new user ! </span> <br>");
+        array_push($error_array,"<span role='alert' aria-relevant='all' style='color: #14C800;'> Sucesfully created new user ! </span> <br>");
         
         /* Clear Session Variables*/
         $_SESSION['reg_fname'] = "";
