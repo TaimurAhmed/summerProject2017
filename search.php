@@ -134,8 +134,8 @@ if(isset($_GET['type'])){
 
 
 
-                echo "<p aria-label='Links to use alternative search criteria are provided below' role='Links to use alternative search criteria are provided below' title='Links to use alternative search criteria are provided below' id='grey'>Try searching for:</p>";
-                        echo "<a aria-label='Search using a name' role='Search using a name' title='Search using a name' href='search.php?q=" . $query ."&type=name'>Names</a>, <a aria-label='Search using a username' role='Search using a username' title='Search using a username' href='search.php?q=" . $query ."&type=username'>Usernames</a><br><br><hr id='search_hr'>";
+                echo "<p role='alert' aria-relevant='polite' title='Links to use alternative search criteria are provided below' id='grey'>Try searching for:</p>";
+                        echo "<a aria-label='searchByName' role='link' title='Search using a name' href='search.php?q=" . $query ."&type=name'>Names</a>, <a aria-label='searchByUserName' role='link' title='Search using a username' href='search.php?q=" . $query ."&type=username'>Usernames</a><br><br><hr id='search_hr'>";
 
                 if(!$n){
                     echo "Couldnt find anyone with ". $type. " like: ". $query;
@@ -152,13 +152,13 @@ if(isset($_GET['type'])){
                             if($userMeta['username'] != $username[$i]) {//If not the user themselves
                                 //Generate button depending on friendship status and with individual names...(class from bootstrap)
                                 if($user_obj->isFriend($username[$i])){
-                                    $button = "<input aria-label='Click to remove ".$firstName[$i]." as friend' role='Click to remove ".$firstName[$i]." as friend' title='Click to remove ".$firstName[$i]." as friend' type='submit' name='" . $username[$i] . "' class='danger' value='Remove Friend'>";
+                                    $button = "<input aria-label='remove ".$firstName[$i]."AsFriend' role='button' title='Click to remove ".$firstName[$i]." as friend' type='submit' name='" . $username[$i] . "' class='danger' value='Remove Friend'>";
                                 }else if($user_obj->didRecieveRequest($username[$i])){
-                                    $button = "<input aria-label='Click to respond to ".$firstName[$i]."&#039s friend request' role='Click to respond to ".$firstName[$i]."&#039s friend request' title='Click to respond to ".$firstName[$i]."&#039s friend request' type='submit' name='" . $username[$i] . "' class='warning' value='Respond to request'>";
+                                    $button = "<input aria-label='respondTo".$firstName[$i]."FriendRequest' role='button' title='Click to respond to ".$firstName[$i]."&#039s friend request' type='submit' name='" . $username[$i] . "' class='warning' value='Respond to request'>";
                                 }else if($user_obj->didSendRequest($username[$i])){
-                                    $button = "<input aria-label='Friend Request sent to ".$firstName[$i]."' role='Friend Request sent to ".$firstName[$i]."' title='Friend Request sent to ".$firstName[$i]."' type='submit' class='default' value='Request Sent'>";
+                                    $button = "<input aria-label='friendRequestSentTo".$firstName[$i]."' title='Friend Request sent to ".$firstName[$i]."' type='submit' class='default' value='Request Sent'>";
                                 }else{ 
-                                    $button = "<input aria-label='Click to add  ".$firstName[$i]."' role='Click to add  ".$firstName[$i]."' title='Click to add  ".$firstName[$i]."' type='submit' name='" . $username[$i] . "' class='success' value='Add Friend'>";
+                                    $button = "<input aria-label='add".$firstName[$i]."AsFriend' role='button' title='Click to add  ".$firstName[$i]."' type='submit' name='" . $username[$i] . "' class='success' value='Add Friend'>";
                                 }
                             }
                             $mutual_friends = $user_obj->getMutualFriends($username[$i]) . " friends in common";
