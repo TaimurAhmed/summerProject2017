@@ -61,21 +61,21 @@ include './selfXSSwarning.php';
 
       <!--Logo-->
       <div class="logo">
-          <a role="Link to home page or Newsfeed"  title="Artemis Homepage" href="index.php"> Artemis</a>
+          <a role="link" id='HomePagelogo' aria-labelledby='HomePagelogo' aria-describedby='linkToHomepage' title="Artemis Homepage" href="index.php"> Artemis</a>
       </div>
 
 
       <!-- Search Bar-->
-      <div class="search">
+      <div class="search" role='search'>
         
-        <form action="search.php" method="GET" name="search_form" role="search">
-          <input id="search_text_input" type="search" aria-label="search text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off">
-          <div class="button_holder" title="Search for other users">
+        <form action="search.php" method="GET" name="search_form">
+          <input id="search_text_input" aria-labelledby='search search_text_input' aria-describedby='searchQueryInput' type="search" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off">
+          <div role='button' id='searchButton' aria-labelledby='search searchButton' aria-describedby='searchForQuery' class="button_holder" title="Search for other users">
             <i class="fa fa-search" aria-hidden="true"></i>
           </div>
         </form>
           
-          <!--Live region:Polite-->
+          <!--Live ARIA region:Polite-->
           <div id='searchBarResults' aria-labelledby='searchBarResults' aria-describedby='searchResultsList' aria-live='polite' role='list' class="search_results">
           </div>
 
@@ -102,7 +102,7 @@ include './selfXSSwarning.php';
             $user_obj = new User($con,$userLoggedIn);
             $num_requests = $user_obj->getNumOfFriendRequests();
           ?>
-            <a id=header_loggedInUser_name title="Personal Wall" role="link" aria-labelledby='header_loggedInUser_name' aria-describedby='personalWall' href='<?php echo $userLoggedIn; ?>'>
+            <a id=header_loggedInUser_name title="Personal Wall" role="link" aria-labelledby='header_loggedInUser_name' aria-describedby='linkToPersonalWall' href='<?php echo $userLoggedIn; ?>'>
                 <?php 
                     if(isset($meta_person["first_name"])){
                         echo $meta_person["first_name"];
@@ -151,7 +151,7 @@ include './selfXSSwarning.php';
 
 
             <!-- Friend Requests -->
-            <a aria-label="Friend Requests" role="link" title="Friend Requests" href="requests.php">
+            <a aria-label="friendRequests" role="link" title="Friend Requests" href="requests.php">
                 <i class="fa fa-users" aria-hidden="true">
                   <?php 
                     echo 
@@ -163,7 +163,7 @@ include './selfXSSwarning.php';
             </a>
             
             <!--Settings Page-->
-            <a aria-label="Friend Requests" role="link" title='Profile Settings' href="settings.php"><i class="fa fa-cog" aria-hidden="true"></i></a>
+            <a aria-label="Settings" role="link" title='Profile Settings' href="settings.php"><i class="fa fa-cog" aria-hidden="true"></i></a>
             
 
 
