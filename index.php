@@ -12,9 +12,9 @@ if(isset($_POST['post'])){
 
 ?>
     <div 
-        class ="user_details column">
+        class ="user_details column" id='userDetailsColumn'>
         <a 
-            aria-label="Personal Wall" role="Personal Wall" title='Personal Wall' href="<?php echo $userLoggedIn; ?>"><img src="
+            id='userDetailsProfilePic' role='link' aria-labelledby='userDetailsColumn userDetailsProfilePic' aria-describedby='linkToPersonalWall' title='Personal Wall' href="<?php echo $userLoggedIn; ?>"><img src="
             <?php if(isset($meta_person["profile_pic"])){echo $meta_person["profile_pic"];}?>" 
            alt="">
         </a>
@@ -22,8 +22,9 @@ if(isset($_POST['post'])){
         <div 
             class="user_details_left_right">
             <a 
-                aria-label="Personal Wall" 
-                role="Personal Wall" 
+                id='userDetailsColumnName'
+                aria-label="userDetailsColumn userDetailsColumnName" 
+                role="link" 
                 title='Personal Wall' 
                 href="<?php echo $userLoggedIn; ?>">
                 <?php if(isset($meta_person["first_name"])){echo $meta_person["first_name"];}            
@@ -32,8 +33,8 @@ if(isset($_POST['post'])){
                 
             </a>
             <br>
-            <?php if(isset($meta_person["num_posts"])){echo "<div role='Number of Posts by User' title='Number of Posts by User'>Posts:". $meta_person["num_posts"]."</div><br>";}?>
-            <?php if(isset($meta_person["num_likes"])){echo "<div role='Number of Posts liked by User' title='Number of Posts liked by User'>Likes:". $meta_person["num_likes"]."</div>";}?>  
+            <?php if(isset($meta_person["num_posts"])){echo "<div title='Number of Posts by User'>Posts:". $meta_person["num_posts"]."</div><br>";}?>
+            <?php if(isset($meta_person["num_likes"])){echo "<div title='Number of Posts liked by User'>Likes:". $meta_person["num_likes"]."</div>";}?>  
         </div>
     </div>
 
@@ -41,12 +42,15 @@ if(isset($_POST['post'])){
             class="main_column column">
             
             <form 
+                id='postForm'
+                aria-labelledby='postForm'
+                aria-labelledby='formForMakingPosts'
                 class="post_form" 
                 action="index.php" 
                 method="POST">
-                <textarea aria-label="Type Post Here to Share With Friends" role="Type Post Here to Share With Friends" placeholder="Type Post Here to Share With Friends" title='Type Post Here to Share With Friends' name="post_text" id="post_text"> 
+                <textarea id='postFormInput' aria-label="postForm postFormInput" aria-describedby='inputPostHere' role='textbox' placeholder="Type Post Here to Share With Friends" title='Type Post Here to Share With Friends' name="post_text" id="post_text"> 
                 </textarea>
-                <input aria-label="lic" role="Personal Wall" title='Personal Wall' type="submit" name = "post" id ="post_button" value = "Post ">
+                <input  id='submitPostForm' aria-label="postForm submitPostForm" aria-describedby='clickToSubmitPost' role='button' title='Submit Post' type="submit" name = "post" id ="post_button" value = "Post ">
                 <hr> 
             </form>
 
