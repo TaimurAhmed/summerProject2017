@@ -183,7 +183,7 @@ class Post{
 
                     //Bootbox delete post button: Load if comment belongs to you
                     if($userLoggedIn == $added_by)
-                        $delete_button = "<button id='post$p_id' aria-labelledby='wallpost$p_id post$p_id' aria-describedby='deletePost$p_id' role='button' title='Click to Delete Post' class='delete_button btn-danger' >X</button>";
+                        $delete_button = "<button id='post$p_id' aria-labelledby='newsFeedPost$p_id post$p_id' aria-describedby='deletePost$p_id' role='button' title='Click to Delete Post' class='delete_button btn-danger' >X</button>";
                     else
                         $delete_button ="";
 
@@ -285,22 +285,22 @@ class Post{
                             }
 
                         /*On click toggle1, toggle2 etc*/
-                        $str .= "<div class='status_post' id='wallpost$p_id' aria-labelledby='wallpost$p_id' aria-describedby='singlePost' onClick='javascript:toggle$p_id()'>
+                        $str .= "<div class='status_post' id='newsFeedPost$p_id' aria-labelledby='newsFeedPost$p_id' aria-describedby='newsfeedPost' onClick='javascript:toggle$p_id()'>
                                     
-                                    <!--Picture-->
-                                    <div id='pictureWallPost$p_id' aria-labelledby='wallpost$p_id pictureWallPost$p_id' aria-describedby='senderPicture' class='post_profile_pic'>
+                                    <!--Post Picture-->
+                                    <div id='newsFeedPostPicture$p_id' aria-labelledby='newsFeedPost$p_id newsFeedPostPicture$p_id' aria-describedby='postSenderProfilePicture' class='post_profile_pic'>
                                         <img src='$profile_pic' width='50'>
                                     </div>
 
 
                                     <!--Post Controls-->
-                                    <div id='postControls$p_id' aria-labelledby='wallpost$p_id postControls$p_id' aria-describedby='postControls' class='posted_by' style='color:#ACACAC;'>
+                                    <div id='postControls$p_id' aria-labelledby='newsFeedPost$p_id postControls$p_id' aria-describedby='postControls' class='posted_by' style='color:#ACACAC;'>
                                         <a title='Click to go to ".$first_name .' '.$last_name."&#039s Personal Wall' href='$added_by'> $first_name $last_name </a> $user_to &nbsp;&nbsp;&nbsp;&nbsp;$time_message
                                         $delete_button
                                     </div>
 
                                     <!--Post Body-->
-                                    <div id='post_body$p_id' aria-labelledby='wallpost$p_id post_body$p_id' aria-describedby='postBody'>
+                                    <div id='post_body$p_id' aria-labelledby='newsFeedPost$p_id post_body$p_id' aria-describedby='postBody'>
                                         $body
                                         <br>
                                         <br>
@@ -308,7 +308,7 @@ class Post{
                                     </div>
 
                                     <!--Buggy when likes iframe is places on top of comments iframe-->
-                                    <div id='likeButtonPost$p_id' aria-labelledby='wallpost$p_id likeButtonPost$p_id' aria-describedby='likeButton' role='link' title='Click to see ".$this->countComments($p_id)." comment(s)' class='newsFeedPostOptions'>
+                                    <div role=button id='likeButtonPost$p_id' aria-labelledby='newsFeedPost$p_id likeButtonPost$p_id' aria-describedby='likeButton' title='Click to see ".$this->countComments($p_id)." comment(s)' class='newsFeedPostOptions'>
                                         comments(". $this->countComments($p_id) .")&nbsp;&nbsp;&nbsp;
                                         <iframe role='button' src='like.php?post_id=$p_id' scrolling='no'></iframe>
                                     </div>
@@ -412,7 +412,7 @@ class Post{
 
                     //Bootbox delete post button: Load if comment belongs to you
                     if($userLoggedIn == $added_by)
-                        $delete_button = "<button id='post$p_id' aria-labelledby='post$p_id' aria-describedby='deletePost$p_id' role='button' title='Delete Post' class='delete_button btn-danger'>X</button>";
+                        $delete_button = "<button id='post$p_id' aria-labelledby='personalWallPost$p_id' post$p_id' aria-describedby='deletePost$p_id' role='button' title='Delete Post' class='delete_button btn-danger'>X</button>";
                     else
                         $delete_button ="";
 
