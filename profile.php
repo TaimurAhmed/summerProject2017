@@ -135,10 +135,10 @@ if(isset($_POST['post_message'])){
 
     <div class="profile_main_column column">
         <!--Bootstrap Tabs-->
-        <ul class="nav nav-tabs" role="tablist" id="profileTabs">
-          <li aria-label="Friend's Wall" title="Wall" role="presentation" class="active"><a href="#newsfeed_div" aria-controls="newsfeed_div" role="tab" data-toggle="tab">Home</a></li>
-          <li aria-label="Information About Friend" title="Information About Friend" role="presentation"><a href="#about_div" aria-controls="about_div " role="tab" data-toggle="tab">About</a></li>
-          <li aria-label="Personal Messages" title="Personal Messages" role="presentation"><a href="#messages_div" aria-controls="messages_div " role="tab" data-toggle="tab">Messages</a></li>
+        <ul class="nav nav-tabs" role="list" id="profileTabs">
+          <li aria-label="userWall" role='listitem' title="Wall" class="active"><a href="#newsfeed_div" aria-controls="newsfeed_div" role="tab" data-toggle="tab">Home</a></li>
+          <li aria-label="userInformation" role='listitem' title="Information About Friend"><a href="#about_div" aria-controls="about_div " role="tab" data-toggle="tab">About</a></li>
+          <li aria-label="userMessage" role='listitem' title="Personal Messages"><a href="#messages_div" aria-controls="messages_div " role="tab" data-toggle="tab">Messages</a></li>
         </ul>
 
         <div class="tab-content">
@@ -167,16 +167,16 @@ if(isset($_POST['post_message'])){
                 <div role="tabpanel" class="tab-pane fade" id="messages_div"> 
                     <!--Candidate for(messages) abstracting-->
                     <?php
-                                echo "<h4>You and <a aria-label='Click to go to ".$profile_user_obj->getFirstAndLastName()."&#039s wall' role='Click to go to ".$profile_user_obj->getFirstAndLastName()."&#039s wall' title='Click to go to ".$profile_user_obj->getFirstAndLastName()."&#039s wall' href='" . $username ."'>" . $profile_user_obj->getFirstAndLastName() . "</a></h4><hr><br>";
+                                echo "<h4>You and <a title='Click to go to ".$profile_user_obj->getFirstAndLastName()."&#039s wall' href='" . $username ."'>" . $profile_user_obj->getFirstAndLastName() . "</a></h4><hr><br>";
                                 echo "<div class='loaded_messages' id='scroll_messages'>";
                                 echo $message_obj->getMessages($username);/*Loaded requested messages*/
                                 echo "</div>";
                             ?>
 
-                            <div class="message_post">
+                            <div class="message_post" aria-relevant='polite'>
                                 <form action="" method="POST">
-                                        <textarea aria-label='Write Personal Message Here' role='Write Personal Message Here' title="'Write Personal Message Here'" name='message_body' id='message_textarea' placeholder='Write a private message here...'></textarea>
-                                        <input aria-label='Button for Submitting Personal Message' role='private message button' title="Click Button to send private message" type='submit' name='post_message' class='info' id='message_submit' value='Send'>
+                                        <textarea aria-label='personalMessageInput' role='textarea' title="'Write Personal Message Here'" name='message_body' id='message_textarea' placeholder='Write a private message here...'></textarea>
+                                        <input aria-label='submitPersonalMessage' role='button' title="Click Button to send private message" type='submit' name='post_message' class='info' id='message_submit' value='Send'>
                                 </form>
 
                             </div>
@@ -196,7 +196,7 @@ if(isset($_POST['post_message'])){
 
 
 <!-- Modal -->
-<div class="modal fade" id="post_form" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
+<div class="modal fade" id="post_form" tabindex="-1" role="dialog" aria-label="post_form" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -206,7 +206,7 @@ if(isset($_POST['post_message'])){
       </div>
 
       <div class="modal-body">
-        <div role='alert' aria-label='all'><p>This will appear on the user's profile page and also their newsfeed for your friends to see!</p></div>
+        <div role='alert' aria-relevant='all'><p>This will appear on the user's profile page and also their newsfeed for your friends to see!</p></div>
 
         <form class="profile_post" action="" method="POST">
             <div class="form-group">
@@ -219,8 +219,8 @@ if(isset($_POST['post_message'])){
 
 
       <div class="modal-footer">
-        <button role='button' aria-label='click to close alert' type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button role='button' aria-label='click to make a post on user wall' type="button" class="btn btn-primary" name="post_button" id="submit_profile_post">Post</button>
+        <button role='button' aria-label='close' type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button role='button' aria-label='post' type="button" class="btn btn-primary" name="post_button" id="submit_profile_post">Post</button>
       </div>
     </div>
   </div>
