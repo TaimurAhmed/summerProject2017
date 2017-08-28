@@ -29,7 +29,7 @@ class Post{
                 if(strpos($value, "www.youtube.com/watch?v=") !== false) {
                     $link = preg_split("!&!", $value);
                     $value = preg_replace("!watch\?v=!", "embed/", $link[0]);
-                    $value = "<br><div role='External Youtube Video' title='External Youtube Video'><iframe role='External Youtube Video' title='External Youtube Video' width='420' height='315' src='" . $value ."'></iframe></div><br>";
+                    $value = "<br><div role='application' title='External Youtube Video'><iframe role='application' title='External Youtube Video' width='420' height='315' src='" . $value ."'></iframe></div><br>";
                     $body_array[$key] = $value;
                 }
 
@@ -183,7 +183,7 @@ class Post{
 
                     //Bootbox delete post button: Load if comment belongs to you
                     if($userLoggedIn == $added_by)
-                        $delete_button = "<button aria-label='Delete Post Button' role='Delete Post Button' title='Delete Post' class='delete_button btn-danger' id='post$p_id' role='Click button to delete post' title='Click button to delete post'>X</button>";
+                        $delete_button = "<button id='post$p_id' aria-labelledby='wallpost$p_id post$p_id' aria-describedby='deletePost$p_id' role='button' title='Click to Delete Post' class='delete_button btn-danger' >X</button>";
                     else
                         $delete_button ="";
 
@@ -207,8 +207,10 @@ class Post{
                                 var element = document.getElementById("toggleComment<?php echo $p_id;?>");
                                 if(element.style.display == "block"){
                                     element.style.display = "none";
+                                    element.setAttribute('aria-hidden','true');
                                 }else{
                                     element.style.display = "block";
+                                    element.setAttribute('aria-hidden','false');
                                 }
                             } 
                         </script>
@@ -283,28 +285,35 @@ class Post{
                             }
 
                         /*On click toggle1, toggle2 etc*/
-                        $str .= "<div class='status_post' onClick='javascript:toggle$p_id()'>
-                                    <div class='post_profile_pic'>
+                        $str .= "<div class='status_post' id='wallpost$p_id' aria-labelledby='wallpost$p_id' aria-describedby='singlePost' onClick='javascript:toggle$p_id()'>
+                                    
+                                    <!--Picture-->
+                                    <div id='pictureWallPost$p_id' aria-labelledby='wallpost$p_id pictureWallPost$p_id' aria-describedby='senderPicture' class='post_profile_pic'>
                                         <img src='$profile_pic' width='50'>
                                     </div>
 
-                                    <div role='posted_by' class='posted_by' style='color:#ACACAC;'>
-                                        <a aria-label='Click to go to ".$first_name .' '.$last_name."&#039s Personal Wall, who sent this post' role='Click to go to ".$first_name .' '.$last_name."&#039s Personal Wall , who sent this post'  title='Click to go to ".$first_name .' '.$last_name."&#039s Personal Wall' href='$added_by'> $first_name $last_name </a> $user_to &nbsp;&nbsp;&nbsp;&nbsp;$time_message
+
+                                    <!--Post Controls-->
+                                    <div id='postControls$p_id' aria-labelledby='wallpost$p_id postControls$p_id' aria-describedby='postControls' class='posted_by' style='color:#ACACAC;'>
+                                        <a title='Click to go to ".$first_name .' '.$last_name."&#039s Personal Wall' href='$added_by'> $first_name $last_name </a> $user_to &nbsp;&nbsp;&nbsp;&nbsp;$time_message
                                         $delete_button
                                     </div>
-                                    <div id='post_body'>
+
+                                    <!--Post Body-->
+                                    <div id='post_body$p_id' aria-labelledby='wallpost$p_id post_body$p_id' aria-describedby='postBody'>
                                         $body
                                         <br>
                                         <br>
                                         <br>
                                     </div>
+
                                     <!--Buggy when likes iframe is places on top of comments iframe-->
-                                    <div role='Number of Comments.Click to open comments.' aria-relevant='Number of Comments.Click to open comments.' title='Click to see ".$this->countComments($p_id)." comment(s)' class='newsFeedPostOptions'>
+                                    <div id='likeButtonPost$p_id' aria-labelledby='wallpost$p_id likeButtonPost$p_id' aria-describedby='likeButton' role='link' title='Click to see ".$this->countComments($p_id)." comment(s)' class='newsFeedPostOptions'>
                                         comments(". $this->countComments($p_id) .")&nbsp;&nbsp;&nbsp;
-                                        <iframe src='like.php?post_id=$p_id' scrolling='no'></iframe>
+                                        <iframe role='button' src='like.php?post_id=$p_id' scrolling='no'></iframe>
                                     </div>
                                     <br>
-                                    <div class='post_comment' id='toggleComment$p_id' style='display:none;'>
+                                    <div aria-hidden='true' class='post_comment' id='toggleComment$p_id' style='display:none;'>
                                         <iframe src='comment_frame.php?post_id=$p_id' id ='comment_iframe' frameborder='0'></iframe>
                                     </div>
                                 </div>
@@ -313,6 +322,11 @@ class Post{
                     //Delete Post
                     ?>
         <script>
+
+
+
+
+
             
         $(document).ready(function() {
 
@@ -398,7 +412,7 @@ class Post{
 
                     //Bootbox delete post button: Load if comment belongs to you
                     if($userLoggedIn == $added_by)
-                        $delete_button = "<button aria-label='Delete Post Button' role='Delete Post Button' title='Delete Post' class='delete_button btn-danger' id='post$p_id'>X</button>";
+                        $delete_button = "<button id='post$p_id' aria-labelledby='post$p_id' aria-describedby='deletePost$p_id' role='button' title='Delete Post' class='delete_button btn-danger'>X</button>";
                     else
                         $delete_button ="";
 
@@ -422,10 +436,14 @@ class Post{
                                 var element = document.getElementById("toggleComment<?php echo $p_id;?>");
                                 if(element.style.display == "block"){
                                     element.style.display = "none";
+                                    element.setAttribute('aria-hidden','true');
                                 }else{
                                     element.style.display = "block";
+                                    element.setAttribute('aria-hidden','false');
                                 }
                             } 
+
+
                         </script>
 
                     <?
@@ -499,14 +517,17 @@ class Post{
 
                         /*On click toggle1, toggle2 etc*/
                         $str .= "<div class='status_post' onClick='javascript:toggle$p_id()'>
+                                    <!--Profile Pic-->
                                     <div class='post_profile_pic'>
                                         <img src='$profile_pic' width='50'>
                                     </div>
 
+                                    <!--Post Controls-->
                                     <div class='posted_by' style='color:#ACACAC;'>
-                                        <a aria-label='Click link to go to user profile' role='link to user profile 'title='Click to go to user profile' href='$added_by'> $first_name $last_name </a> &nbsp;&nbsp;&nbsp;&nbsp;$time_message
+                                        <a id='postControls$p_id' aria-labelledby='wallpost$p_id postControls$p_id' aria-describedby='postControls' role='link' title='Click to go to user profile' href='$added_by'> $first_name $last_name </a> &nbsp;&nbsp;&nbsp;&nbsp;$time_message
                                         $delete_button
                                     </div>
+
                                     <div id='post_body'>
                                         $body
                                         <br>
@@ -514,12 +535,12 @@ class Post{
                                         <br>
                                     </div>
                                     <!--Buggy when likes iframe is places on top of comments iframe-->
-                                    <div aria-label='Click to Comment' role='Click to Comment' title='Click to Comment' class='newsFeedPostOptions'>
+                                    <div role='link' title='Click to Comment' class='newsFeedPostOptions'>
                                         comments(".$this->countComments($p_id).")&nbsp;&nbsp;&nbsp;
                                         <iframe src='like.php?post_id=$p_id' scrolling='no'></iframe>
                                     </div>
                                     <br>
-                                    <div class='post_comment' id='toggleComment$p_id' style='display:none;'>
+                                    <div aria-hidden='true' class='post_comment' id='toggleComment$p_id' style='display:none;'>
                                         <iframe src='comment_frame.php?post_id=$p_id' id ='comment_iframe' frameborder='0'></iframe>
                                     </div>
                                 </div>
@@ -646,8 +667,10 @@ class Post{
                                 var element = document.getElementById("toggleComment<?php echo $p_id;?>");
                                 if(element.style.display == "block"){
                                     element.style.display = "none";
+                                    element.setAttribute('aria-hidden','true');
                                 }else{
                                     element.style.display = "block";
+                                    element.setAttribute('aria-hidden','false');
                                 }
                             } 
                         </script>
