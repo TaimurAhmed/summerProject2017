@@ -516,31 +516,35 @@ class Post{
                             }
 
                         /*On click toggle1, toggle2 etc*/
-                        $str .= "<div class='status_post' onClick='javascript:toggle$p_id()'>
+                        $str .= "<div id='personalWallPost$p_id' aria-labelledby='personalWallPost$p_id' aria-describedby='personalWallPost' class='status_post' onClick='javascript:toggle$p_id()'>
+                                    
                                     <!--Profile Pic-->
-                                    <div class='post_profile_pic'>
+                                    <div id='postProfilePicture$p_id' aria-label='personalWallPost$p_id postProfilePicture$p_id' aria-describedby='senderProfilePicture' class='post_profile_pic'>
                                         <img src='$profile_pic' width='50'>
                                     </div>
 
                                     <!--Post Controls-->
-                                    <div class='posted_by' style='color:#ACACAC;'>
+                                    <div id='postControls$p_id' aria-labelledby='personalWallPost$p_id postControls$p_id' aria-describedby='postControls' class='posted_by' style='color:#ACACAC;'>
                                         <a id='postControls$p_id' aria-labelledby='wallpost$p_id postControls$p_id' aria-describedby='postControls' role='link' title='Click to go to user profile' href='$added_by'> $first_name $last_name </a> &nbsp;&nbsp;&nbsp;&nbsp;$time_message
                                         $delete_button
                                     </div>
-
-                                    <div id='post_body'>
+                                    
+                                    <!--Post Body-->
+                                    <div id='post_body$p_id' aria-labelledby='personalWallPost$p_id post_body$p_id' aria-describedby='postBody'>
                                         $body
                                         <br>
                                         <br>
                                         <br>
                                     </div>
+                                    <!--Post Like-->
                                     <!--Buggy when likes iframe is places on top of comments iframe-->
-                                    <div role='link' title='Click to Comment' class='newsFeedPostOptions'>
+                                    <div id='postLike$p_id' aria-labelledby='personalWallPost$p_id postLike$p_id' aria-describedby='likeButton' role='button' title='Click to Comment' class='newsFeedPostOptions'>
                                         comments(".$this->countComments($p_id).")&nbsp;&nbsp;&nbsp;
                                         <iframe src='like.php?post_id=$p_id' scrolling='no'></iframe>
                                     </div>
                                     <br>
-                                    <div aria-hidden='true' class='post_comment' id='toggleComment$p_id' style='display:none;'>
+                                    <!--Post Comment Section-->
+                                    <div aria-hidden='true' class='post_comment' id='toggleComment$p_id' aria-labelledby='toggleComment$p_id' aria-describedby='hideUnhideComments' style='display:none;'>
                                         <iframe src='comment_frame.php?post_id=$p_id' id ='comment_iframe' frameborder='0'></iframe>
                                     </div>
                                 </div>
