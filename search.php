@@ -144,7 +144,9 @@ if(isset($_GET['type'])){
                         
 
 
+                        $ariaCount=0;//Aria Search Result id's   
                         for($i=0;$i<=$queryCount;$i++){
+                            $ariaCount++;
                             $user_obj = new User($con, $userMeta['username']);//From header file
                             $button = "";
                             $mutual_friends = "";
@@ -187,8 +189,9 @@ if(isset($_GET['type'])){
 
 
 
-                        echo "<div class='search_result_indiv'>
-                                    <div class='searchPageFriendButtons'>
+                        echo "<div id='searchResult$ariaCount' aria-lablledby='searchResult$ariaCount' aria-describedby='singeResult' class='search_result_indiv'>
+                                    
+                                    <div id='searchResultControls$ariaCount' aria-lablledby='searchResult$ariaCount searchResultControls$ariaCount' aria-describedby='controlFriendShip' class='searchPageFriendButtons'>
                                         <form action='' method='POST'>
                                             " . $button . "
                                             <br>
@@ -196,11 +199,11 @@ if(isset($_GET['type'])){
                                     </div>
 
 
-                                    <div class='result_profile_pic'>
-                                        <a aria-label='Click to go to ".$firstName[$i]."&#039s profile' role='Click to go to ".$firstName[$i]."&#039s profile' title='Click to go to ".$firstName[$i]."&#039s profile'  href='" . $username[$i] ."'><img src='". $profilePic[$i] ."' style='height: 100px;'></a>
+                                    <div id='searchResultProfilePicture$ariaCount' aria-lablledby='searchResult$ariaCount searchResultProfilePicture$ariaCount' aria-describedby='userProfilePicture' class='result_profile_pic'>
+                                        <a aria-label='linkToPersonalWall' role='link' title='Click to go to ".$firstName[$i]."&#039s profile'  href='" . $username[$i] ."'><img src='". $profilePic[$i] ."' style='height: 100px;'></a>
                                     </div>
 
-                                    <a aria-label='Click to go to ".$firstName[$i]."&#039s profile' role='Click to go to ".$firstName[$i]."&#039s profile' title='Click to go to ".$firstName[$i]."&#039s profile' href='" . $username[$i] ."'> " . $firstName[$i] . " " . $lastName[$i] . "
+                                    <a aria-label='linkToProfile' role='link' title='Click to go to ".$firstName[$i]."&#039s profile' href='" . $username[$i] ."'> " . $firstName[$i] . " " . $lastName[$i] . "
                                     <p id='grey'> " . $username[$i] ."</p>
                                     </a>
                                     <br>
