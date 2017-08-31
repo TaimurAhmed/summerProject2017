@@ -223,7 +223,7 @@ require './includes/form_handlers/login_handler.php';
              <br>
 
             <?php
-                if(in_array("<span style='color: #14C800;'> Sucesfully created new user ! </span> <br>",$error_array))
+                if(in_array("<span role='alert' aria-relevant='all' style='color: #14C800;'> Sucesfully created new user ! </span> <br>",$error_array))
                     echo "<div class='reg_success' role='alert' aria-relevant='all'><span style='color: #14C800;'> Sucesfully created new user ! </span> </div><br>";
              ?>
 
