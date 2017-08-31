@@ -1,11 +1,17 @@
+<?php
+/*Get the id of post*/
+if(isset($_GET["post_id"])){
+    $post_id = $_GET["post_id"];
+    $p_id=$post_id; //Used later for Aria Labels
+}
+?>
 <html>
     <head>
-        <title></title>
         <!--CSS-->
         <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
         <link rel="stylesheet" type="text/css" href="./assets/css/comments.css">
     </head>
-    <body>
+    <body role='list' <?php echo "id='listOfComments$p_id' aria-labelledby='newsFeedPost$p_id listOfComments$p_id' aria-describedby='listOfComments'"?> >
         <?php 
             require './config/config.php';
             include("./includes/classes/User.php");
@@ -39,6 +45,7 @@
             /*Get the id of post*/
             if(isset($_GET["post_id"])){
                 $post_id = $_GET["post_id"];
+                $p_id=$post_id; //Used later for Aria Labels
             }
             $comment = array();
             $comment_query = "SELECT added_by,user_to FROM posts WHERE id = ?";
@@ -227,21 +234,20 @@
                     $user_obj = new User($con, $posted_by);
 
                     ?>
-                        <div class="comments_section">
+                        <div role='listitem' class="comments_section" id=<?php echo "'comment$post_number_client' aria-labelledby='newsFeedPost$p_id comment$post_number_client' aria-describedby='comment$post_number_client"."of"."$count '"; ?>>
                             <!-- target set to render parent_window NOT inside the iframe-->
-                            <a href="<?php echo $posted_by;?>" target="_parent">
+                            <a href="<?php echo $posted_by;?>" target="_parent" id="commentPoster<?php echo$post_number_client?>" aria-labelledby="newsFeedPost<?php echo $p_id?> commentPoster<?php echo$post_number_client?>" aria-describedby="posterOfCommentNumber<?php echo$post_number_client?>">
                                 <img src='<?php echo $user_obj->getProfilePic();?>' title= "<?php echo $posted_by;?>" style ="float:left;" height = "30"/>
-
                             </a>
-                            <a role='Link to <?php echo $user_obj->getFirstandLastName ();?> profile' title='Link to <?php echo $user_obj->getFirstandLastName ();?> profile' href="<?php echo $posted_by;?>" target="_parent">
+                            <a <?php echo 'id=linkToProfileOfCommentPoster'. $post_number_client ?> aria-labelledby='newsFeedPost<?php echo $p_id?> linkToProfileOfCommentPoster<?php echo $post_number_client?>' aria-describedby='linkToSenderOfComment<?php echo $post_number_client?>' title='Link to <?php echo $user_obj->getFirstandLastName ();?> profile' href="<?php echo $posted_by;?>" target="_parent">
                                  <b>
                                      <?php echo $user_obj->getFirstandLastName (); ?>
                                  </b>
                             </a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <?php echo $time_message. "<br>" . $comment_post_body; ?>
+                            <?php echo $time_message. "<br> <div id='bodyOfComment".$post_number_client."' aria-labelledby='newsFeedPost".$p_id." bodyOfComment".$post_number_client."' >". $comment_post_body . "</div>"; ?>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <?php echo "<div class='newsFeedPostOptions'><br> Comment ". $post_number_client. " of ". $count." comments. </div>" ?>
+                            <?php echo "<div id='metaOfPost".$post_number_client."'aria-labelledby='newsFeedPost".$p_id." metaOfPost".$post_number_client."' aria-describedby='commentMetaData' class='newsFeedPostOptions'><br> Comment ". $post_number_client. " of ". $count." comments. </div>" ?>
                             <hr>
                         </div>
                      <?php
