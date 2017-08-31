@@ -27,7 +27,7 @@ if(isset($_POST['post'])){
                 role="link" 
                 title='Personal Wall' 
                 href="<?php echo $userLoggedIn; ?>">
-                <?php if(isset($meta_person["first_name"])){echo $meta_person["first_name"];}            
+                <?php if(isset($meta_person["first_name"])){echo $meta_person["first_name"] . "<br>";}           
                       if(isset($meta_person["last_name"])){echo " " . $meta_person["last_name"];}
                 ?>
                 
