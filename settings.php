@@ -57,9 +57,9 @@ include("includes/form_handlers/settings_handler.php");
         Confirm New Password: <br><input id='confirmPassword' aria-labelledby='updatePassword confirmPassword' role='textbox' title='Type to confirm new  password here' type="password" name="new_password_2" id="settings_input">
         <br>
         <?php echo "<br>". $password_message; ?>
+        <div class="g-recaptcha" data-sitekey="6Ldtzi0UAAAAAFkGLqtcCj6PKzAsoE71BsoXmY1S"></div>
         <input id='submitPassword' aria-labelledby='updatePassword submitPassword' role='button' title='Click to submit new password details' type="submit" name="update_password" id="save_details" value="Update Password" class="warning settings_submit">
         <br>
-        <div class="g-recaptcha" data-sitekey="6Ldtzi0UAAAAAFkGLqtcCj6PKzAsoE71BsoXmY1S"></div>
     </form>
 
     <br><br><br>

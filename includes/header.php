@@ -76,7 +76,7 @@ include './selfXSSwarning.php';
         </form>
           
           <!--Live ARIA region:Polite-->
-          <div id='searchBarResults' aria-labelledby='searchBarResults' aria-describedby='searchResultsList' aria-live='polite' role='list' class="search_results">
+          <div id='searchBarResults' aria-labelledby='searchBarResults' aria-describedby='searchResultsList' aria-live='polite' role='list' aria-relevant="additions removals" class="search_results">
           </div>
 
           <div class="search_results_footer_empty">
