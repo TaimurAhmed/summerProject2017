@@ -50,13 +50,13 @@ include("includes/form_handlers/settings_handler.php");
     <h5>Change Password</h5>
     <br>
     <form id='updatePassword' action="settings.php" method="POST">
-        Old Password: <input id='oldPassword' aria-labelledby='updatePassword oldPassword' role='textbox' title='Type old password here' type="password" name="old_password" id="settings_input">
+        Old Password: <br><input id='oldPassword' aria-labelledby='updatePassword oldPassword' role='textbox' title='Type old password here' type="password" name="old_password" id="settings_input">
         <br>
-        New Password: <input id='newPassword' aria-labelledby='updatePassword newPassword' role='textbox' title='Type new password here' type="password" name="new_password_1" id="settings_input">
+        New Password: <br><input id='newPassword' aria-labelledby='updatePassword newPassword' role='textbox' title='Type new password here' type="password" name="new_password_1" id="settings_input">
         <br>
-        Confirm New Password: <input id='confirmPassword' aria-labelledby='updatePassword confirmPassword' role='textbox' title='Type to confirm new  password here' type="password" name="new_password_2" id="settings_input">
+        Confirm New Password: <br><input id='confirmPassword' aria-labelledby='updatePassword confirmPassword' role='textbox' title='Type to confirm new  password here' type="password" name="new_password_2" id="settings_input">
         <br>
-        <?php echo $password_message; ?>
+        <?php echo "<br>". $password_message; ?>
         <input id='submitPassword' aria-labelledby='updatePassword submitPassword' role='button' title='Click to submit new password details' type="submit" name="update_password" id="save_details" value="Update Password" class="warning settings_submit">
         <br>
         <div class="g-recaptcha" data-sitekey="6Ldtzi0UAAAAAFkGLqtcCj6PKzAsoE71BsoXmY1S"></div>
