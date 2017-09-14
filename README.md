@@ -1,6 +1,9 @@
 # Artemis Project 2017
 
-This is a TEL solution I produced for the University of Bristol. It is being disseminated as an Open Educational Resource (OER). I  am a veeeeeery long sentence on prashflahflsahfklsahflsakhfklsakhfhaslfhsalkfhlafh
+Artemis is a TEL solution I produced for the University of Bristol, disseminated as an Open Educational Resource (OER).
+
+You can learn more about the underlying rationale and non-development related stuff via this easy to follow wiki <a href='https://github.com/TaimurAhmed/summerProject2017/wiki'> click me baby</a>
+
 
 
 
