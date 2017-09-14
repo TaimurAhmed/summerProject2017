@@ -1,7 +1,6 @@
 # Artemis Project 2017
 
-A TEL solution to enable blended and flexible pedagogies via a social network.
-Written via sublime.
+This is a TEL solution I produced for the University of Bristol. It is being disseminated as an Open Educational Resource (OER). I  am a veeeeeery long sentence on prashflahflsahfklsahflsakhfklsakhfhaslfhsalkfhlafh
 
 
 
