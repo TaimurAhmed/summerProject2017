@@ -1,4 +1,9 @@
 <?php 
+/*This script deserves credit where it is due as it is almost completely not my own work
+ * The author has shared this work in the public domain and it is relatively immaterial beyond a feature
+ * to my project.
+ * Original Author: Reece Kenney tutorials:https://www.facebook.com/ReeceKenney50/
+ * /
 include("includes/header.php");
 
 $profile_id = $userLoggedIn;
