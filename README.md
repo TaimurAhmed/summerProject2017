@@ -17,6 +17,8 @@ The project still needs to be polished. Future work i'd reccomend before beta te
     <li>Abstraction and DRY code: Their is repetetive code in here that could be abstracted as per DRY code principles</li>
     <li>Unit Testing: Nothing has been unit tested yet</li>
     <li>ER Model and DB Normalisation: The ER model needs to be formally mapped and candidates for normalisation considered</li>
+    <li>Security Penetration Testing: I have mitigated for application security but it still needs proffessional testing within and beyond the OWASP Top Ten</li>
+    <li>AB Testing: The product has been user tested but the UI and UX can be enhanced further</li>
 </ul>
 
 
